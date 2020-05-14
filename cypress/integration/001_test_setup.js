@@ -18,10 +18,10 @@ describe("IdealPostcodes Admin Setup", () => {
   describe("Enable/Disable Plugin", () => {
     it("Disable plugin", () => {
       cy.get(
-        "a[aria-label='Deactivate UK Address Postcode Validation WooCommerce Extension']"
+        "a[aria-label='Deactivate UK Address Postcode Validation']"
       ).click();
       cy.get(
-        "a[aria-label='Activate UK Address Postcode Validation WooCommerce Extension']"
+        "a[aria-label='Activate UK Address Postcode Validation']"
       )
         .parent()
         .should("have.class", "activate");
@@ -29,10 +29,10 @@ describe("IdealPostcodes Admin Setup", () => {
 
     it("Enable plugin", () => {
       cy.get(
-        "a[aria-label='Activate UK Address Postcode Validation WooCommerce Extension']"
+        "a[aria-label='Activate UK Address Postcode Validation']"
       ).click();
       cy.get(
-        "a[aria-label='Deactivate UK Address Postcode Validation WooCommerce Extension']"
+        "a[aria-label='Deactivate UK Address Postcode Validation']"
       )
         .parent()
         .should("have.class", "deactivate");

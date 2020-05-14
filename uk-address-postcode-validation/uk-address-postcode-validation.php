@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: UK Address Postcode Validation WooCommerce Extension
- * Plugin URI: http://woocommerce.com/products/ideal-postcodes/
+ * Plugin Name: UK Address Postcode Validation
+ * Plugin URI: http://ideal-postcodes.co.uk/woocommerce
  * Description: UK address search and validation on address forms
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Ideal Postcodes
  * Author URI: https://ideal-postcodes.co.uk/
  * Developer: Ideal Postcodes
