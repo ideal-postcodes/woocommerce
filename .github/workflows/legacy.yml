@@ -1,0 +1,25 @@
+name: Legacy Integration Tests
+
+on:
+  - push
+
+jobs:
+  legacy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Launch legacy WooCommerce test environment (WP 5.0, php 7.1, WC 3.3)
+        run: make bootstrap-legacy
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+
+      - uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_LEGACY: "true"
+
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

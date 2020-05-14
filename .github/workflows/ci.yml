@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  - push
+
+jobs:
+  ci:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Launch WooCommerce test environment
+        run: make bootstrap
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+
+      - uses: cypress-io/github-action@v1
+
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots

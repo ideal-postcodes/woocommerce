@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: woocommerce
+      MYSQL_USER: woocommerce
+      MYSQL_PASSWORD: woocommerce
+
+  web:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - ./docker/conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - wordpress:/var/www/html
+      - ./uk-address-postcode-validation:/var/www/html/wp-content/plugins/uk-address-postcode-validation
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: woocommerce
+      WORDPRESS_DB_PASSWORD: woocommerce
+      WORDPRESS_DB_NAME: woocommerce
+
+volumes:
+  data: {}
+  wordpress: {}
