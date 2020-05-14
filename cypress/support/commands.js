@@ -90,10 +90,10 @@ Cypress.Commands.add("installwc4", () => {
   cy.get("button")
     .contains("No")
     .click();
+  cy.get("input.components-form-toggle__input").click({ multiple: true });
   cy.get("button")
     .contains("Continue")
     .click();
-  cy.contains("Continue without installing").click();
 
   // Setup template
   cy.get("button")
