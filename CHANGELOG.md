@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ideal-postcodes/woocommerce/compare/1.0.0...1.0.1) (2020-05-14)
+
+
+### Bug Fixes
+
+* **Plugin:** Drop trademark for plugin submission ([7737c98](https://github.com/ideal-postcodes/woocommerce/commit/7737c980d52493bffe98685515652270682515f0))
+
 # 1.0.0 (2020-05-14)
 
 
