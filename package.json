@@ -38,6 +38,6 @@
     "@prettier/plugin-xml": "~0.7.2",
     "cypress": "~4.5.0",
     "prettier": "~2.0.5",
-    "semantic-release": "~17.0.7"
+    "semantic-release": "~17.0.8"
   }
 }
