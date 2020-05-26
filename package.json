@@ -36,7 +36,7 @@
     "@ideal-postcodes/core-browser": "~1.2.1",
     "@prettier/plugin-php": "~0.14.0",
     "@prettier/plugin-xml": "~0.7.2",
-    "cypress": "~4.5.0",
+    "cypress": "~4.6.0",
     "prettier": "~2.0.5",
     "semantic-release": "~17.0.8"
   }
