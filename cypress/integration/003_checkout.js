@@ -1,10 +1,13 @@
+import { address as fixtures } from "@ideal-postcodes/api-fixtures";
+const englandAddress = fixtures.england;
+const scotlandAddress = fixtures.scotland;
+
 Cypress.on("uncaught:exception", (err, runnable) => {
   console.log(err);
   return false;
 });
 
 describe("Checkout", () => {
-  let address;
 
   before(() => {
     cy.login();
@@ -18,11 +21,6 @@ describe("Checkout", () => {
       .click();
   });
 
-  //add products to cart for further testing
-  beforeEach(function() {
-    cy.fixture("address.json").then(data => (address = data));
-  });
-
   it("Autocomplete", function() {
     cy.get(".woocommerce-billing-fields").within(() => {
       if (!Cypress.env("LEGACY")) {
@@ -32,17 +30,18 @@ describe("Checkout", () => {
       cy.get("#billing_address_1")
         .click()
         .focus()
-        .type(address.street);
-      //here wait because it not catching the xhr call to get list
+        .type(englandAddress.line_1);
+      //wait here in order to catch the xhr call to get list
       cy.wait(5000);
       cy.get("#billing_address_1").clear();
-      cy.get("#billing_address_1").type(address.street);
+      cy.get("#billing_address_1").type(englandAddress.line_1);
       cy.wait(500);
-      cy.get(".idpc_ul li")
+      cy.get(".idpc_ul > li")
         .first()
         .click();
-      cy.get("#billing_city").should("have.value", address.city);
-      cy.get("#billing_postcode").should("have.value", address.postcode);
+      cy.get("#billing_address_2").should("have.value", englandAddress.line_2);
+      cy.get("#billing_city").should("have.value", englandAddress.post_town);
+      cy.get("#billing_postcode").should("have.value", englandAddress.postcode);
     });
   });
 
@@ -58,14 +57,19 @@ describe("Checkout", () => {
           cy.wait(1000);
         }
         cy.get("#shipping_address_1")
-          .clear()
-          .type(address.street);
+          .click()
+          .focus()
+          .type(scotlandAddress.line_1);
+        cy.wait(5000);
+        cy.get("#shipping_address_1").clear();
+        cy.get("#shipping_address_1").type(scotlandAddress.line_1);
         cy.wait(500);
-        cy.get(".idpc_ul li")
-          .first()
+        cy.get(".idpc_ul > li")
+          .eq(1)
           .click();
-        cy.get("#shipping_city").should("have.value", address.city);
-        cy.get("#shipping_postcode").should("have.value", address.postcode);
+        cy.get("#shipping_address_2").should("have.value", `${scotlandAddress.line_2}, ${scotlandAddress.line_3}`);
+        cy.get("#shipping_city").should("have.value", scotlandAddress.post_town);
+        cy.get("#shipping_postcode").should("have.value", scotlandAddress.postcode);
       });
     });
   });

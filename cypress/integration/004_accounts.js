@@ -1,17 +1,16 @@
+import { address as fixtures } from "@ideal-postcodes/api-fixtures";
+const englandAddress = fixtures.england;
+const scotlandAddress = fixtures.scotland;
+
 Cypress.on("uncaught:exception", (err, runnable) => {
   console.log(err);
   return false;
 });
 
 describe("Account", () => {
-  let address;
 
-  beforeEach(function() {
+  it("Autocomplete", function () {
     cy.login();
-    cy.fixture("address.json").then(data => (address = data));
-  });
-
-  it("Autocomplete", function() {
     cy.visit("/");
     cy.get("a")
       .contains("My account")
@@ -25,26 +24,30 @@ describe("Account", () => {
         .click()
         .type("United Kingdom{enter}");
     } else {
-      cy.get("#shipping_country").select("GB", { force: true });
+      cy.get("#shipping_country").select("GB", {
+        force: true
+      });
     }
     cy.get("#shipping_address_1")
       .click()
-      .type(address.street);
-    //here wait because it not catching the xhr call to get list
+      .type(scotlandAddress.line_1);
+    //wait here in order to catch the xhr call to get list
     cy.wait(5000);
     cy.get("#shipping_address_1")
       .clear()
-      .type(address.street);
+      .type(scotlandAddress.line_1);
     cy.wait(500);
-    cy.get(".idpc_ul li")
-      .first()
+    cy.get(".idpc_ul > li")
+      .eq(1)
       .click();
-    cy.get("#shipping_city").should("have.value", address.city);
-    cy.get("#shipping_postcode").should("have.value", address.postcode);
+    cy.get("#shipping_address_2").should("have.value", `${scotlandAddress.line_2}, ${scotlandAddress.line_3}`);
+    cy.get("#shipping_city").should("have.value", scotlandAddress.post_town);
+    cy.get("#shipping_postcode").should("have.value", scotlandAddress.postcode);
   });
 
-  describe("Billing", function() {
-    it("Autocomplete", function() {
+  describe("Billing", function () {
+    it("Autocomplete", function () {
+      cy.login();
       cy.visit("/");
       cy.get("a")
         .contains("My account")
@@ -59,21 +62,24 @@ describe("Account", () => {
           .click()
           .type("United Kingdom{enter}");
       } else {
-        cy.get("#billing_country").select("GB", { force: true });
+        cy.get("#billing_country").select("GB", {
+          force: true
+        });
       }
       cy.get("#billing_address_1")
         .click()
-        .type(address.street);
+        .type(englandAddress.line_1);
       cy.wait(5000);
       cy.get("#billing_address_1")
         .clear()
-        .type(address.street);
+        .type(englandAddress.line_1);
       cy.wait(500);
-      cy.get(".idpc_ul li")
+      cy.get(".idpc_ul > li")
         .first()
         .click();
-      cy.get("#billing_city").should("have.value", address.city);
-      cy.get("#billing_postcode").should("have.value", address.postcode);
+      cy.get("#billing_address_2").should("have.value", englandAddress.line_2);
+      cy.get("#billing_city").should("have.value", englandAddress.post_town);
+      cy.get("#billing_postcode").should("have.value", englandAddress.postcode);
     });
   });
 });

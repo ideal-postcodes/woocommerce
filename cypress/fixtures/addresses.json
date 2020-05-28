@@ -1,0 +1,20 @@
+{
+  "person": {
+    "firstname": "Joe",
+    "lastname": "Doe",
+    "phone": "07777777777",
+    "email": "test@test.com"
+  },
+  "address_one": {
+    "address_line_one": "2 Barons Court Road",
+    "address_line_two": "",
+    "post_town": "LONDON",
+    "postcode": "W14 9DT"
+  },
+  "address_two": {
+    "address_line_one": "Flat 1",
+    "address_line_two": "10 Springfield Road",
+    "post_town": "KINGSTON UPON THAMES",
+    "postcode": "KT1 2SA"
+  }
+}
