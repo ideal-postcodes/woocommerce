@@ -1,10 +1,10 @@
-name: CI
+name: JS Bindings CI
 
 on:
   push:
 
 jobs:
-  ci:
+  js_bindings_ci:
     runs-on: ubuntu-latest
 
     strategy:
