@@ -29,7 +29,7 @@
     "build:woocommerce": "rollup -c",
     "watch": "rollup -cw",
     "lint": "eslint lib/**/*.ts",
-    "prepublishOnly": "npm run lint && npm run build"
+    "prepublishOnly": "npm run lint && npm run build:woocommerce"
   },
   "release": {
     "extends": "@cablanchard/semantic-release"
