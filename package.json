@@ -44,7 +44,7 @@
     "@prettier/plugin-xml": "~0.7.2",
     "cypress": "~4.6.0",
     "prettier": "~1.19.1",
-    "semantic-release": "~15.14.0",
+    "semantic-release": "~17.0.8",
     "@ideal-postcodes/jsutil": "~2.0.0",
     "@rollup/plugin-commonjs": "~12.0.0",
     "@rollup/plugin-node-resolve": "~8.0.0",
