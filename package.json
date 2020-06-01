@@ -48,7 +48,7 @@
     "@ideal-postcodes/jsutil": "~2.0.0",
     "@rollup/plugin-commonjs": "~12.0.0",
     "@rollup/plugin-node-resolve": "~8.0.0",
-    "@typescript-eslint/eslint-plugin": "~2.29.0",
+    "@typescript-eslint/eslint-plugin": "~2.34.0",
     "@typescript-eslint/eslint-plugin-tslint": "~2.29.0",
     "@typescript-eslint/parser": "~2.29.0",
     "@wessberg/rollup-plugin-ts": "~1.2.24",
