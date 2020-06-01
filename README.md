@@ -6,6 +6,7 @@
 
 ![Legacy Integration Tests](https://github.com/ideal-postcodes/woocommerce/workflows/Legacy%20Integration%20Tests/badge.svg)
 ![CI](https://github.com/ideal-postcodes/woocommerce/workflows/CI/badge.svg)
+![JS Bindings CI](https://github.com/ideal-postcodes/woocommerce/workflows/JS%20Bindings%20CI/badge.svg)
 ![Release](https://github.com/ideal-postcodes/woocommerce/workflows/Release/badge.svg)
 
 `@ideal-postcodes/woocommerce` enables UK address validation on WooCommerce checkout and account address forms.
