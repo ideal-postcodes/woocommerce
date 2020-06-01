@@ -49,7 +49,7 @@
     "@rollup/plugin-commonjs": "~12.0.0",
     "@rollup/plugin-node-resolve": "~8.0.0",
     "@typescript-eslint/eslint-plugin": "~2.29.0",
-    "@typescript-eslint/eslint-plugin-tslint": "~2.29.0",
+    "@typescript-eslint/eslint-plugin-tslint": "~3.0.2",
     "@typescript-eslint/parser": "~2.29.0",
     "@wessberg/rollup-plugin-ts": "~1.2.24",
     "core-js": "~3.6.5",
