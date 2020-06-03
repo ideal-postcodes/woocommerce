@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/ideal-postcodes/woocommerce/compare/1.0.3...1.0.4) (2020-06-03)
+
+
+### Bug Fixes
+
+* **Stylesheets:** Inject stylesheet for autocomplete ([9e0abdd](https://github.com/ideal-postcodes/woocommerce/commit/9e0abddce4334e353cc08182254d1df28648c44d))
+
 ## [1.0.3](https://github.com/ideal-postcodes/woocommerce/compare/1.0.2...1.0.3) (2020-06-03)
 
 
