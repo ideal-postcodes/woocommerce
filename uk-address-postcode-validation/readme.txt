@@ -79,10 +79,29 @@ Prices range between 2 and 2.5 per lookup, with alternate pricing options availa
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.3 =
+* Update tested platforms for Wordpress & WooCommerce
+* Release to Wordpress plugins directory
+
+= 1.0.2 =
+* Automate version deploys to Wordpress plugins directory
+
+= 1.0.1 =
+* Drop trademark for plugin submission
+
+= 1.0.0 =
 * Initial release
 
 == Upgrade Notice ==
 
-= 1.0 =
-Initial release
+= 1.0.3 =
+* Installations and updates can now be retrieved from the Wordpress plugins directory
+
+= 1.0.2 =
+* None
+
+= 1.0.1 =
+* None
+
+= 1.0.0 =
+* Initial release
