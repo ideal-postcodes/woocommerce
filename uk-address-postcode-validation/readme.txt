@@ -3,7 +3,7 @@ Contributors: idealpostcodes
 Donate link: https://ideal-postcodes.co.uk/
 Tags: address, validation, search, checkout, data, PAF, ideal postcodes
 Requires at least: 5.0
-Tested up to: 5.0
+Tested up to: 5.4
 Stable tag: 1.0.2
 Requires PHP: 7.1.0
 License: MIT
