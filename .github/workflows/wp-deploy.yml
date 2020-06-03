@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@master
 
       - name: WordPress Plugin Deploy
-        uses: wirecard/action-wordpress-plugin-deploy@master
+        uses: wirecard/action-wordpress-plugin-deploy@develop
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SLUG: uk-address-postcode-validation
-          WORKSPACE_DIR: uk-address-postcode-validation
+          WORKSPACE_DIR: ${{ format('{0}/{1}', github.workspace, 'uk-address-postcode-validation') }}
