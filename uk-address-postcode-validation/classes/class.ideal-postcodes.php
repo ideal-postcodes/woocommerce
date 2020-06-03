@@ -34,6 +34,10 @@ class IdealPostcodes
         'IdealPostcodes',
         'add_autocomplete_plugin',
       ]);
+      add_action('woocommerce_before_checkout_form', [
+        'IdealPostcodes',
+        'add_autocomplete_styles',
+      ]);
       add_action('woocommerce_after_checkout_form', [
         'IdealPostcodes',
         'add_idpc_bindings',
@@ -50,6 +54,10 @@ class IdealPostcodes
       add_action('woocommerce_before_edit_account_address_form', [
         'IdealPostcodes',
         'add_autocomplete_plugin',
+      ]);
+      add_action('woocommerce_before_edit_account_address_form', [
+        'IdealPostcodes',
+        'add_autocomplete_styles',
       ]);
       add_action('woocommerce_before_edit_account_address_form', [
         'IdealPostcodes',
@@ -305,6 +313,17 @@ class IdealPostcodes
     wp_enqueue_script(
       'ideal-postcodes-autocomplete',
       IDEALPOSTCODES_URL . 'js/ideal-postcodes-autocomplete.min.js'
+    );
+  }
+
+  /**
+   * Add autocomplete stylesheet
+   */
+  public function add_autocomplete_styles()
+  {
+    wp_enqueue_style(
+      'ideal-postcodes-autocomplete-style',
+      IDEALPOSTCODES_URL . 'css/ideal-postcodes-autocomplete.css'
     );
   }
 
