@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/ideal-postcodes/woocommerce/compare/1.0.2...1.0.3) (2020-06-03)
+
+
+### Bug Fixes
+
+* **WooCommerce:** Update tested WC platforms ([bdc444b](https://github.com/ideal-postcodes/woocommerce/commit/bdc444bbc21e49517d6e617b0f2cfe58b62cfa09))
+* **WooCommerce:** Update tested Wordpress platform ([b670206](https://github.com/ideal-postcodes/woocommerce/commit/b670206dd90efc7c5fe8397b8002eb8459a4470d))
+
 ## [1.0.1](https://github.com/ideal-postcodes/woocommerce/compare/1.0.0...1.0.1) (2020-05-14)
 
 
