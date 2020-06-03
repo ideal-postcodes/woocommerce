@@ -63,6 +63,7 @@ module.exports = {
         assets: [
           "uk-address-postcode-validation/uk-address-postcode-validation.php",
           "uk-address-postcode-validation/readme.txt",
+          "CHANGELOG.md",
         ],
       },
     ],
