@@ -31,33 +31,31 @@
     "lint": "eslint lib/**/*.ts",
     "prepublishOnly": "npm run lint && npm run build:woocommerce"
   },
-  "release": {
-    "extends": "@cablanchard/semantic-release"
-  },
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "~7.10.2",
     "@cablanchard/eslint-config": "~2.0.2",
     "@cablanchard/semantic-release": "~1.3.4",
     "@cablanchard/tsconfig": "~1.0.0",
+    "@google/semantic-release-replace-plugin": "^1.0.0",
     "@ideal-postcodes/core-browser": "~1.2.1",
+    "@ideal-postcodes/jsutil": "~2.0.0",
     "@prettier/plugin-php": "~0.14.2",
     "@prettier/plugin-xml": "~0.7.2",
-    "cypress": "~4.7.0",
-    "prettier": "~2.0.5",
-    "semantic-release": "~17.0.8",
-    "@ideal-postcodes/jsutil": "~2.0.0",
     "@rollup/plugin-commonjs": "~12.0.0",
     "@rollup/plugin-node-resolve": "~8.0.0",
     "@typescript-eslint/eslint-plugin": "~3.1.0",
     "@typescript-eslint/parser": "~3.1.0",
     "@wessberg/rollup-plugin-ts": "~1.2.24",
     "core-js": "~3.6.5",
+    "cypress": "~4.7.0",
     "eslint": "~7.1.0",
+    "prettier": "~2.0.5",
     "rollup": "~2.12.1",
     "rollup-plugin-terser": "~6.1.0",
+    "semantic-release": "~17.0.8",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.2",
-    "typescript": "~3.9.3",
-    "@babel/core": "~7.10.2"
+    "typescript": "~3.9.3"
   }
 }
