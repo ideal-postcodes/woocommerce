@@ -68,7 +68,7 @@ Yes. Your first key on your Ideal Postcodes account will carry a free test balan
 
 = How much does this cost? =
 
-Prices range between 2 and 2.5 per lookup, with alternate pricing options available for specific sectors and volumes. See our [pricing page](https://ideal-postcodes.co.uk/pricing) or [contact us](https://ideal-postcodes.co.uk/support) to find out more.
+Prices range between 2 and 2.5p per lookup, with alternate pricing options available for specific sectors and volumes. See our [pricing page](https://ideal-postcodes.co.uk/pricing) or [contact us](https://ideal-postcodes.co.uk/support) to find out more.
 
 == Screenshots ==
 
