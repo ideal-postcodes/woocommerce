@@ -3,7 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",
-    "declaration": true,
+    "declaration": false,
     "lib": ["es6", "dom"]
   },
   "include": ["lib/*"]
