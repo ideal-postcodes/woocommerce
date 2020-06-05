@@ -11,14 +11,17 @@
 
 `@ideal-postcodes/woocommerce` enables UK address validation on WooCommerce checkout and account address forms.
 
+Download from the [Wordpress Plugin directory](https://wordpress.org/plugins/uk-address-postcode-validation/).
+
 For installation, feature list and configuration see our [guide](https://ideal-postcodes.co.uk/guides/woocommerce).
 
-This plugin is tested from [WooCommerce 3.3 (Wordpress 5.0, PHP 7.1)](/docker/legacy.yml) to [WooCommerce 4.1 (Wordpress 5.4.1)](/Dockerfile)
+This plugin is tested from [WooCommerce 3.3 (Wordpress 5.0, PHP 7.1)](/docker/legacy.yml) to [WooCommerce 4.1 (Wordpress 5.4.1)](/Dockerfile).
 
 Missing feature, something not right or need help? Contact [support](https://ideal-postcodes.co.uk/support).
 
 ## Links
 
+- [Wordpress Plugin](https://wordpress.org/plugins/uk-address-postcode-validation/)
 - [Guide](https://ideal-postcodes/guides/woocommerce)
 - [Changelog](https://github.com/ideal-postcodes/woocommerce/blob/master/CHANGELOG.md)
 - [Support](https://ideal-postcodes.co.uk/support)
