@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/ideal-postcodes/woocommerce/compare/1.0.5...1.0.6) (2020-06-05)
+
+
+### Bug Fixes
+
+* **Icon:** Fix icon name ([93bfe0e](https://github.com/ideal-postcodes/woocommerce/commit/93bfe0ef54a4189699802e96e08285a8a923d78c))
+
 ## [1.0.5](https://github.com/ideal-postcodes/woocommerce/compare/1.0.4...1.0.5) (2020-06-05)
 
 
