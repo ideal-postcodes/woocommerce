@@ -4,7 +4,8 @@ import {
   getTargets,
   addressRetrieval,
   generateTimer,
-  Binding, Config
+  Binding,
+  Config,
 } from "@ideal-postcodes/jsutil";
 
 export const pageTest = (): boolean =>
@@ -38,7 +39,10 @@ export const bind = (config: Config) => {
     inputField: selectors.line_1,
     outputFields: {},
     checkKey: true,
-    onAddressRetrieved: addressRetrieval({ targets, config }),
+    onAddressRetrieved: (address: any) => {
+      addressRetrieval({ targets, config })(address);
+      (window.jQuery as any)(document.body).trigger("update_checkout");
+    },
     ...config.autocompleteOverride,
   });
 };
