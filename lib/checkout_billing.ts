@@ -8,6 +8,8 @@ import {
   Config,
 } from "@ideal-postcodes/jsutil";
 
+import { Address } from "@ideal-postcodes/api-typings";
+
 export const pageTest = (): boolean =>
   document.querySelector(".woocommerce-checkout") !== null;
 
@@ -39,7 +41,7 @@ export const bind = (config: Config) => {
     inputField: selectors.line_1,
     outputFields: {},
     checkKey: true,
-    onAddressRetrieved: (address: any) => {
+    onAddressRetrieved: (address: Address) => {
       addressRetrieval({ targets, config })(address);
       (window.jQuery as any)(document.body).trigger("update_checkout");
     },
