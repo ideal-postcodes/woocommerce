@@ -79,6 +79,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 1.0.5 =
+* Manually fire checkout refresh on address population
+
 = 1.0.3 =
 * Update tested platforms for Wordpress & WooCommerce
 * Release to Wordpress plugins directory
@@ -93,6 +96,12 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.0.5 =
+* None
+
+= 1.0.4 =
+* None
 
 = 1.0.3 =
 * Installations and updates can now be retrieved from the Wordpress plugins directory
