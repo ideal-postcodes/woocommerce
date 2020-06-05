@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/ideal-postcodes/woocommerce/compare/1.0.4...1.0.5) (2020-06-05)
+
+
+### Bug Fixes
+
+* **Checkout:** Manually trigger checkout update ([515c506](https://github.com/ideal-postcodes/woocommerce/commit/515c506bb8110b842a84205803e702f981f1ad0a))
+
 ## [1.0.4](https://github.com/ideal-postcodes/woocommerce/compare/1.0.3...1.0.4) (2020-06-03)
 
 
