@@ -116,6 +116,71 @@ Cypress.Commands.add("installwc4", () => {
   cy.contains("No thanks").click();
 });
 
+// Install for WooCommerce 4.2
+Cypress.Commands.add("installwc42", () => {
+  cy.login();
+  cy.visit("/wp-admin/admin.php?page=wc-setup");
+
+  // Start setup wizard
+  cy.get("button")
+    .contains("Yes please")
+    .click();
+
+  // Enter address and close popup
+  cy.wait(1000);
+  cy.get("button.components-button")
+    .contains("Continue")
+    .click();
+  cy.wait(1000);
+  cy.get(".components-modal__screen-overlay button")
+    .contains("Continue")
+    .click();
+
+  // Select Industry
+  cy.get("#inspector-checkbox-control-3").check();
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  // Select product type
+  cy.get("#inspector-checkbox-control-10").check();
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  cy.get("#woocommerce-select-control-1__control-input").click({ force: true });
+  cy.get("button")
+    .contains("1 - 10")
+    .click();
+  cy.get("#woocommerce-select-control-2__control-input").click({ force: true });
+  cy.get("button")
+    .contains("No")
+    .click();
+  cy.get("input.components-form-toggle__input").click({ multiple: true });
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  // Setup template
+  cy.get("button")
+    .contains("Continue with my active theme")
+    .click();
+
+  // Disable jetpack
+  cy.contains("No thanks").click();
+
+  // Kill modal
+  cy.get(
+    ".woocommerce-task-dashboard__welcome-modal-wrapper > .components-button"
+  ).click();
+
+  // Setup shipping
+  cy.contains("Set up shipping").click();
+  cy.contains("Continue").click();
+  cy.contains("Proceed").click();
+  cy.contains("No thanks").click();
+});
+
 // Install for WooCommerce 3
 Cypress.Commands.add("installwc3", () => {
   cy.login();
