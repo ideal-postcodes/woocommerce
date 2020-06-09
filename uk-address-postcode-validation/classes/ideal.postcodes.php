@@ -4,13 +4,6 @@ if ( ! class_exists( 'WC_IdealPostcodes_Integration' ) ) :
 
 class WC_IdealPostcodes_Integration extends WC_Integration
 {
-  private static $options = [
-    'idealpostcodes_enabled' => 'yes',
-    'idealpostcodes_api_key' => '',
-    'idealpostcodes_populate_organisation' => 'no',
-    'idealpostcodes_populate_county' => 'no',
-  ];
-
   public function __construct()
   {
     global $woocommerce;
