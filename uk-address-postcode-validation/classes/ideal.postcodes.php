@@ -23,9 +23,10 @@ class WC_IdealPostcodes_Integration extends WC_Integration
     $this->add_form_fields();
     $this->init_settings();
 
-    +      // Define user set variables.
+    //check versions and if need copy values to WC admin container
+
+    // Define user set variables.
     $this->config = (object)[
-      'idealpostcodes_required' => $this->get_option('idealpostcodes_required'),
       'idealpostcodes_enabled' => $this->get_option('idealpostcodes_enabled'),
       'idealpostcodes_api_key' => $this->get_option('idealpostcodes_api_key'),
       'idealpostcodes_populate_organisation' => $this->get_option('idealpostcodes_populate_organisation'),
@@ -71,9 +72,23 @@ class WC_IdealPostcodes_Integration extends WC_Integration
     }
   }
 
+  private function version_check()
+  {
+    if (get_option('idealpostcodes_enabled') !== false && $this->get_option('idealpostcodes_enabled') === false) {
+      //copy settings from old storage
+      $this->update_option('idealpostcodes_enabled', get_option('idealpostcodes_enabled'));
+      $this->update_option('idealpostcodes_api_key', get_option('idealpostcodes_api_key'));
+      $this->update_option('idealpostcodes_populate_organisation', get_option('idealpostcodes_populate_organisation'));
+      $this->update_option('idealpostcodes_populate_county', get_option('idealpostcodes_populate_county'));
+      delete_option('idealpostcodes_enabled');
+      delete_option('idealpostcodes_api_key');
+      delete_option('idealpostcodes_populate_organisation');
+      delete_option('idealpostcodes_populate_county');
+    }
+  }
+
   public function add_form_fields()
   {
-    //TODO move fields from static class
     $this->form_fields = array(
       'idealpostcodes_required' => array(
         'title' => __('Required', IDEALPOSTCODES_SLUG),
@@ -137,13 +152,13 @@ class WC_IdealPostcodes_Integration extends WC_Integration
   public function get_options()
   {
     return [
-      "enabled" => $this->to_bool(get_option('idealpostcodes_enabled')),
-      "apiKey" => get_option('idealpostcodes_api_key'),
+      "enabled" => $this->to_bool($this->get_option('idealpostcodes_enabled')),
+      "apiKey" => $this->get_option('idealpostcodes_api_key'),
       "populateOrganisation" => $this->to_bool(
-        get_option('idealpostcodes_populate_organisation')
+        $this->get_option('idealpostcodes_populate_organisation')
       ),
       "populateCounty" => $this->to_bool(
-        get_option('idealpostcodes_populate_county')
+        $this->get_option('idealpostcodes_populate_county')
       ),
     ];
   }
@@ -197,6 +212,7 @@ class WC_IdealPostcodes_Integration extends WC_Integration
   public function add_idpc_bindings()
   {
     $json = json_encode($this->get_options(), JSON_FORCE_OBJECT);
+    var_dump($json);
     $script = 'window.idpcConfig = ' . $json . ';';
 
     wp_enqueue_script(
