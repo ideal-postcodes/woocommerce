@@ -25,16 +25,54 @@ defined('ABSPATH') or die('No direct script');
 define('IDEALPOSTCODES_DIR', plugin_dir_path(__FILE__));
 define('IDEALPOSTCODES_NAME', 'Ideal Postcodes');
 define('IDEALPOSTCODES_SLUG', 'uk-address-postcode-validation');
-define('IDEALPOSTCODES_TAB', 'ideal_postcodes');
+define('IDEALPOSTCODES_TAB', 'integration');
 define('IDEALPOSTCODES_URL', plugins_url() . '/' . IDEALPOSTCODES_SLUG . '/');
 
 //includes
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
-require_once IDEALPOSTCODES_DIR .
-  'classes' .
-  DIRECTORY_SEPARATOR .
-  'class.ideal-postcodes.php';
 
-//init plugin
+if (!class_exists('WC_IdealPostcodes')) {
+  class WC_IdealPostcodes
+  {
+
+    /**
+     * Construct the plugin.
+     */
+    public function __construct()
+    {
+      add_action('plugins_loaded', array($this, 'init'));
+    }
+
+    /**
+     * Initialize the plugin.
+     */
+    public function init()
+    {
+      if (class_exists('WC_Integration')) {
+        require_once IDEALPOSTCODES_DIR .
+          'classes' .
+          DIRECTORY_SEPARATOR .
+          'ideal.postcodes.php';
+        add_filter('woocommerce_integrations', array($this, 'add_integration'));
+      }
+    }
+
+    /**
+     * Add a new integration to WooCommerce.
+     */
+    public function add_integration($integrations)
+    {
+      $integrations[] = 'WC_IdealPostcodes_Integration';
+      return $integrations;
+    }
+  }
+
+  //Init plugin if woocommerce is installed
+  $WC_IdealPostcodes_Integration = new WC_IdealPostcodes(__FILE__);
+}
+
+
+/*//init plugin
 add_action('admin_init', ['IdealPostcodes', 'admin_init']);
-add_action('init', ['IdealPostcodes', 'init']);
+add_action('init', ['IdealPostcodes', 'init']);*/
+
