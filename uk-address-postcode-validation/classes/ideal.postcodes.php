@@ -206,7 +206,6 @@ class WC_IdealPostcodes_Integration extends WC_Integration
   public function add_idpc_bindings()
   {
     $json = json_encode($this->get_options(), JSON_FORCE_OBJECT);
-    var_dump($json);
     $script = 'window.idpcConfig = ' . $json . ';';
 
     wp_enqueue_script(
