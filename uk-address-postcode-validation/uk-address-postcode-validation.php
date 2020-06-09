@@ -25,7 +25,6 @@ defined('ABSPATH') or die('No direct script');
 define('IDEALPOSTCODES_DIR', plugin_dir_path(__FILE__));
 define('IDEALPOSTCODES_NAME', 'Ideal Postcodes');
 define('IDEALPOSTCODES_SLUG', 'uk-address-postcode-validation');
-define('IDEALPOSTCODES_TAB', 'integration');
 define('IDEALPOSTCODES_URL', plugins_url() . '/' . IDEALPOSTCODES_SLUG . '/');
 
 //includes
@@ -70,9 +69,3 @@ if (!class_exists('WC_IdealPostcodes')) {
   //Init plugin if woocommerce is installed
   $WC_IdealPostcodes_Integration = new WC_IdealPostcodes(__FILE__);
 }
-
-
-/*//init plugin
-add_action('admin_init', ['IdealPostcodes', 'admin_init']);
-add_action('init', ['IdealPostcodes', 'init']);*/
-
