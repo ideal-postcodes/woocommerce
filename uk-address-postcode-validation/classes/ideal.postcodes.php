@@ -24,7 +24,7 @@ class WC_IdealPostcodes_Integration extends WC_Integration
     $this->init_settings();
 
     //check versions and if need copy values to WC admin container
-
+    $this->version_check();
     // Define user set variables.
     $this->config = (object)[
       'idealpostcodes_enabled' => $this->get_option('idealpostcodes_enabled'),
