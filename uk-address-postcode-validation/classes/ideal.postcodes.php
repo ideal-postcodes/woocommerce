@@ -1,6 +1,6 @@
 <?php
 
-//if ( ! class_exists( 'WC_IdealPostcodes_Integration' ) ) :
+if ( ! class_exists( 'WC_IdealPostcodes_Integration' ) ) :
 
 class WC_IdealPostcodes_Integration extends WC_Integration
 {
@@ -80,6 +80,7 @@ class WC_IdealPostcodes_Integration extends WC_Integration
       $this->update_option('idealpostcodes_api_key', get_option('idealpostcodes_api_key'));
       $this->update_option('idealpostcodes_populate_organisation', get_option('idealpostcodes_populate_organisation'));
       $this->update_option('idealpostcodes_populate_county', get_option('idealpostcodes_populate_county'));
+      //delete old stored options
       delete_option('idealpostcodes_enabled');
       delete_option('idealpostcodes_api_key');
       delete_option('idealpostcodes_populate_organisation');
@@ -225,4 +226,4 @@ class WC_IdealPostcodes_Integration extends WC_Integration
     wp_add_inline_script('ideal-postcodes-bindings', $script, 'before');
   }
 }
-//endif;
+endif;
