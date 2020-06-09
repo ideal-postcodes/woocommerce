@@ -67,7 +67,7 @@ class WC_IdealPostcodes_Integration extends WC_Integration
 
   private function version_check()
   {
-    if (get_option('idealpostcodes_enabled') !== false && $this->get_option('idealpostcodes_enabled') === false) {
+    if (get_option('idealpostcodes_enabled') !== false) {
       //copy settings from old storage
       $this->update_option('idealpostcodes_enabled', get_option('idealpostcodes_enabled'));
       $this->update_option('idealpostcodes_api_key', get_option('idealpostcodes_api_key'));
