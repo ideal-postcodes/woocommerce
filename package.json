@@ -40,7 +40,7 @@
     "@google/semantic-release-replace-plugin": "~1.0.0",
     "@ideal-postcodes/api-typings": "~1.1.0",
     "@ideal-postcodes/core-browser": "~1.2.1",
-    "@ideal-postcodes/jsutil": "~2.1.1",
+    "@ideal-postcodes/jsutil": "~3.0.1",
     "@prettier/plugin-php": "~0.14.2",
     "@prettier/plugin-xml": "~0.7.2",
     "@rollup/plugin-commonjs": "~13.0.0",
