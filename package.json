@@ -46,7 +46,7 @@
     "@rollup/plugin-commonjs": "~13.0.0",
     "@rollup/plugin-node-resolve": "~8.0.1",
     "@typescript-eslint/eslint-plugin": "~3.3.0",
-    "@typescript-eslint/parser": "~3.3.0",
+    "@typescript-eslint/parser": "~3.4.0",
     "@wessberg/rollup-plugin-ts": "~1.2.25",
     "core-js": "~3.6.5",
     "cypress": "~4.8.0",
