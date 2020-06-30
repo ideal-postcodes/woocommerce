@@ -45,7 +45,7 @@
     "@prettier/plugin-xml": "~0.7.2",
     "@rollup/plugin-commonjs": "~13.0.0",
     "@rollup/plugin-node-resolve": "~8.1.0",
-    "@typescript-eslint/eslint-plugin": "~3.4.0",
+    "@typescript-eslint/eslint-plugin": "~3.5.0",
     "@typescript-eslint/parser": "~3.4.0",
     "@wessberg/rollup-plugin-ts": "~1.2.26",
     "core-js": "~3.6.5",
