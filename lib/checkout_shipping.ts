@@ -1,7 +1,8 @@
 import {
   addressRetrieval,
   Binding,
-  Config, setupBind,
+  Config,
+  setupBind,
 } from "@ideal-postcodes/jsutil";
 
 export const pageTest = (): boolean =>
@@ -19,7 +20,7 @@ export const selectors = {
 
 export const bind = (config: Config) => {
   const pageBindings = setupBind({ selectors });
-  pageBindings.forEach(binding => {
+  pageBindings.forEach((binding) => {
     const { targets } = binding;
 
     // Initialise autocomplete instance
@@ -36,5 +37,5 @@ export const bind = (config: Config) => {
 
 export const binding: Binding = {
   pageTest,
-  bind
+  bind,
 };
