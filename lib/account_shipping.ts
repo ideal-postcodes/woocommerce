@@ -1,6 +1,8 @@
 import {
   addressRetrieval,
-  Binding, Config, setupBind
+  Binding,
+  Config,
+  setupBind,
 } from "@ideal-postcodes/jsutil";
 
 export const pageTest = (): boolean =>
@@ -17,9 +19,9 @@ export const selectors = {
 };
 
 export const bind = (config: Config) => {
-  const pageBindings = setupBind({selectors});
-  pageBindings.forEach(binding => {
-    const {targets} = binding;
+  const pageBindings = setupBind({ selectors });
+  pageBindings.forEach((binding) => {
+    const { targets } = binding;
 
     // Initialise autocomplete instance
     new window.IdealPostcodes.Autocomplete.Controller({
@@ -27,7 +29,7 @@ export const bind = (config: Config) => {
       inputField: selectors.line_1,
       outputFields: {},
       checkKey: true,
-      onAddressRetrieved: addressRetrieval({targets, config}),
+      onAddressRetrieved: addressRetrieval({ targets, config }),
       ...config.autocompleteOverride,
     });
   });
@@ -35,5 +37,5 @@ export const bind = (config: Config) => {
 
 export const binding: Binding = {
   pageTest,
-  bind
+  bind,
 };
