@@ -115,6 +115,28 @@ class WC_IdealPostcodes_Integration extends WC_Integration
         'id' => 'idealpostcodes_options',
         'description' => ''
       ),
+      'idealpostcodes_autocomplete' => array(
+        'id' => 'idealpostcodes_autocomplete',
+        'title' => __('Enable Address Autocomplete', IDEALPOSTCODES_SLUG),
+        'type' => 'checkbox',
+        'description' => __(
+          'Enable/Disable Address autocomplete functionality',
+          IDEALPOSTCODES_SLUG
+        ),
+        'desc_tip' => true,
+        'default' => 'yes'
+      ),
+      'idealpostcodes_postcodelookup' => array(
+        'id' => 'idealpostcodes_postcodelookup',
+        'title' => __('Enable Address Postcode Lookup', IDEALPOSTCODES_SLUG),
+        'type' => 'checkbox',
+        'description' => __(
+          'Enable/Disable Address Postcode Lookup functionality',
+          IDEALPOSTCODES_SLUG
+        ),
+        'desc_tip' => true,
+        'default' => 'yes'
+      ),
       'idealpostcodes_populate_organisation' => array(
         'id' => 'idealpostcodes_populate_organisation',
         'title' => __('Enable Populate Organisation', IDEALPOSTCODES_SLUG),
@@ -148,6 +170,12 @@ class WC_IdealPostcodes_Integration extends WC_Integration
     return [
       "enabled" => $this->to_bool($this->get_option('idealpostcodes_enabled')),
       "apiKey" => $this->get_option('idealpostcodes_api_key'),
+      "autocomplete" => $this->to_bool(
+        $this->get_option('idealpostcodes_autocomplete')
+      ),
+      "postcodeLookup" => $this->to_bool(
+        $this->get_option('idealpostcodes_postcodelookup')
+      ),
       "populateOrganisation" => $this->to_bool(
         $this->get_option('idealpostcodes_populate_organisation')
       ),
