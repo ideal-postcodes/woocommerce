@@ -9,8 +9,8 @@ class WC_IdealPostcodes_Integration extends WC_Integration
     global $woocommerce;
 
     $this->id = 'idealpostcodes';
-    $this->method_title = __('Ideal Postcodes Autocomplete', 'woocommerce-idealpostcodes');
-    $this->method_description = __('Adds Ideal Postcodes UK Address Autocomplete to WooCommerce checkout pages.', 'woocommerce-idealpostcodes');
+    $this->method_title = __('UK Address Postcode Validation', 'woocommerce-idealpostcodes');
+    $this->method_description = __('Adds Ideal Postcodes UK address validation to WooCommerce.', 'woocommerce-idealpostcodes');
 
     // Load the settings.
     $this->add_form_fields();
