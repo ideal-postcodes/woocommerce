@@ -33,13 +33,12 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 if (!class_exists('WC_IdealPostcodes')) {
   class WC_IdealPostcodes
   {
-
     /**
      * Construct the plugin.
      */
     public function __construct()
     {
-      add_action('plugins_loaded', array($this, 'init'));
+      add_action('plugins_loaded', [$this, 'init']);
     }
 
     /**
@@ -52,7 +51,7 @@ if (!class_exists('WC_IdealPostcodes')) {
           'classes' .
           DIRECTORY_SEPARATOR .
           'ideal.postcodes.php';
-        add_filter('woocommerce_integrations', array($this, 'add_integration'));
+        add_filter('woocommerce_integrations', [$this, 'add_integration']);
       }
     }
 
