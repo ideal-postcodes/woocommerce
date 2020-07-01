@@ -27,6 +27,14 @@ describe("IdealPostcodes Admin", () => {
         //save default values
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_enabled").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").clear().type(keys.api_key);
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").should(
+          "have.attr",
+          "checked"
+        );
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").should(
+          "have.attr",
+          "checked"
+        );
 
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").should(
           "have.attr",
@@ -37,9 +45,19 @@ describe("IdealPostcodes Admin", () => {
           "checked"
         );
 
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").uncheck();
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").check();
         cy.get("button.woocommerce-save-button").click();
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").should(
+          "not.have.attr",
+          "checked"
+        );
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").should(
+          "not.have.attr",
+          "checked"
+        );
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").should(
           "not.have.attr",
           "checked"
@@ -49,6 +67,8 @@ describe("IdealPostcodes Admin", () => {
           "checked"
         );
         //save default values
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").check();
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").uncheck();
 
