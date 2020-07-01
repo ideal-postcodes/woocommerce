@@ -15,3 +15,5 @@ jobs:
           COMPOSE_INTERACTIVE_NO_CLI: 1
 
       - uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
