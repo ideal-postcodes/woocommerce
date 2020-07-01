@@ -1,9 +1,6 @@
-import {
-  addressRetrieval,
-  Binding,
-  Config,
-  setupBind,
-} from "@ideal-postcodes/jsutil";
+import { Binding } from "@ideal-postcodes/jsutil";
+
+import { newBind } from "./extension";
 
 export const pageTest = (): boolean =>
   document.querySelector(".woocommerce-checkout") !== null;
@@ -18,24 +15,6 @@ export const selectors = {
   country: "#shipping_country",
 };
 
-export const bind = (config: Config) => {
-  const pageBindings = setupBind({ selectors });
-  pageBindings.forEach((binding) => {
-    const { targets } = binding;
+export const bind = newBind(selectors);
 
-    // Initialise autocomplete instance
-    new window.IdealPostcodes.Autocomplete.Controller({
-      api_key: config.apiKey,
-      inputField: selectors.line_1,
-      outputFields: {},
-      checkKey: true,
-      onAddressRetrieved: addressRetrieval({ targets, config }),
-      ...config.autocompleteOverride,
-    });
-  });
-};
-
-export const binding: Binding = {
-  pageTest,
-  bind,
-};
+export const binding: Binding = { pageTest, bind };
