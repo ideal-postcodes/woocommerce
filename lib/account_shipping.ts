@@ -18,22 +18,22 @@ export const selectors = {
 
 export const bind = (config: Config) => {
   const pageBindings = setupBind({selectors});
-  if (!pageBindings) return;
-  const {targets} = pageBindings;
+  pageBindings.forEach(binding => {
+    const {targets} = binding;
 
-  // Initialise autocomplete instance
-  new window.IdealPostcodes.Autocomplete.Controller({
-    api_key: config.apiKey,
-    inputField: selectors.line_1,
-    outputFields: {},
-    checkKey: true,
-    onAddressRetrieved: addressRetrieval({targets, config}),
-    ...config.autocompleteOverride,
+    // Initialise autocomplete instance
+    new window.IdealPostcodes.Autocomplete.Controller({
+      api_key: config.apiKey,
+      inputField: selectors.line_1,
+      outputFields: {},
+      checkKey: true,
+      onAddressRetrieved: addressRetrieval({targets, config}),
+      ...config.autocompleteOverride,
+    });
   });
 };
 
 export const binding: Binding = {
   pageTest,
-  selectors,
   bind
 };
