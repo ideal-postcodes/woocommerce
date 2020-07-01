@@ -16,4 +16,4 @@ export const selectors = {
 
 export const bind = newBind(selectors);
 
-export const binding: Binding = { pageTest, bind, };
+export const binding: Binding = { pageTest, bind };
