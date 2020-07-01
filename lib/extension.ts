@@ -21,35 +21,33 @@ export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   return postcodeField;
 };
 
-export const newBind = (selectors: Selectors) => {
-  return (config: Config) => {
-    if (config.enabled !== true) return;
+export const newBind = (selectors: Selectors) => (config: Config) => {
+  if (config.enabled !== true) return;
 
-    const pageBindings = setupBind({ selectors });
-    pageBindings.forEach((binding) => {
-      const { targets } = binding;
+  const pageBindings = setupBind({ selectors });
+  pageBindings.forEach((binding) => {
+    const { targets } = binding;
 
-      if (config.postcodeLookup) {
-        const postcodeField = insertPostcodeField(targets);
-        if (postcodeField === null) return;
-        window.jQuery(postcodeField).setupPostcodeLookup({
-          api_key: config.apiKey,
-          check_key: true,
-          onAddressSelected: addressRetrieval({ config, targets }),
-          ...config.postcodeLookupOverride,
-        });
-      }
+    if (config.postcodeLookup) {
+      const postcodeField = insertPostcodeField(targets);
+      if (postcodeField === null) return;
+      window.jQuery(postcodeField).setupPostcodeLookup({
+        api_key: config.apiKey,
+        check_key: true,
+        onAddressSelected: addressRetrieval({ config, targets }),
+        ...config.postcodeLookupOverride,
+      });
+    }
 
-      if (config.autocomplete) {
-        new window.IdealPostcodes.Autocomplete.Controller({
-          api_key: config.apiKey,
-          inputField: selectors.line_1,
-          outputFields: {},
-          checkKey: true,
-          onAddressRetrieved: addressRetrieval({ targets, config }),
-          ...config.autocompleteOverride,
-        });
-      }
-    });
-  };
+    if (config.autocomplete) {
+      new window.IdealPostcodes.Autocomplete.Controller({
+        api_key: config.apiKey,
+        inputField: selectors.line_1,
+        outputFields: {},
+        checkKey: true,
+        onAddressRetrieved: addressRetrieval({ targets, config }),
+        ...config.autocompleteOverride,
+      });
+    }
+  });
 };
