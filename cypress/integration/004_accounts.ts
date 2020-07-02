@@ -56,22 +56,6 @@ describe("Account", () => {
       .contains("Addresses")
       .click();
     cy.get(".u-column2 > .woocommerce-Address-title > .edit").click();
-    if (!Cypress.env("LEGACY")) {
-      cy.get(shippingSelectors.country).select("GB", { force: true });
-      cy.wait(1000);
-    }
-    cy.get("#idpc_input")
-      .clear({
-        force: true
-      })
-      .type(address.postcode, {
-        force: true
-      });
-    cy.get("#idpc_button").click();
-    cy.wait(1000);
-    cy.get("#idpc_dropdown").select("0");
-    cy.get(shippingSelectors.post_town).should("have.value", address.post_town);
-    cy.get(shippingSelectors.postcode).should("have.value", address.postcode);
 
     if (Cypress.env("LEGACY")) {
       cy.get("#select2-shipping_country-container")
@@ -136,25 +120,10 @@ describe("Account", () => {
         .contains("Addresses")
         .click();
       cy.get(".u-column1 > .woocommerce-Address-title > .edit").click();
-      if (!Cypress.env("LEGACY")) {
-        cy.get(billingSelectors.country).select("GB", { force: true });
-        cy.wait(1000);
-      }
-      cy.get("#idpc_input")
-        .clear({
-          force: true
-        })
-        .type(address.postcode, {
-          force: true
-        });
-      cy.get("#idpc_button").click();
-      cy.wait(1000);
-      cy.get("#idpc_dropdown").select("0");
-      cy.get(billingSelectors.post_town).should("have.value", address.post_town);
-      cy.get(billingSelectors.postcode).should("have.value", address.postcode);
+
 
       if (Cypress.env("LEGACY")) {
-        cy.get("#select2-shipping_country-container")
+        cy.get("#select2-billing_country-container")
           .click()
           .type("United Kingdom{enter}");
       } else {
