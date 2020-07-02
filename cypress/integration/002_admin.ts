@@ -1,15 +1,11 @@
+const apiKey = Cypress.env("API_KEY");
+
 Cypress.on("uncaught:exception", (err, runnable) => {
   console.log(err);
   return false;
 });
 
 describe("IdealPostcodes Admin", () => {
-  let keys;
-  //install woocommerce
-  beforeEach(() => {
-    cy.fixture("keys.json").then(data => (keys = data));
-  });
-
   beforeEach(() => {
     cy.login();
     cy.visit("/wp-admin/admin.php?page=wc-settings&tab=integration&section=idealpostcodes");
@@ -20,13 +16,13 @@ describe("IdealPostcodes Admin", () => {
     describe("Values", () => {
       it("Required", () => {
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_enabled").uncheck();
-        cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").clear().type(keys.api_key);
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").clear().type(apiKey);
         cy.get("button.woocommerce-save-button").click();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_enabled").should("not.have.attr", "checked");
-        cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").should("have.value", keys.api_key);
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").should("have.value", apiKey);
         //save default values
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_enabled").check();
-        cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").clear().type(keys.api_key);
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_api_key").clear().type(apiKey);
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").should(
           "have.attr",
           "checked"
