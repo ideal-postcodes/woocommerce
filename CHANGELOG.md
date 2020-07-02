@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/ideal-postcodes/woocommerce/compare/1.0.6...2.0.0) (2020-07-02)
+
+
+### Features
+
+* **Postcode Lookup:** Add postcode lookup ([466732f](https://github.com/ideal-postcodes/woocommerce/commit/466732f36020985916e4722d1cc3b5e64c75fc32))
+* **Settings:** Make postcode lookup and autcomplete toggleable ([e6ceeee](https://github.com/ideal-postcodes/woocommerce/commit/e6ceeee9599dbd45e559ec80dfc50d21916c2c93))
+* **Settings:** Move settings to integrations tab ([85b541d](https://github.com/ideal-postcodes/woocommerce/commit/85b541d256309735e5fc4e0883bc86e8ab0283e8))
+
+
+### BREAKING CHANGES
+
+* **Settings:** Plugin settings has been moved to the Integrations tab
+on the WooCommerce settings page
+
 ## [1.0.6](https://github.com/ideal-postcodes/woocommerce/compare/1.0.5...1.0.6) (2020-06-05)
 
 
