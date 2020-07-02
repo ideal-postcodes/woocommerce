@@ -1,0 +1,115 @@
+/// <reference types="cypress" />;
+import { address as addresses } from "@ideal-postcodes/api-fixtures";
+import {selectors as billingSelectors} from "../../lib/checkout_billing";
+import {selectors as shippingSelectors} from "../../lib/checkout_shipping";
+
+const address = addresses.jersey;
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+  console.log(err);
+  return false;
+});
+
+describe("Checkout", () => {
+
+  before(() => {
+    cy.login();
+    cy.visit("/?product=test");
+    cy.get("button[name='add-to-cart']").click();
+    cy.get("a")
+      .contains("View cart")
+      .click({ force: true });
+    cy.get("a")
+      .contains("Proceed to checkout")
+      .click();
+  });
+
+  it("Autocomplete", function() {
+    cy.get(".woocommerce-billing-fields").within(() => {
+      if (!Cypress.env("LEGACY")) {
+        cy.get(billingSelectors.country).select("GB", { force: true });
+        cy.wait(1000);
+      }
+      cy.get(billingSelectors.line_1)
+        .click()
+        .focus()
+        .type(address.line_1);
+      //here wait because it not catching the xhr call to get list
+      cy.wait(5000);
+      cy.get(billingSelectors.line_1).clear();
+      cy.get(billingSelectors.line_1).type(address.line_1);
+      cy.wait(500);
+      cy.get(".idpc_ul li")
+        .first()
+        .click();
+      cy.get(billingSelectors.post_town).should("have.value", address.post_town);
+      cy.get(billingSelectors.postcode).should("have.value", address.postcode);
+    });
+  });
+
+  it("Postcode Lookup", function() {
+    cy.get(".woocommerce-billing-fields").within(() => {
+      if (!Cypress.env("LEGACY")) {
+        cy.get(billingSelectors.country).select("GB", { force: true });
+        cy.wait(1000);
+      }
+      cy.get("#idpc_input")
+        .clear({
+          force: true
+        })
+        .type(address.postcode, {
+          force: true
+        });
+      cy.get("#idpc_button").click();
+      cy.wait(1000);
+      cy.get("#idpc_dropdown").select("0");
+      cy.get(billingSelectors.post_town).should("have.value", address.post_town);
+      cy.get(billingSelectors.postcode).should("have.value", address.postcode);
+    });
+  });
+
+  describe("Shipping", function() {
+    before(function() {
+      cy.get("#ship-to-different-address-checkbox").check();
+    });
+
+    it("Autocomplete", function() {
+      cy.get(".woocommerce-shipping-fields").within(() => {
+        if (!Cypress.env("LEGACY")) {
+          cy.get(shippingSelectors.country).select("GB", { force: true });
+          cy.wait(1000);
+        }
+        cy.get(shippingSelectors.line_1)
+          .clear()
+          .type(address.line_1);
+        cy.wait(500);
+        cy.get(".idpc_ul li")
+          .first()
+          .click();
+        cy.get(shippingSelectors.post_town).should("have.value", address.post_town);
+        cy.get(shippingSelectors.postcode).should("have.value", address.postcode);
+      });
+    });
+
+    it("Postcode Lookup", function() {
+      cy.get(".woocommerce-shipping-fields").within(() => {
+        if (!Cypress.env("LEGACY")) {
+          cy.get(shippingSelectors.country).select("GB", { force: true });
+          cy.wait(1000);
+        }
+        cy.get("#idpc_input")
+          .clear({
+            force: true
+          })
+          .type(address.postcode, {
+            force: true
+          });
+        cy.get("#idpc_button").click();
+        cy.wait(1000);
+        cy.get("#idpc_dropdown").select("0");
+        cy.get(shippingSelectors.post_town).should("have.value", address.post_town);
+        cy.get(shippingSelectors.postcode).should("have.value", address.postcode);
+      });
+    });
+  });
+});

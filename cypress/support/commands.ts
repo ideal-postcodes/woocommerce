@@ -27,6 +27,17 @@
 // Useful WC flows
 // https://github.com/woocommerce/woocommerce/blob/master/tests/e2e-tests/utils/flows.js
 //
+
+declare namespace Cypress {
+  interface Chainable {
+    login(): void
+    installwc4(): void
+    installwc42(): void
+    installwc3(): void
+  }
+}
+
+
 Cypress.Commands.add("login", () => {
   cy.visit("/wp-login.php");
   cy.get("#user_login").clear();
