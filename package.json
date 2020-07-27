@@ -42,7 +42,7 @@
     "@ideal-postcodes/core-browser": "~1.2.1",
     "@ideal-postcodes/jsutil": "~3.0.2",
     "@ideal-postcodes/api-fixtures": "~1.1.0",
-    "@prettier/plugin-php": "~0.14.2",
+    "@prettier/plugin-php": "~0.14.3",
     "@prettier/plugin-xml": "~0.9.0",
     "@rollup/plugin-commonjs": "~14.0.0",
     "@rollup/plugin-node-resolve": "~8.4.0",
