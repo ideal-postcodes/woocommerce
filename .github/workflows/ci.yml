@@ -10,10 +10,11 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Launch WooCommerce test environment
-        run: make bootstrap
+        run: make bootstrap-latest
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
 
       - uses: cypress-io/github-action@v1
         env:
+          CYPRESS_WC_VERSION: "43"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}

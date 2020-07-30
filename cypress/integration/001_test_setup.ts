@@ -6,8 +6,10 @@ Cypress.on("uncaught:exception", (err, runnable) => {
 describe("IdealPostcodes Admin Setup", () => {
   before(() => {
     if (Cypress.env("LEGACY")) return cy.installwc3();
-    if (Cypress.env("LEGACY_V4")) return cy.installwc4();
-    cy.installwc42();
+    if (Cypress.env("WC_VERSION")) {
+      // @ts-ignore
+      return cy[`installwc${Cypress.env("WC_VERSION")}`]();
+    }
   });
 
   beforeEach(() => {
