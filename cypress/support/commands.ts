@@ -33,6 +33,7 @@ declare namespace Cypress {
     login(): void
     installwc4(): void
     installwc42(): void
+    installwc43(): void
     installwc3(): void
   }
 }
@@ -54,30 +55,23 @@ Cypress.Commands.add("login", () => {
   cy.wait(1000);
 });
 
-// Install for WooCommerce 4
-Cypress.Commands.add("installwc4", () => {
+// Install for WooCommerce 4.3
+Cypress.Commands.add("installwc43", () => {
   cy.login();
-  cy.visit("/wp-admin");
-
-  // Skip to woocommerce page (debug method)
-  // cy.get("a")
-  //   .contains("WooCommerce")
-  //   .click();
+  cy.visit("/wp-admin/admin.php?page=wc-setup");
 
   // Start setup wizard
-  cy.get("a")
-    .contains("Run the Setup Wizard")
+  cy.get("button")
+    .contains("Yes please")
     .click();
-  cy.get(".button-primary").click();
 
   // Enter address and close popup
-  cy.get("button")
+  cy.wait(1000);
+  cy.get("button.components-button")
     .contains("Continue")
     .click();
-  cy.get(".woocommerce-profile-wizard__usage-wrapper > .components-button")
-    .contains("Continue")
-    .click();
-  cy.get("button")
+  cy.wait(1000);
+  cy.get(".components-modal__screen-overlay button")
     .contains("Continue")
     .click();
 
@@ -115,7 +109,6 @@ Cypress.Commands.add("installwc4", () => {
   cy.contains("No thanks").click();
 
   // Kill modal
-  // cy.contains("Continue").click();
   cy.get(
     ".woocommerce-task-dashboard__welcome-modal-wrapper > .components-button"
   ).click();
@@ -192,6 +185,79 @@ Cypress.Commands.add("installwc42", () => {
   cy.contains("No thanks").click();
 });
 
+// Install for WooCommerce 4
+Cypress.Commands.add("installwc4", () => {
+  cy.login();
+  cy.visit("/wp-admin");
+
+  // Skip to woocommerce page (debug method)
+  // cy.get("a")
+  //   .contains("WooCommerce")
+  //   .click();
+
+  // Start setup wizard
+  cy.get("a")
+    .contains("Run the Setup Wizard")
+    .click();
+  cy.get(".button-primary").click();
+
+  // Enter address and close popup
+  cy.get("button")
+    .contains("Continue")
+    .click();
+  cy.get(".woocommerce-profile-wizard__usage-wrapper > .components-button")
+    .contains("Continue")
+    .click();
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  // Select Industry
+  cy.get("#inspector-checkbox-control-3").check();
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  // Select product type
+  cy.get("#inspector-checkbox-control-10").check();
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  cy.get("#woocommerce-select-control-1__control-input").click({ force: true });
+  cy.get("button")
+    .contains("1 - 10")
+    .click();
+  cy.get("#woocommerce-select-control-2__control-input").click({ force: true });
+  cy.get("button")
+    .contains("No")
+    .click();
+  cy.get("input.components-form-toggle__input").click({ multiple: true });
+  cy.get("button")
+    .contains("Continue")
+    .click();
+
+  // Setup template
+  cy.get("button")
+    .contains("Continue with my active theme")
+    .click();
+
+  // Disable jetpack
+  cy.contains("No thanks").click();
+
+  // Kill modal
+  // cy.contains("Continue").click();
+  cy.get(
+    ".woocommerce-task-dashboard__welcome-modal-wrapper > .components-button"
+  ).click();
+
+  // Setup shipping
+  cy.contains("Set up shipping").click();
+  cy.contains("Continue").click();
+  cy.contains("Proceed").click();
+  cy.contains("No thanks").click();
+});
+
 // Install for WooCommerce 3
 Cypress.Commands.add("installwc3", () => {
   cy.login();
@@ -222,3 +288,5 @@ Cypress.Commands.add("installwc3", () => {
     .contains("Skip this step")
     .click();
 });
+
+
