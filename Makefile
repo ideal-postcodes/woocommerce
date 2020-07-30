@@ -10,6 +10,10 @@ bootstrap: up init-db init-wp init-wc seed init-ip
 .PHONY: bootstrap-legacy
 bootstrap-legacy: up-legacy init-db init-wp init-wc seed init-ip
 
+## Bootstrap legacy WooCommerce environment
+.PHONY: bootstrap-latest
+bootstrap-latest: up-latest init-db init-wp init-wc seed init-ip
+
 ## Launch docker-compose as background daemon
 .PHONY: up
 up:
@@ -20,6 +24,11 @@ up:
 up-legacy:
 	docker-compose -f docker-compose.yml -f docker/legacy.yml up -d
 
+## Launch latest supported version of WooCommerce
+.PHONY: up-latest
+up-latest:
+	docker-compose -f docker-compose.yml -f docker/latest.yml up -d
+
 ## Launch docker-compose as background daemon
 .PHONY: down
 down:
@@ -29,6 +38,11 @@ down:
 .PHONY: down-legacy
 down-legacy:
 	docker-compose -f docker-compose.yml -f docker/legacy.yml down --volumes
+
+## Launch docker-compose as background daemon
+.PHONY: down-latest
+down-latest:
+	docker-compose -f docker-compose.yml -f docker/latest.yml down --volumes
 
 ## -- Development Methods --
 

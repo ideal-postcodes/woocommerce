@@ -1,0 +1,20 @@
+name: Latest Integration Tests
+
+on:
+  - push
+
+jobs:
+  legacy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Launch legacy WooCommerce test environment (WP 5.0, php 7.1, WC 3.3)
+        run: make bootstrap-latest
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+
+      - uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_LEGACY: "true"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
