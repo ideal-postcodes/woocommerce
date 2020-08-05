@@ -34,7 +34,10 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
       window.jQuery(postcodeField).setupPostcodeLookup({
         api_key: config.apiKey,
         check_key: true,
-        onAddressSelected: addressRetrieval({ config, targets }),
+        onAddressSelected: (address: any) => {
+          addressRetrieval({ config, targets })(address);
+          (window.jQuery as any)(document.body).trigger("update_checkout");
+        },
         ...config.postcodeLookupOverride,
       });
     }
@@ -45,7 +48,10 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
         inputField: selectors.line_1,
         outputFields: {},
         checkKey: true,
-        onAddressRetrieved: addressRetrieval({ targets, config }),
+        onAddressRetrieved: (address: any) => {
+          addressRetrieval({ config, targets })(address);
+          (window.jQuery as any)(document.body).trigger("update_checkout");
+        },
         ...config.autocompleteOverride,
       });
     }
