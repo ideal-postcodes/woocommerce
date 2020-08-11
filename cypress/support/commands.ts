@@ -101,6 +101,7 @@ Cypress.Commands.add("installwc43", () => {
     .click();
 
   // Setup template
+  cy.wait(1000);
   cy.get("button")
     .contains("Continue with my active theme")
     .click();
@@ -115,7 +116,6 @@ Cypress.Commands.add("installwc43", () => {
 
   // Setup shipping
   cy.contains("Set up shipping").click();
-  cy.contains("Continue").click();
   cy.contains("Proceed").click();
   cy.contains("No thanks").click();
 });
