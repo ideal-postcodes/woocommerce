@@ -202,6 +202,7 @@ Cypress.Commands.add("installwc4", () => {
   cy.get(".button-primary").click();
 
   // Enter address and close popup
+  cy.wait(1000);
   cy.get("button")
     .contains("Continue")
     .click();
