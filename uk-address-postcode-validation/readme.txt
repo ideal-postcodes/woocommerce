@@ -79,6 +79,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 2.0.1 =
+* Tested up to WooCommerce 4.3
+
 = 2.0.0 =
 * Tested up to WooCommerce 4.2
 * BREAKING CHANGE: Settings page moved to Integration tab, under "UK Address Postcode Validation"
