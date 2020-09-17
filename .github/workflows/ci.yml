@@ -1,20 +1,54 @@
-name: CI
+name: Continuous Integration Tests
 
 on:
   - push
 
 jobs:
-  ci:
+  woocommerce_3_3:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
-
-      - name: Launch WooCommerce test environment
-        run: make bootstrap-latest
+      - name: Launch WooCommerce 3.3
+        run: make bootstrap-33
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-
+      - uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_WC_VERSION: "33"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_4_2:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 4.2
+        run: make bootstrap-42
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+      - uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_WC_VERSION: "42"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_4_3:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 4.3
+        run: make bootstrap-43
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
       - uses: cypress-io/github-action@v1
         env:
           CYPRESS_WC_VERSION: "43"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_4_5:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 4.5
+        run: make bootstrap-45
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+      - uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_WC_VERSION: "45"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
