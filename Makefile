@@ -6,43 +6,53 @@
 .PHONY: bootstrap
 bootstrap: up init-db init-wp init-wc seed init-ip
 
-## Bootstrap legacy WooCommerce environment
-.PHONY: bootstrap-legacy
-bootstrap-legacy: up-legacy init-db init-wp init-wc seed init-ip
-
-## Bootstrap legacy WooCommerce environment
-.PHONY: bootstrap-latest
-bootstrap-latest: up-latest init-db init-wp init-wc seed init-ip
-
 ## Launch docker-compose as background daemon
 .PHONY: up
 up:
 	docker-compose up -d
-
-## Launch legacy supported version of WooCommerce
-.PHONY: up-legacy
-up-legacy:
-	docker-compose -f docker-compose.yml -f docker/legacy.yml up -d
-
-## Launch latest supported version of WooCommerce
-.PHONY: up-latest
-up-latest:
-	docker-compose -f docker-compose.yml -f docker/latest.yml up -d
 
 ## Launch docker-compose as background daemon
 .PHONY: down
 down:
 	docker-compose down --volumes
 
-## Launch docker-compose as background daemon
-.PHONY: down-legacy
-down-legacy:
-	docker-compose -f docker-compose.yml -f docker/legacy.yml down --volumes
+## -- Test Container Launch --
 
-## Launch docker-compose as background daemon
-.PHONY: down-latest
-down-latest:
-	docker-compose -f docker-compose.yml -f docker/latest.yml down --volumes
+## Bootstrap WooCommerce 3.3 environment
+.PHONY: bootstrap-33
+bootstrap-33: up-33 init-db init-wp init-wc seed init-ip
+
+## Bootstrap 4.2 WooCommerce environment
+.PHONY: bootstrap-42
+bootstrap-42: up-42 init-db init-wp init-wc seed init-ip
+
+## Bootstrap 4.3 WooCommerce environment
+.PHONY: bootstrap-43
+bootstrap-43: up-43 init-db init-wp init-wc seed init-ip
+
+## Bootstrap 4.5 WooCommerce environment
+.PHONY: bootstrap-45
+bootstrap-45: up-45 init-db init-wp init-wc seed init-ip
+
+## Launch WC 3.3
+.PHONY: up-33
+up-33:
+	docker-compose -f docker-compose.yml -f docker/33.yml up -d
+
+## Launch WC 4.2
+.PHONY: up-42
+up-42:
+	docker-compose -f docker-compose.yml -f docker/42.yml up -d
+
+## Launch WC 4.3
+.PHONY: up-43
+up-43:
+	docker-compose -f docker-compose.yml -f docker/43.yml up -d
+
+## Launch WC 4.3
+.PHONY: up-45
+up-45:
+	docker-compose -f docker-compose.yml -f docker/45.yml up -d
 
 ## -- Development Methods --
 

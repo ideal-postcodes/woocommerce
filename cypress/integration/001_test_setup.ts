@@ -5,7 +5,6 @@ Cypress.on("uncaught:exception", (err, runnable) => {
 
 describe("IdealPostcodes Admin Setup", () => {
   before(() => {
-    if (Cypress.env("LEGACY")) return cy.installwc3();
     if (Cypress.env("WC_VERSION")) {
       // @ts-ignore
       return cy[`installwc${Cypress.env("WC_VERSION")}`]();
@@ -23,20 +22,14 @@ describe("IdealPostcodes Admin Setup", () => {
       cy.get(
         "a[aria-label='Deactivate UK Address Postcode Validation']"
       ).click();
-      cy.get(
-        "a[aria-label='Activate UK Address Postcode Validation']"
-      )
+      cy.get("a[aria-label='Activate UK Address Postcode Validation']")
         .parent()
         .should("have.class", "activate");
     });
 
     it("Enable plugin", () => {
-      cy.get(
-        "a[aria-label='Activate UK Address Postcode Validation']"
-      ).click();
-      cy.get(
-        "a[aria-label='Deactivate UK Address Postcode Validation']"
-      )
+      cy.get("a[aria-label='Activate UK Address Postcode Validation']").click();
+      cy.get("a[aria-label='Deactivate UK Address Postcode Validation']")
         .parent()
         .should("have.class", "deactivate");
     });

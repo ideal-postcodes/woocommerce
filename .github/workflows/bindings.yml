@@ -1,4 +1,4 @@
-name: JS Bindings CI
+name: JS Bindings
 
 on:
   push:
