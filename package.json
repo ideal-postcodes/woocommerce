@@ -39,7 +39,7 @@
     "@cablanchard/eslint-config": "~2.1.0",
     "@cablanchard/semantic-release": "~1.3.4",
     "@cablanchard/tsconfig": "~1.0.0",
-    "@google/semantic-release-replace-plugin": "~1.0.1",
+    "@google/semantic-release-replace-plugin": "~1.0.2",
     "@ideal-postcodes/api-typings": "~2.0.0",
     "@ideal-postcodes/core-browser": "~1.3.0",
     "@ideal-postcodes/jsutil": "~3.0.2",
