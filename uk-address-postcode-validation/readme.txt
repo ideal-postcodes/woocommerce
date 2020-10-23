@@ -79,8 +79,14 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
-= 2.0.1 =
+= 2.0.3 =
+* Tested up to WooCommerce 4.6
+
+= 2.0.2 =
 * Tested up to WooCommerce 4.3
+
+= 2.0.1 =
+* Fix: Restore manual checkout trigger
 
 = 2.0.0 =
 * Tested up to WooCommerce 4.2
