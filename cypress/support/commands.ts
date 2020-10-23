@@ -35,6 +35,7 @@ declare namespace Cypress {
     installwc42(): void;
     installwc43(): void;
     installwc45(): void;
+    installwc46(): void;
   }
 }
 
@@ -114,13 +115,13 @@ const install42 = () => {
   cy.contains("No thanks").click();
 };
 
-const install43 = (closeModalSelector: string) => {
+const install43 = (closeModalSelector: string, url: string, skipYesButton = false) => {
   return () => {
     cy.login();
-    cy.visit("/wp-admin/admin.php?page=wc-setup");
+    cy.visit(url);
 
     // Start setup wizard
-    cy.get("button").contains("Yes please").click();
+    !skipYesButton && cy.get("button").contains("Yes please").click();
 
     // Enter address and close popup
     cy.wait(1000);
@@ -174,13 +175,25 @@ Cypress.Commands.add("installwc42", install42);
 Cypress.Commands.add(
   "installwc43",
   install43(
-    ".woocommerce-task-dashboard__welcome-modal-wrapper > .components-button"
+    ".woocommerce-task-dashboard__welcome-modal-wrapper > .components-button",
+    "/wp-admin/admin.php?page=wc-setup"
   )
 );
 // Install for WooCommerce 4.5
 Cypress.Commands.add(
   "installwc45",
   install43(
-    '.components-modal__screen-overlay button[aria-label="Close dialog"]'
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-setup"
+  )
+);
+
+// Install for WooCommerce 4.6
+Cypress.Commands.add(
+  "installwc46",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true
   )
 );
