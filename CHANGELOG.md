@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/ideal-postcodes/woocommerce/compare/2.0.3...2.0.4) (2020-10-23)
+
+
+### Bug Fixes
+
+* **WooCommerce:** Add tests for WC 4.6 ([8de24d9](https://github.com/ideal-postcodes/woocommerce/commit/8de24d99dc0faadc94c88727851dba2a89eb9868))
+
 ## [2.0.3](https://github.com/ideal-postcodes/woocommerce/compare/2.0.2...2.0.3) (2020-09-18)
 
 
