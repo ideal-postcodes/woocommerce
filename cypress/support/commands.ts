@@ -162,8 +162,11 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
 
     // Setup shipping
     cy.contains("Set up shipping").click();
+    cy.wait(1000);
     cy.contains("Proceed").click();
+    cy.wait(1000);
     cy.contains("No thanks").click();
+    cy.wait(1000);
   };
 };
 
