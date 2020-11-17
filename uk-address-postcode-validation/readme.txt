@@ -79,6 +79,10 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 2.1.9 =
+* Tested up to WooCommerce 4.7
+* Test Wordpress 5.5.3
+
 = 2.0.3 =
 * Tested up to WooCommerce 4.6
 
