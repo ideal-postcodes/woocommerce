@@ -34,7 +34,7 @@ bootstrap-43: up-43 init-db init-wp init-wc seed init-ip
 .PHONY: bootstrap-45
 bootstrap-45: up-45 init-db init-wp init-wc seed init-ip
 
-## Bootstrap 4.5 WooCommerce environment
+## Bootstrap 4.6 WooCommerce environment
 .PHONY: bootstrap-46
 bootstrap-46: up-46 init-db init-wp init-wc seed init-ip
 

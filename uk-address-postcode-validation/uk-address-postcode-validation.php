@@ -3,7 +3,7 @@
  * Plugin Name: UK Address Postcode Validation
  * Plugin URI: http://ideal-postcodes.co.uk/woocommerce
  * Description: UK address search and validation on address forms
- * Version: 2.0.3
+ * Version: 2.0.4
  * Author: Ideal Postcodes
  * Author URI: https://ideal-postcodes.co.uk/
  * Developer: Ideal Postcodes
@@ -13,7 +13,7 @@
  *
  * Woo: 12345:342928dfsfhsf8429842374wdf4234sfd
  * WC requires at least: 3.0.0
- * WC tested up to: 4.5.2
+ * WC tested up to: 4.6.1
  *
  * License: MIT
  * License URI: https://github.com/ideal-postcodes/woocommerce/blob/master/LICENSE
