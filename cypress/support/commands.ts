@@ -151,7 +151,7 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     cy.get("button").contains("Continue").click();
 
     // Setup template
-    cy.wait(1000);
+    cy.wait(5000);
     cy.get("button").contains("Continue with my active theme").click();
 
     // Disable jetpack
@@ -191,6 +191,16 @@ Cypress.Commands.add(
 // Install for WooCommerce 4.6
 Cypress.Commands.add(
   "installwc46",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true
+  )
+);
+
+// Install for WooCommerce 4.6
+Cypress.Commands.add(
+  "installwc47",
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
