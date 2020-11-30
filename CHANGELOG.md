@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/ideal-postcodes/woocommerce/compare/2.1.0...2.2.0) (2020-11-30)
+
+
+### Features
+
+* **Config:** Add config override ([76db7d0](https://github.com/ideal-postcodes/woocommerce/commit/76db7d02999ae2117ea243abfbaa4a5912e95c9e))
+
 # [2.1.0](https://github.com/ideal-postcodes/woocommerce/compare/2.0.4...2.1.0) (2020-11-17)
 
 
