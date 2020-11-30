@@ -13,7 +13,7 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         "woocommerce-idealpostcodes"
       );
       $this->method_description = __(
-        "Adds Ideal Postcodes UK address validation to WooCommerce.",
+        "Adds Ideal Postcodes UK address validation to WooCommerce. See the <a href=\"https://ideal-postcodes.co.uk/guides/woocommerce\">guide</a> for more information.",
         "woocommerce-idealpostcodes"
       );
 
