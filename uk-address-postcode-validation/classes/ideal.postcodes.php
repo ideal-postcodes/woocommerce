@@ -294,11 +294,11 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
       $postcode_lookup_override =
         strlen($options["postcodeLookupOverride"]) > 0
           ? html_entity_decode($options["postcodeLookupOverride"])
-          : "\"\"";
+          : "{}";
       $autocomplete_override =
         strlen($options["autocompleteOverride"]) > 0
           ? html_entity_decode($options["autocompleteOverride"])
-          : "\"\"";
+          : "{}";
       $options["postcodeLookupOverride"] = "%postcodeLookupOverride%";
       $options["autocompleteOverride"] = "%autocompleteOverride%";
       $json = json_encode($options, JSON_FORCE_OBJECT);
