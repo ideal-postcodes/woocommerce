@@ -6,8 +6,6 @@ import {
   insertBefore,
   Targets,
   getParent,
-  numberOfLines,
-  Targets
 } from "@ideal-postcodes/jsutil";
 
 export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
@@ -22,10 +20,6 @@ export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   insertBefore({ target, elem: wrapper });
   return postcodeField;
 };
-
-const outputFields = (targets: Targets) => {
-
-}
 
 export const newBind = (selectors: Selectors) => (config: Config) => {
   if (config.enabled !== true) return;
