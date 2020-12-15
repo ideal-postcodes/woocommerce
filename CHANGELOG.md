@@ -1,3 +1,11 @@
+# [2.3.0](https://github.com/ideal-postcodes/woocommerce/compare/2.2.0...2.3.0) (2020-12-15)
+
+
+### Features
+
+* **WooCommerce:** Test on WC 4.8 ([35d6f8a](https://github.com/ideal-postcodes/woocommerce/commit/35d6f8a30d579ca2b6618bc012cc8c38e7cab107))
+* **Wordpress:** Test on WP 5.6 ([0a8b4d2](https://github.com/ideal-postcodes/woocommerce/commit/0a8b4d24c50355640b79221dea31b5a852c686a3))
+
 # [2.2.0](https://github.com/ideal-postcodes/woocommerce/compare/2.1.0...2.2.0) (2020-11-30)
 
 
