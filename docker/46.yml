@@ -3,5 +3,5 @@ services:
   web:
     build:
       args:
-        BASE_IMAGE: wordpress:5.5-php7.3
+        BASE_IMAGE: wordpress:5.6-php7.3
         WOOCOMMERCE_VERSION: 4.6.1

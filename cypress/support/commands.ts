@@ -202,9 +202,19 @@ Cypress.Commands.add(
   )
 );
 
-// Install for WooCommerce 4.6
+// Install for WooCommerce 4.7
 Cypress.Commands.add(
   "installwc47",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true
+  )
+);
+
+// Install for WooCommerce 4.8
+Cypress.Commands.add(
+  "installwc48",
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
