@@ -46,6 +46,10 @@ bootstrap-47: up-47 init-db init-wp init-wc seed init-ip
 .PHONY: bootstrap-48
 bootstrap-48: up-48 init-db init-wp init-wc seed init-ip
 
+## Bootstrap 4.9 WooCommerce environment
+.PHONY: bootstrap-49
+bootstrap-49: up-49 init-db init-wp init-wc seed init-ip
+
 ## Launch WC 3.3
 .PHONY: up-33
 up-33:
@@ -80,6 +84,11 @@ up-47:
 .PHONY: up-48
 up-48:
 	docker-compose -f docker-compose.yml -f docker/48.yml up -d
+
+## Launch WC 4.9
+.PHONY: up-49
+up-49:
+	docker-compose -f docker-compose.yml -f docker/49.yml up -d
 
 ## -- Development Methods --
 
