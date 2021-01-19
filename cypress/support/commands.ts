@@ -37,6 +37,8 @@ declare namespace Cypress {
     installwc45(): void;
     installwc46(): void;
     installwc47(): void;
+    installwc48(): void;
+    installwc49(): void;
   }
 }
 
@@ -116,7 +118,7 @@ const install42 = () => {
   cy.contains("No thanks").click();
 };
 
-const install43 = (closeModalSelector: string, url: string, skipYesButton = false) => {
+const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false) => {
   return () => {
     cy.login();
     cy.visit(url);
@@ -128,9 +130,14 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     cy.wait(1000);
     cy.get("button.components-button").contains("Continue").click();
     cy.wait(1000);
-    cy.get(".components-modal__screen-overlay button")
-      .contains("Continue")
-      .click();
+    if(survey) {
+      cy.get("button.components-button").contains("No thanks").click();
+      cy.wait(1000);
+    } else {
+      cy.get(".components-modal__screen-overlay button")
+        .contains("Continue")
+        .click();
+    }
 
     // Select Industry
     cy.get("#inspector-checkbox-control-3").check();
@@ -218,6 +225,17 @@ Cypress.Commands.add(
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true
+  )
+);
+
+// Install for WooCommerce 4.9
+Cypress.Commands.add(
+  "installwc49",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
     true
   )
 );
