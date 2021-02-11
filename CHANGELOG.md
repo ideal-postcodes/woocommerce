@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/ideal-postcodes/woocommerce/compare/2.3.0...2.4.0) (2021-02-11)
+
+
+### Features
+
+* **WooCommerce:** Tested on 4.9 ([350cdd5](https://github.com/ideal-postcodes/woocommerce/commit/350cdd545ea76861de14c615f1b4cf173eba7782))
+
 # [2.3.0](https://github.com/ideal-postcodes/woocommerce/compare/2.2.0...2.3.0) (2020-12-15)
 
 
