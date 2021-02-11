@@ -16,66 +16,6 @@ jobs:
         env:
           CYPRESS_WC_VERSION: "33"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
-  woocommerce_4_2:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Launch WooCommerce 4.2
-        run: make bootstrap-42
-        env:
-          COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
-        env:
-          CYPRESS_WC_VERSION: "42"
-          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
-  woocommerce_4_3:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Launch WooCommerce 4.3
-        run: make bootstrap-43
-        env:
-          COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
-        env:
-          CYPRESS_WC_VERSION: "43"
-          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
-  woocommerce_4_5:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Launch WooCommerce 4.5
-        run: make bootstrap-45
-        env:
-          COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
-        env:
-          CYPRESS_WC_VERSION: "45"
-          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
-  woocommerce_4_6:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Launch WooCommerce 4.6
-        run: make bootstrap-46
-        env:
-          COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
-        env:
-          CYPRESS_WC_VERSION: "46"
-          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
-  woocommerce_4_7:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Launch WooCommerce 4.7
-        run: make bootstrap-47
-        env:
-          COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
-        env:
-          CYPRESS_WC_VERSION: "47"
-          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
   woocommerce_4_8:
     runs-on: ubuntu-18.04
     steps:
@@ -87,4 +27,28 @@ jobs:
       - uses: cypress-io/github-action@v2
         env:
           CYPRESS_WC_VERSION: "48"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_4_9:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 4.9
+        run: make bootstrap-49
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+      - uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_WC_VERSION: "49"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_5_0:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 5.0
+        run: make bootstrap-50
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+      - uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_WC_VERSION: "50"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
