@@ -45,7 +45,7 @@ describe("IdealPostcodes Admin", () => {
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").check();
-        cy.get("button.woocommerce-save-button").click();
+        cy.get("button.woocommerce-save-button").click({ force: true });
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").should(
           "not.have.attr",
           "checked"
@@ -68,7 +68,7 @@ describe("IdealPostcodes Admin", () => {
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").uncheck();
 
-        cy.get("button.woocommerce-save-button").click();
+        cy.get("button.woocommerce-save-button").click({ force: true });
         cy.wait(1000);
       });
     });
