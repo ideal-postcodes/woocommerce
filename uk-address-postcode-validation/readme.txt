@@ -21,6 +21,9 @@ This extension adds address validation including realtime address autocompletion
 
 This extension is free to download and install. However, our address validation services requires a paid account at [ideal-postcodes.co.uk](https://ideal-postcodes.co.uk).
 
+- Looking for Gravity Forms Address Validation? [See our guide](https://ideal-postcodes.co.uk/guides/gravity)
+- Looking for Contact Form 7 Address Validation? [See our guide](https://ideal-postcodes.co.uk/guides/contact-form-7)
+
 Contact us if you get stuck. Drop by our [chat page](https://ideal-postcodes.co.uk) for immediate assistance or send us a message on one of our [support channels](https://ideal-postcodes.co.uk/support).
 
 = Benefits =

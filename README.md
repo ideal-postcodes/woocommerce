@@ -25,6 +25,11 @@ Missing feature, something not right or need help? Contact [support](https://ide
 - [Support](https://ideal-postcodes.co.uk/support)
 - [GitHub Repository](https://github.com/ideal-postcodes/woocommerce)
 
+## Related Integrations
+
+- [Gravity Forms Integration](https://ideal-postcodes.co.uk/guides/gravity)
+- [Contact Form 7 Integration](https://ideal-postcodes.co.uk/guides/contact-form-7)
+
 ## Screenshots
 
 Address autocompletion on checkout
