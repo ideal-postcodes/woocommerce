@@ -1,8 +1,8 @@
 {
-  "name": "Woocommerce",
+  "name": "WooCommerce",
   "version": "1.0.0",
   "private": true,
-  "description": "Ideal Postcodes Woocommerce Extension",
+  "description": "Ideal Postcodes WooCommerce Extension",
   "main": "index.js",
   "prettier": {
     "editorconfig": true
