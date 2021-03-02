@@ -65,6 +65,7 @@ module.exports = {
           "uk-address-postcode-validation/readme.txt",
           "CHANGELOG.md",
         ],
+        "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
       },
     ],
 
