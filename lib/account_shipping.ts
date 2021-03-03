@@ -10,7 +10,7 @@ export const selectors = {
   post_town: "#shipping_city",
   county: "#shipping_state",
   postcode: "#shipping_postcode",
-  organisation: "#shipping_company",
+  organisation_name: "#shipping_company",
   country: "#shipping_country",
 };
 
