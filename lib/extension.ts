@@ -1,6 +1,7 @@
 import {
   Selectors,
   Config,
+  OutputFields,
   setupBind,
   insertBefore,
   Targets,
@@ -22,6 +23,20 @@ export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   return postcodeField;
 };
 
+const toOutputFields = (config: Config, selectors: Selectors): OutputFields => {
+  const outputFields: OutputFields = { ...selectors };
+  if (config.populateOrganisation === false)
+    delete outputFields.organisation_name;
+  if (config.populateCounty === false) delete outputFields.county;
+  return outputFields;
+};
+
+const legacyPostcodeConfig = {
+  inputId: "idpc_input",
+  buttonId: "idpc_button",
+  selectId: "idpc_dropdown",
+};
+
 const tags = ["wc"];
 
 const updateCheckout = () =>
@@ -29,21 +44,28 @@ const updateCheckout = () =>
 
 export const newBind = (selectors: Selectors) => (config: Config) => {
   if (config.enabled !== true) return;
-
   const pageBindings = setupBind({ selectors });
+  const outputFields = toOutputFields(config, selectors);
 
   pageBindings.forEach((binding) => {
-    const { targets } = binding;
+    const { targets, parent } = binding;
+
+    const localConfig = {
+      scope: parent,
+      apiKey: config.apiKey,
+      tags,
+      outputFields,
+      onAddressRetrieved: updateCheckout,
+    };
 
     if (config.postcodeLookup) {
       const context = insertPostcodeField(targets);
       if (context) {
         PostcodeLookup.setup({
+          ...legacyPostcodeConfig,
+          ...config,
+          ...localConfig,
           context,
-          apiKey: config.apiKey,
-          tags,
-          outputFields: selectors,
-          onAddressRetrieved: updateCheckout,
           ...config.postcodeLookupOverride,
         });
       }
@@ -51,11 +73,9 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
 
     if (config.autocomplete) {
       AddressFinder.setup({
+        ...config,
+        ...localConfig,
         inputField: selectors.line_1,
-        tags,
-        apiKey: config.apiKey,
-        outputFields: selectors,
-        onAddressRetrieved: updateCheckout,
         ...config.autocompleteOverride,
       });
     }
