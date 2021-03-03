@@ -2,6 +2,13 @@ import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
 import ts from "@wessberg/rollup-plugin-ts";
+import inject from "@rollup/plugin-inject";
+
+const polyfills = {
+  Promise: "promise-polyfill",
+  Set: "core-js-pure/features/set",
+  "Object.assign": "core-js-pure/features/object/assign",
+};
 
 const banner = `/**
  * @license
@@ -19,6 +26,8 @@ const terserConfig = {
   },
 };
 
+const context = "window";
+
 const targets = "ie 11";
 
 export default [
@@ -32,22 +41,19 @@ export default [
       exports: "named",
     },
     plugins: [
-      resolve({ extensions: [".js", ".ts"] }),
+      resolve({
+        preferBuiltins: true,
+        dedupe: ["@ideal-postcodes/jsutil"],
+        mainFields: ["browser", "module", "main"],
+        browser: true,
+      }),
       commonjs(),
+      inject(polyfills),
       ts({
         transpiler: "babel",
         browserslist: [targets],
         babelConfig: {
-          presets: [
-            [
-              "@babel/preset-env",
-              {
-                targets,
-                useBuiltIns: "usage",
-                corejs: 3,
-              },
-            ],
-          ],
+          presets: [["@babel/preset-env", { targets }]],
         },
       }),
       terser(terserConfig),
