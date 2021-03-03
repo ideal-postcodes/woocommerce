@@ -2,11 +2,12 @@ import {
   Selectors,
   Config,
   setupBind,
-  addressRetrieval,
   insertBefore,
   Targets,
   getParent,
 } from "@ideal-postcodes/jsutil";
+import { AddressFinder } from "@ideal-postcodes/address-finder";
+import { PostcodeLookup } from "@ideal-postcodes/postcode-lookup";
 
 export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   if (targets.line_1 === null) return null;
@@ -21,37 +22,40 @@ export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   return postcodeField;
 };
 
+const tags = ["wc"];
+
+const updateCheckout = () =>
+  (window.jQuery as any)(document.body).trigger("update_checkout");
+
 export const newBind = (selectors: Selectors) => (config: Config) => {
   if (config.enabled !== true) return;
 
   const pageBindings = setupBind({ selectors });
+
   pageBindings.forEach((binding) => {
     const { targets } = binding;
 
     if (config.postcodeLookup) {
-      const postcodeField = insertPostcodeField(targets);
-      if (postcodeField === null) return;
-      window.jQuery(postcodeField).setupPostcodeLookup({
-        api_key: config.apiKey,
-        check_key: true,
-        onAddressSelected: (address: any) => {
-          addressRetrieval({ config, targets })(address);
-          (window.jQuery as any)(document.body).trigger("update_checkout");
-        },
-        ...config.postcodeLookupOverride,
-      });
+      const context = insertPostcodeField(targets);
+      if (context) {
+        PostcodeLookup.setup({
+          context,
+          apiKey: config.apiKey,
+          tags,
+          outputFields: selectors,
+          onAddressRetrieved: updateCheckout,
+          ...config.postcodeLookupOverride,
+        });
+      }
     }
 
     if (config.autocomplete) {
-      new window.IdealPostcodes.Autocomplete.Controller({
-        api_key: config.apiKey,
+      AddressFinder.setup({
         inputField: selectors.line_1,
-        outputFields: {},
-        checkKey: true,
-        onAddressRetrieved: (address: any) => {
-          addressRetrieval({ config, targets })(address);
-          (window.jQuery as any)(document.body).trigger("update_checkout");
-        },
+        tags,
+        apiKey: config.apiKey,
+        outputFields: selectors,
+        onAddressRetrieved: updateCheckout,
         ...config.autocompleteOverride,
       });
     }

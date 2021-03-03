@@ -1,5 +1,4 @@
 import { Binding } from "@ideal-postcodes/jsutil";
-
 import { newBind } from "./extension";
 
 export const pageTest = (): boolean =>
