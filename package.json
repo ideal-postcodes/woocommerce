@@ -24,8 +24,6 @@
   "scripts": {
     "semantic-release": "semantic-release",
     "test": "make bootstrap && npm run cypress:run && make down",
-    "test:latest": "make bootstrap-latest && npm run cypress:run && make down",
-    "test:legacy": "make bootstrap-legacy && npm run cypress:run && make down",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "build:woocommerce": "rollup -c",
