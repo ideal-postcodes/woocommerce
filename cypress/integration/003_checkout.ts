@@ -31,7 +31,10 @@ describe("Checkout", () => {
           cy.get(billingSelectors.country).select("GB", { force: true });
           cy.wait(1000);
         }
-        cy.get(billingSelectors.line_1).click({ force: true }).focus().type(address.line_1);
+        cy.get(billingSelectors.line_1)
+          .click({ force: true })
+          .focus()
+          .type(address.line_1);
         //here wait because it not catching the xhr call to get list
         cy.wait(5000);
         cy.get(billingSelectors.line_1).clear();
@@ -40,7 +43,7 @@ describe("Checkout", () => {
         cy.get(".idpc_ul li").first().click({ force: true });
         cy.get(billingSelectors.post_town).should(
           "have.value",
-          address.post_town
+          "Jersey"
         );
         cy.get(billingSelectors.postcode).should(
           "have.value",
@@ -72,7 +75,7 @@ describe("Checkout", () => {
         cy.get("#idpc_dropdown").select("0");
         cy.get(billingSelectors.post_town).should(
           "have.value",
-          address.post_town
+          "Jersey"
         );
         cy.get(billingSelectors.postcode).should(
           "have.value",
@@ -100,7 +103,7 @@ describe("Checkout", () => {
         cy.get(".idpc_ul li").first().click({ force: true });
         cy.get(shippingSelectors.post_town).should(
           "have.value",
-          address.post_town
+          "Jersey"
         );
         cy.get(shippingSelectors.postcode).should(
           "have.value",
@@ -123,7 +126,7 @@ describe("Checkout", () => {
         cy.get("#idpc_dropdown").select("0");
         cy.get(shippingSelectors.post_town).should(
           "have.value",
-          address.post_town
+          "Jersey"
         );
         cy.get(shippingSelectors.postcode).should(
           "have.value",
