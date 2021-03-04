@@ -2,13 +2,21 @@ import {
   Selectors,
   Config,
   OutputFields,
+  hide,
+  show,
   setupBind,
   insertBefore,
   Targets,
   getParent,
 } from "@ideal-postcodes/jsutil";
-import { AddressFinder } from "@ideal-postcodes/address-finder";
-import { PostcodeLookup } from "@ideal-postcodes/postcode-lookup";
+import {
+  AddressFinder,
+  Controller as AfController,
+} from "@ideal-postcodes/address-finder";
+import {
+  PostcodeLookup,
+  Controller as PlController,
+} from "@ideal-postcodes/postcode-lookup";
 
 export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   if (targets.line_1 === null) return null;
@@ -58,10 +66,11 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
       onAddressRetrieved: updateCheckout,
     };
 
+    let pl: PlController;
     if (config.postcodeLookup) {
       const context = insertPostcodeField(targets);
       if (context) {
-        PostcodeLookup.setup({
+        pl = PostcodeLookup.setup({
           ...legacyPostcodeConfig,
           ...config,
           ...localConfig,
@@ -71,13 +80,34 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
       }
     }
 
+    let af: AfController;
     if (config.autocomplete) {
-      AddressFinder.setup({
+      af = AddressFinder.setup({
         ...config,
         ...localConfig,
         inputField: selectors.line_1,
         ...config.autocompleteOverride,
       });
+    }
+
+    const isSupported = (c: string | null): boolean =>
+      ["GB", "IM", "JE", "GG"].indexOf(c || "") !== -1;
+
+    const country = (targets.country as HTMLSelectElement) || null;
+
+    const checkCountry = () => {
+      if (isSupported(country.value)) {
+        if (pl) show(pl.context);
+        if (af) af.view.attach();
+      } else {
+        if (pl) hide(pl.context);
+        if (af) af.view.detach();
+      }
+    };
+
+    if (config.watchCountry && country) {
+      (window.jQuery as any)(country).change(checkCountry);
+      checkCountry();
     }
   });
 };
