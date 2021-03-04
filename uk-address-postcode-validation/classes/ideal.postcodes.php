@@ -27,11 +27,17 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
       $this->config = (object) [
         "idealpostcodes_enabled" => $this->get_option("idealpostcodes_enabled"),
         "idealpostcodes_api_key" => $this->get_option("idealpostcodes_api_key"),
+        "idealpostcodes_watch_country" => $this->get_option(
+          "idealpostcodes_watch_country"
+        ),
         "idealpostcodes_populate_organisation" => $this->get_option(
           "idealpostcodes_populate_organisation"
         ),
         "idealpostcodes_populate_county" => $this->get_option(
           "idealpostcodes_populate_county"
+        ),
+        "idealpostcodes_watch_country" => $this->get_option(
+          "idealpostcodes_watch_country"
         ),
         "idealpostcodes_postcodelookup_override" => $this->get_option(
           "idealpostcodes_postcodelookup_override"
@@ -75,6 +81,10 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         $this->update_option(
           "idealpostcodes_populate_organisation",
           get_option("idealpostcodes_populate_organisation")
+        );
+        $this->update_option(
+          "idealpostcodes_watch_country",
+          get_option("idealpostcodes_watch_country")
         );
         $this->update_option(
           "idealpostcodes_populate_county",
@@ -143,6 +153,20 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
           ),
           "desc_tip" => true,
           "default" => "yes",
+        ],
+        "idealpostcodes_watch_country" => [
+          "id" => "idealpostcodes_watch_country",
+          "title" => __(
+            "Enable Address Validation based on country",
+            IDEALPOSTCODES_SLUG
+          ),
+          "type" => "checkbox",
+          "description" => __(
+            "Enabling this feature will disable our Address Validation tools when an unsupported territory is selected",
+            IDEALPOSTCODES_SLUG
+          ),
+          "desc_tip" => true,
+          "default" => "false",
         ],
         "idealpostcodes_populate_organisation" => [
           "id" => "idealpostcodes_populate_organisation",
@@ -219,6 +243,9 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         ),
         "postcodeLookup" => $this->to_bool(
           $this->get_option("idealpostcodes_postcodelookup")
+        ),
+        "watchCountry" => $this->to_bool(
+          $this->get_option("idealpostcodes_watch_country")
         ),
         "populateOrganisation" => $this->to_bool(
           $this->get_option("idealpostcodes_populate_organisation")
