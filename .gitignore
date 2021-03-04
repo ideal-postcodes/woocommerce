@@ -85,3 +85,4 @@ dist
 docs
 
 cypress/videos
+cypress/screenshots
