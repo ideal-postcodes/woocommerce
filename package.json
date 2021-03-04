@@ -26,10 +26,10 @@
     "test": "make bootstrap && npm run cypress:run && make down",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "build:woocommerce": "rollup -c",
+    "build": "rollup -c",
     "watch": "rollup -cw",
     "lint": "eslint lib/**/*.ts",
-    "prepublishOnly": "npm run lint && npm run build:woocommerce"
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "license": "MIT",
   "devDependencies": {

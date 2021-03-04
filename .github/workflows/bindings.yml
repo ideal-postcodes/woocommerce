@@ -32,4 +32,4 @@ jobs:
         run: npm run lint
 
       - name: Build/Woocommerce
-        run: npm run build:woocommerce
+        run: npm run build
