@@ -88,6 +88,8 @@ Substantial upgrade of Postcode Lookup and Address Finder.
 
 Custom override users (advanced configuration) will be affected by Breaking Changes. You will not need to take action if your "Postcode Lookup Configuration Override" and "Address Autocomplete Configuration Override" configurations are empty.
 
+If you are upgrading from 1.x please upgrade to 2.x first to ensure your configuration is migrated correctly.
+
 Please reach out to support (https://ideal-postcodes.co.uk/support) if this change brings backwards incompatible changes not listed here. We will address these immediately.
 
 New Features:
@@ -107,6 +109,7 @@ Deprecations:
 
 Chores:
 * Adds testing on WooCommerce 5.0
+* Remove data migration check
 
 = 2.3.1 =
 * Add tests for WooCommerce 4.9
