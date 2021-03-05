@@ -82,6 +82,32 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.0.0 =
+
+Substantial upgrade of Postcode Lookup and Address Finder.
+
+Custom override users (advanced configuration) will be affected by Breaking Changes. You will not need to take action if your "Postcode Lookup Configuration Override" and "Address Autocomplete Configuration Override" configurations are empty.
+
+Please reach out to support (https://ideal-postcodes.co.uk/support) if this change brings backwards incompatible changes not listed here. We will address these immediately.
+
+New Features:
+* Screen Reader Support. Both Postcode Lookup and Address Finder are now screen reader friendly. Any visually impaired user will now get audio cues when using our Address Validation tools.
+* Address Validation can be hidden when an unsupported territory/country is selected. This can be enabled from the admin panel.
+* Initialised Address Finder and Postcode Lookup controllers are now available at the global IdealPostcodes namespace for easier customisation
+* More custom callback options for Address Finder and Postcode Lookup
+* More custom styling options for Address Finder and Postcode Lookup
+* More custom behaviours like auto select single premise postcodes, hide/unhide address fields
+
+Breaking Changes:
+* Both Postcode Lookup and Address Finder have been replaced. This means the any custom library overrides on the admin page will need to be translated into the new setup format.
+
+Deprecations:
+* The legacy Postcode Lookup jQuery plugin is deprecated. This library will continue to be served until 4.0 is released. Please use Postcode Lookup insteand (https://postcode-lookup.ideal-postcodes.dev/)
+* The legacy Address Finder plugin is deprecated. This library will continue to be served until 4.0 is released. Please use Address Finder instead (https://address-finder.ideal-postcodes.dev/)
+
+Chores:
+* Adds testing on WooCommerce 5.0
+
 = 2.3.1 =
 * Add tests for WooCommerce 4.9
 
