@@ -18,6 +18,10 @@ import {
   Controller as PlController,
 } from "@ideal-postcodes/postcode-lookup";
 
+if (!window.IdealPostcodes) window.IdealPostcodes = {};
+window.IdealPostcodes.AddressFinder = AddressFinder;
+window.IdealPostcodes.PostcodeLookup = PostcodeLookup;
+
 export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   if (targets.line_1 === null) return null;
   const target = getParent(targets.line_1, "p");
