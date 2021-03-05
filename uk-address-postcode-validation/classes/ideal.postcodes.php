@@ -21,8 +21,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
       $this->add_form_fields();
       $this->init_settings();
 
-      //check versions and if need copy values to WC admin container
-      $this->version_check();
       // Define user set variables.
       $this->config = (object) [
         "idealpostcodes_enabled" => $this->get_option("idealpostcodes_enabled"),
@@ -63,38 +61,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         add_action("woocommerce_before_edit_account_address_form", function () {
           do_action("ideal_postcodes_address_search");
         });
-      }
-    }
-
-    private function version_check()
-    {
-      if (get_option("idealpostcodes_enabled") !== false) {
-        //copy settings from old storage
-        $this->update_option(
-          "idealpostcodes_enabled",
-          get_option("idealpostcodes_enabled")
-        );
-        $this->update_option(
-          "idealpostcodes_api_key",
-          get_option("idealpostcodes_api_key")
-        );
-        $this->update_option(
-          "idealpostcodes_populate_organisation",
-          get_option("idealpostcodes_populate_organisation")
-        );
-        $this->update_option(
-          "idealpostcodes_watch_country",
-          get_option("idealpostcodes_watch_country")
-        );
-        $this->update_option(
-          "idealpostcodes_populate_county",
-          get_option("idealpostcodes_populate_county")
-        );
-        //delete old stored options
-        delete_option("idealpostcodes_enabled");
-        delete_option("idealpostcodes_api_key");
-        delete_option("idealpostcodes_populate_organisation");
-        delete_option("idealpostcodes_populate_county");
       }
     }
 
