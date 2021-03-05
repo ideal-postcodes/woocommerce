@@ -13,24 +13,24 @@
  *
  * Woo: 12345:342928dfsfhsf8429842374wdf4234sfd
  * WC requires at least: 3.0.0
- * WC tested up to: 4.9.0
+ * WC tested up to: 5.0.0
  *
  * License: MIT
  * License URI: https://github.com/ideal-postcodes/woocommerce/blob/master/LICENSE
  */
 
-defined('ABSPATH') or die('No direct script');
+defined("ABSPATH") or die("No direct script");
 
 //set constants
-define('IDEALPOSTCODES_DIR', plugin_dir_path(__FILE__));
-define('IDEALPOSTCODES_NAME', 'Ideal Postcodes');
-define('IDEALPOSTCODES_SLUG', 'uk-address-postcode-validation');
-define('IDEALPOSTCODES_URL', plugins_url() . '/' . IDEALPOSTCODES_SLUG . '/');
+define("IDEALPOSTCODES_DIR", plugin_dir_path(__FILE__));
+define("IDEALPOSTCODES_NAME", "Ideal Postcodes");
+define("IDEALPOSTCODES_SLUG", "uk-address-postcode-validation");
+define("IDEALPOSTCODES_URL", plugins_url() . "/" . IDEALPOSTCODES_SLUG . "/");
 
 //includes
-require_once ABSPATH . 'wp-admin/includes/plugin.php';
+require_once ABSPATH . "wp-admin/includes/plugin.php";
 
-if (!class_exists('WC_IdealPostcodes')) {
+if (!class_exists("WC_IdealPostcodes")) {
   class WC_IdealPostcodes
   {
     /**
@@ -38,7 +38,7 @@ if (!class_exists('WC_IdealPostcodes')) {
      */
     public function __construct()
     {
-      add_action('plugins_loaded', [$this, 'init']);
+      add_action("plugins_loaded", [$this, "init"]);
     }
 
     /**
@@ -46,12 +46,12 @@ if (!class_exists('WC_IdealPostcodes')) {
      */
     public function init()
     {
-      if (class_exists('WC_Integration')) {
+      if (class_exists("WC_Integration")) {
         require_once IDEALPOSTCODES_DIR .
-          'classes' .
+          "classes" .
           DIRECTORY_SEPARATOR .
-          'ideal.postcodes.php';
-        add_filter('woocommerce_integrations', [$this, 'add_integration']);
+          "ideal.postcodes.php";
+        add_filter("woocommerce_integrations", [$this, "add_integration"]);
       }
     }
 
@@ -60,7 +60,7 @@ if (!class_exists('WC_IdealPostcodes')) {
      */
     public function add_integration($integrations)
     {
-      $integrations[] = 'WC_IdealPostcodes_Integration';
+      $integrations[] = "WC_IdealPostcodes_Integration";
       return $integrations;
     }
   }
