@@ -15,7 +15,7 @@
  * WC requires at least: 3.0.0
  * WC tested up to: 5.0.0
  *
- * License: MIT
+ * License: Copyright IDDQD Limited
  * License URI: https://github.com/ideal-postcodes/woocommerce/blob/master/LICENSE
  */
 
