@@ -40,7 +40,14 @@ describe("IdealPostcodes Admin", () => {
           "not.have.attr",
           "checked"
         );
-
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_watch_country").should(
+          "not.have.attr",
+          "checked"
+        );
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_separate_finder").should(
+          "not.have.attr",
+          "checked"
+        );
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").uncheck();
