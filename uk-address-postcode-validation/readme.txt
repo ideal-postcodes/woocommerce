@@ -36,6 +36,7 @@ Contact us if you get stuck. Drop by our [chat page](https://ideal-postcodes.co.
 
 - Address autocompletion on checkout shipping and billing pages
 - Address autocompletion on accounts pages
+- Post towns now capitalised by default (instead of all caps)
 - Checks if key is usable before enabling autocomplete
 - Optionally populate organisation name from selected address
 - Optionally populate county information
