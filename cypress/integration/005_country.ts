@@ -1,8 +1,4 @@
-import { address as addresses } from "@ideal-postcodes/api-fixtures";
-import { selectors as billingSelectors } from "../../lib/account_billing";
 import { selectors as shippingSelectors } from "../../lib/account_shipping";
-
-const address = addresses.jersey;
 
 Cypress.on("uncaught:exception", (err, runnable) => {
   console.log(err);
