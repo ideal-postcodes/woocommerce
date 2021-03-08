@@ -127,7 +127,7 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
     let af: AfController;
     let f: FinderContainer | null;
     if (config.autocomplete) {
-      if (config.separateFinder) f = insertAddressFinder(targets);
+      f = config.separateFinder ? insertAddressFinder(targets) : null;
       af = AddressFinder.setup({
         ...config,
         ...localConfig,
