@@ -1,6 +1,7 @@
 import {
   Selectors,
   Config,
+  idGen,
   OutputFields,
   hide,
   show,
@@ -22,6 +23,12 @@ if (!window.IdealPostcodes) window.IdealPostcodes = {};
 window.IdealPostcodes.AddressFinder = AddressFinder;
 window.IdealPostcodes.PostcodeLookup = PostcodeLookup;
 
+const isSupported = (c: string | null): boolean =>
+  ["GB", "IM", "JE", "GG"].indexOf(c || "") !== -1;
+
+/**
+ * Creates container for Postcode Lookup
+ */
 export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   if (targets.line_1 === null) return null;
   const target = getParent(targets.line_1, "p");
@@ -33,6 +40,39 @@ export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
   wrapper.appendChild(postcodeField);
   insertBefore({ target, elem: wrapper });
   return postcodeField;
+};
+
+interface FinderContainer {
+  input: HTMLInputElement;
+  elem: HTMLElement;
+}
+
+/**
+ * Creates container for Address Finder
+ */
+export const insertAddressFinder = (
+  targets: Targets
+): FinderContainer | null => {
+  if (targets.line_1 === null) return null;
+  const id = idGen()();
+  const target = getParent(targets.line_1, "p");
+  if (target === null) return null;
+  const elem = document.createElement("p");
+  elem.className = "form-row";
+  const label = document.createElement("label");
+  label.htmlFor = id;
+  label.textContent = "Start typing your address to search";
+  const span = document.createElement("span");
+  span.className = "woocommerce-input-wrapper";
+  const input = document.createElement("input");
+  input.type = "text";
+  input.id = id;
+  input.className = "input-text";
+  elem.appendChild(label);
+  span.appendChild(input);
+  elem.appendChild(span);
+  insertBefore({ target, elem });
+  return { input, elem };
 };
 
 const toOutputFields = (config: Config, selectors: Selectors): OutputFields => {
@@ -85,26 +125,27 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
     }
 
     let af: AfController;
+    let f: FinderContainer | null;
     if (config.autocomplete) {
+      if (config.separateFinder) f = insertAddressFinder(targets);
       af = AddressFinder.setup({
         ...config,
         ...localConfig,
-        inputField: selectors.line_1,
+        inputField: f ? f.input : selectors.line_1,
         ...config.autocompleteOverride,
       });
     }
-
-    const isSupported = (c: string | null): boolean =>
-      ["GB", "IM", "JE", "GG"].indexOf(c || "") !== -1;
 
     const country = (targets.country as HTMLSelectElement) || null;
 
     const checkCountry = () => {
       if (isSupported(country.value)) {
         if (pl) show(pl.context);
+        if (f) show(f.elem);
         if (af) af.view.attach();
       } else {
         if (pl) hide(pl.context);
+        if (f) hide(f.elem);
         if (af) af.view.detach();
       }
     };
