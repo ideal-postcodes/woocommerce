@@ -25,9 +25,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
       $this->config = (object) [
         "idealpostcodes_enabled" => $this->get_option("idealpostcodes_enabled"),
         "idealpostcodes_api_key" => $this->get_option("idealpostcodes_api_key"),
-        "idealpostcodes_watch_country" => $this->get_option(
-          "idealpostcodes_watch_country"
-        ),
         "idealpostcodes_populate_organisation" => $this->get_option(
           "idealpostcodes_populate_organisation"
         ),
@@ -36,6 +33,9 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         ),
         "idealpostcodes_watch_country" => $this->get_option(
           "idealpostcodes_watch_country"
+        ),
+        "idealpostcodes_separate_finder" => $this->get_option(
+          "idealpostcodes_separate_finder"
         ),
         "idealpostcodes_postcodelookup_override" => $this->get_option(
           "idealpostcodes_postcodelookup_override"
@@ -82,7 +82,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "Enable/Disable Idealpostcodes Postcode Lookup extension",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "yes",
         ],
         "idealpostcodes_api_key" => [
@@ -106,7 +105,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "Enable/Disable Address autocomplete functionality",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "yes",
         ],
         "idealpostcodes_postcodelookup" => [
@@ -117,7 +115,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "Enable/Disable Address Postcode Lookup functionality",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "yes",
         ],
         "idealpostcodes_watch_country" => [
@@ -131,7 +128,19 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "Enabling this feature will disable our Address Validation tools when an unsupported territory is selected",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
+          "default" => "false",
+        ],
+        "idealpostcodes_separate_finder" => [
+          "id" => "idealpostcodes_separate_finder",
+          "title" => __(
+            "Create a Separate Field for Address Finder",
+            IDEALPOSTCODES_SLUG
+          ),
+          "type" => "checkbox",
+          "description" => __(
+            "Enabling this feature will move the Address Finder into a separate input field above the main address form",
+            IDEALPOSTCODES_SLUG
+          ),
           "default" => "false",
         ],
         "idealpostcodes_populate_organisation" => [
@@ -142,7 +151,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "Fill the Company field based on selected address.",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "yes",
         ],
         "idealpostcodes_populate_county" => [
@@ -153,7 +161,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "This will populate the county field. County data is no longer used in the UK to identify a premise, however this can be enabled if you prefer.",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "no",
         ],
         "idealpostcodes_advanced" => [
@@ -174,7 +181,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "This setting overrides your postcode lookup configuration globally to allow for highly customisable and niche integrations. Leave blank to disable. This setting is dangerous as invalid input will break your integration.",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "",
         ],
         "idealpostcodes_autocomplete_override" => [
@@ -188,7 +194,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "This setting overrides your address autocomplete configuration globally to allow for highly customisable and niche integrations. Leave blank to disable. This setting is dangerous as invalid input will break your integration.",
             IDEALPOSTCODES_SLUG
           ),
-          "desc_tip" => true,
           "default" => "",
         ],
       ];
@@ -212,6 +217,9 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         ),
         "watchCountry" => $this->to_bool(
           $this->get_option("idealpostcodes_watch_country")
+        ),
+        "separateFinder" => $this->to_bool(
+          $this->get_option("idealpostcodes_separate_finder")
         ),
         "populateOrganisation" => $this->to_bool(
           $this->get_option("idealpostcodes_populate_organisation")
