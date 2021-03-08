@@ -1,3 +1,27 @@
+# [3.0.0](https://github.com/ideal-postcodes/woocommerce/compare/2.4.0...3.0.0) (2021-03-08)
+
+
+### Features
+
+* **Address Finder:** Upgrade to new library ([15d51d2](https://github.com/ideal-postcodes/woocommerce/commit/15d51d2738dfc0a82b903ae41e384be2c7f21cde))
+* **Babel:** Reduce global scope pollution ([8148339](https://github.com/ideal-postcodes/woocommerce/commit/8148339c022d5e7194b004ca58016b1b5e2c7301))
+* **Country:** Watch Country ([03d048d](https://github.com/ideal-postcodes/woocommerce/commit/03d048dd3f94e5e791afd9f684afda4f0782f4cd))
+* **Namespace:** Add Address Finder and Postcode Lookup to ([b51dfe3](https://github.com/ideal-postcodes/woocommerce/commit/b51dfe3b0eeb24cebc47f6310c17baa3ff1087f1))
+* **Postcode Lookup:** Upgrade to new library ([cf439d2](https://github.com/ideal-postcodes/woocommerce/commit/cf439d252771d1d22cdd4f84e4b24a3eb2938980))
+* **WooCommerce:** Test on WC 5.0 ([ef22adb](https://github.com/ideal-postcodes/woocommerce/commit/ef22adb6c05314af698097c1e41376e8ffdbbade))
+
+
+### BREAKING CHANGES
+
+* **Address Finder:** - Address Finder library uses a new setup interface. Previous overrides are
+unlikely to carry over without modification. Contact support
+(https://ideal-postcodes.co.uk/support) for help to translate your
+previous overrides
+* **Postcode Lookup:** - Postcode Lookup library uses a new setup interface. Previous overrides are
+unlikely to carry over without modification. Contact support
+(https://ideal-postcodes.co.uk/support) for help to translate your
+previous overrides
+
 # [2.4.0](https://github.com/ideal-postcodes/woocommerce/compare/2.3.0...2.4.0) (2021-02-11)
 
 
