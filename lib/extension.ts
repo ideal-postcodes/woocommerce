@@ -58,7 +58,7 @@ export const insertAddressFinder = (
   const target = getParent(targets.line_1, "p");
   if (target === null) return null;
   const elem = document.createElement("p");
-  elem.className = "form-row";
+  elem.className = "form-row idpc-finder";
   const label = document.createElement("label");
   label.htmlFor = id;
   label.textContent = "Start typing your address to search";
