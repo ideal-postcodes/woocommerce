@@ -83,6 +83,11 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.0.1 =
+* Updates Address Finder to 1.8.0
+* Updates Postcode Lookup to 1.7.0
+* Update and compress Address Finder CSS
+
 = 3.0.0 =
 
 Substantial upgrade of Postcode Lookup and Address Finder.
@@ -94,6 +99,7 @@ If you are upgrading from 1.x please upgrade to 2.x first to ensure your configu
 Please reach out to support (https://ideal-postcodes.co.uk/support) if this change brings backwards incompatible changes not listed here. We will address these immediately.
 
 New Features:
+
 * Screen Reader Support. Both Postcode Lookup and Address Finder are now screen reader friendly. Any visually impaired user will now get audio cues when using our Address Validation tools.
 * Address Validation can be hidden when an unsupported territory/country is selected. This can be enabled from the admin panel.
 * Initialised Address Finder and Postcode Lookup controllers are now available at the global IdealPostcodes namespace for easier customisation
@@ -102,13 +108,16 @@ New Features:
 * More custom behaviours like auto select single premise postcodes, hide/unhide address fields
 
 Breaking Changes:
+
 * Both Postcode Lookup and Address Finder have been replaced. This means the any custom library overrides on the admin page will need to be translated into the new setup format.
 
 Deprecations:
-* The legacy Postcode Lookup jQuery plugin is deprecated. This library will continue to be served until 4.0 is released. Please use Postcode Lookup insteand (https://postcode-lookup.ideal-postcodes.dev/)
+
+* The legacy Postcode Lookup jQuery plugin is deprecated. This library will continue to be served until 4.0 is released. Please use Postcode Lookup instead (https://postcode-lookup.ideal-postcodes.dev/)
 * The legacy Address Finder plugin is deprecated. This library will continue to be served until 4.0 is released. Please use Address Finder instead (https://address-finder.ideal-postcodes.dev/)
 
 Chores:
+
 * Adds testing on WooCommerce 5.0
 * Remove data migration check
 
