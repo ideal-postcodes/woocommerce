@@ -1,3 +1,11 @@
+## [3.0.1](https://github.com/ideal-postcodes/woocommerce/compare/3.0.0...3.0.1) (2021-03-11)
+
+
+### Bug Fixes
+
+* **CSS:** Compress and update CSS ([08b409a](https://github.com/ideal-postcodes/woocommerce/commit/08b409aac7cdaf5fc0b6ad619cce2eccc740f0a2))
+* **Update:** Bump AF and PL ([6d98d08](https://github.com/ideal-postcodes/woocommerce/commit/6d98d08916cb8dc382d2bb8c3f5ec1c1d6689aaa))
+
 # [3.0.0](https://github.com/ideal-postcodes/woocommerce/compare/2.4.0...3.0.0) (2021-03-08)
 
 
