@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.0.2 =
+* Improve styling of default postcode lookup setup
+
 = 3.0.1 =
 * Updates Address Finder to 1.8.0
 * Updates Postcode Lookup to 1.7.0
