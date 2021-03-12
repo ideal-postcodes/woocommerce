@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/ideal-postcodes/woocommerce/compare/3.0.1...3.0.2) (2021-03-12)
+
+
+### Bug Fixes
+
+* **CSS:** Improve default styling of postcode lookup ([81d48df](https://github.com/ideal-postcodes/woocommerce/commit/81d48dffdeb419cc4724440041722b1b246ea9a2))
+
 ## [3.0.1](https://github.com/ideal-postcodes/woocommerce/compare/3.0.0...3.0.1) (2021-03-11)
 
 
