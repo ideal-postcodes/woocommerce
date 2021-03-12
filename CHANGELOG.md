@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/ideal-postcodes/woocommerce/compare/3.0.2...3.0.3) (2021-03-12)
+
+
+### Bug Fixes
+
+* **Checkout:** Delay checkout update to onAddressPopulated ([b737987](https://github.com/ideal-postcodes/woocommerce/commit/b737987c8265654d103aeb44d03cb4d065a9f664))
+
 ## [3.0.2](https://github.com/ideal-postcodes/woocommerce/compare/3.0.1...3.0.2) (2021-03-12)
 
 
