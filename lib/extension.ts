@@ -107,7 +107,7 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
       apiKey: config.apiKey,
       tags,
       outputFields,
-      onAddressRetrieved: updateCheckout,
+      onAddressPopulated: updateCheckout,
     };
 
     let pl: PlController;

@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.0.3 =
+* Delay checkout refresh to after address population is complete
+
 = 3.0.2 =
 * Improve styling of default postcode lookup setup
 
