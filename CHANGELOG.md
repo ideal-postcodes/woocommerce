@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/ideal-postcodes/woocommerce/compare/3.0.4...3.0.5) (2021-03-16)
+
+
+### Bug Fixes
+
+* **Checkout Country:** Use ISO Code when input ([9735cb3](https://github.com/ideal-postcodes/woocommerce/commit/9735cb368b66d676c5a51c0f0270128d83e994c0))
+
 ## [3.0.4](https://github.com/ideal-postcodes/woocommerce/compare/3.0.3...3.0.4) (2021-03-16)
 
 
