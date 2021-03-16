@@ -83,6 +83,11 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.0.4 =
+* Update Address Finder
+* Update Postcode Lookup
+* Rebuild JS payload to incorporate 3.0.3
+
 = 3.0.3 =
 * Delay checkout refresh to after address population is complete
 
