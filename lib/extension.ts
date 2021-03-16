@@ -2,9 +2,14 @@ import {
   Selectors,
   Config,
   idGen,
+  isString,
   OutputFields,
+  toIso,
   hide,
   show,
+  toHtmlElem,
+  isInput,
+  update,
   setupBind,
   insertBefore,
   Targets,
@@ -18,6 +23,7 @@ import {
   PostcodeLookup,
   Controller as PlController,
 } from "@ideal-postcodes/postcode-lookup";
+import { Address } from "@ideal-postcodes/api-typings";
 
 if (!window.IdealPostcodes) window.IdealPostcodes = {};
 window.IdealPostcodes.AddressFinder = AddressFinder;
@@ -107,7 +113,16 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
       apiKey: config.apiKey,
       tags,
       outputFields,
-      onAddressPopulated: updateCheckout,
+      onAddressPopulated: (address: Address) => {
+        if (isString(outputFields.country)) {
+          const countryField = toHtmlElem(parent, outputFields.country);
+          if (isInput(countryField)) {
+            const iso = toIso(address);
+            if (iso) update(countryField, iso);
+          }
+        }
+        updateCheckout();
+      },
     };
 
     let pl: PlController;
