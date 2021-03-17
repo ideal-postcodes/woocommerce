@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.0.6 =
+* Adds testing for WooCommerce 5.1
+
 = 3.0.5 =
 * Use country ISO code in country field if text input is detected. Currently Ideal Postcodes will set the country to it's full name (United Kingdom) rather than ISO code (GB) if a text input field is detected. This behaviour has been changed so that the ISO code is added only
 
