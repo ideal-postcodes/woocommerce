@@ -42,7 +42,7 @@
     "@ideal-postcodes/api-fixtures": "~1.2.0",
     "@ideal-postcodes/api-typings": "~2.0.1",
     "@ideal-postcodes/core-browser": "~1.5.2",
-    "@prettier/plugin-php": "~0.16.1",
+    "@prettier/plugin-php": "~0.16.2",
     "@prettier/plugin-xml": "~0.13.1",
     "@rollup/plugin-commonjs": "~17.0.0",
     "@rollup/plugin-inject": "~4.0.2",
