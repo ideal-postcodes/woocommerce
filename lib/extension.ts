@@ -19,10 +19,7 @@ import {
   AddressFinder,
   Controller as AfController,
 } from "@ideal-postcodes/address-finder";
-import {
-  PostcodeLookup,
-  Controller as PlController,
-} from "@ideal-postcodes/postcode-lookup";
+import { PostcodeLookup } from "@ideal-postcodes/postcode-lookup";
 import { Address } from "@ideal-postcodes/api-typings";
 
 if (!window.IdealPostcodes) window.IdealPostcodes = {};
@@ -37,6 +34,7 @@ interface Result {
   context: HTMLElement;
   button: HTMLElement;
   input: HTMLElement;
+  wrapper: HTMLElement;
 }
 
 const newSpan = (innerElem: HTMLElement): HTMLElement => {
@@ -82,13 +80,12 @@ export const insertPostcodeField = (targets: Targets): Result | null => {
 
   const selectContainer = document.createElement("span");
   selectContainer.className = "selection";
-  selectContainer.id = "idpc_dropdown";
   wrapper.appendChild(newSpan(selectContainer));
 
   const context = document.createElement("div");
   wrapper.appendChild(context);
 
-  return { button, input, context, selectContainer };
+  return { button, input, context, selectContainer, wrapper };
 };
 
 interface FinderContainer {
@@ -168,12 +165,13 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
       },
     };
 
-    let pl: PlController;
+    let plContainer: HTMLElement;
     if (config.postcodeLookup) {
       const result = insertPostcodeField(targets);
       if (result) {
-        const { context, button, input, selectContainer } = result;
-        pl = PostcodeLookup.setup({
+        const { context, button, input, selectContainer, wrapper } = result;
+        plContainer = wrapper;
+        PostcodeLookup.setup({
           ...legacyPostcodeConfig,
           ...config,
           ...localConfig,
@@ -202,11 +200,11 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
 
     const checkCountry = () => {
       if (isSupported(country.value)) {
-        if (pl) show(pl.context);
+        if (plContainer) show(plContainer);
         if (f) show(f.elem);
         if (af) af.view.attach();
       } else {
-        if (pl) hide(pl.context);
+        if (plContainer) hide(plContainer);
         if (f) hide(f.elem);
         if (af) af.view.detach();
       }
