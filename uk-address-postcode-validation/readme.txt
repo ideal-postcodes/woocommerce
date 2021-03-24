@@ -83,6 +83,18 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.1.0 =
+
+*Important.* If you are using Postcode Lookup consider checking the styling of our Postcode Lookup tools on your checkout and user address book. This is particularly important if you are using custom styling to adapt our Postcode Lookup to your theme.
+
+As always, please drop by chat (chat.ideal-postcodes.co.uk) if you have any questions about this change.
+
+This update brings accessibility, usability and consistency improvements to our Postcode Lookup tools. In order to do this, the update reorganises Postcode Lookup HTML elements which may require you to update any custom styling you may have applied.
+
+* Reorganise Postcode Lookup HTML Elements to more closely match WooCommerce defaults
+* Adds "Postcode Lookup" label above Postcode Lookup search box for better accessibility
+* Improves touch target size for small screen sizes on Postcode Lookup
+
 = 3.0.6 =
 * Adds testing for WooCommerce 5.1
 

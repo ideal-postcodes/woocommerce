@@ -32,20 +32,63 @@ window.IdealPostcodes.PostcodeLookup = PostcodeLookup;
 const isSupported = (c: string | null): boolean =>
   ["GB", "IM", "JE", "GG"].indexOf(c || "") !== -1;
 
+interface Result {
+  selectContainer: HTMLElement;
+  context: HTMLElement;
+  button: HTMLElement;
+  input: HTMLElement;
+}
+
+const newSpan = (innerElem: HTMLElement): HTMLElement => {
+  const span = document.createElement("span");
+  span.className = "woocommerce-input-wrapper";
+  span.appendChild(innerElem);
+  return span;
+};
+
 /**
  * Creates container for Postcode Lookup
  */
-export const insertPostcodeField = (targets: Targets): HTMLElement | null => {
+export const insertPostcodeField = (targets: Targets): Result | null => {
   if (targets.line_1 === null) return null;
   const target = getParent(targets.line_1, "p");
   if (target === null) return null;
   const wrapper = document.createElement("p");
-  wrapper.className = "form-row";
-  const postcodeField = document.createElement("div");
-  postcodeField.className = "idpc_lookup field";
-  wrapper.appendChild(postcodeField);
+  wrapper.className = "form-row idpc_lookup field";
+
   insertBefore({ target, elem: wrapper });
-  return postcodeField;
+
+  const label = document.createElement("label");
+  label.innerText = "Postcode Lookup";
+  wrapper.appendChild(label);
+
+  const input = document.createElement("input");
+  input.className = "idpc-input";
+  input.type = "text";
+  input.placeholder = "Enter your postcode";
+  input.setAttribute(
+    "aria-label",
+    "Search a postcode to retrieve your address"
+  );
+  input.id = "idpc_input";
+  wrapper.appendChild(newSpan(input));
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "idpc-button btn";
+  button.innerText = "Find my Address";
+  button.id = "idpc_button";
+  wrapper.appendChild(newSpan(button));
+
+  const selectContainer = document.createElement("span");
+  selectContainer.className = "selection";
+  selectContainer.id = "idpc_dropdown";
+  wrapper.appendChild(newSpan(selectContainer));
+
+  const context = document.createElement("div");
+  wrapper.appendChild(context);
+
+  return { button, input, context, selectContainer };
 };
 
 interface FinderContainer {
@@ -127,13 +170,17 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
 
     let pl: PlController;
     if (config.postcodeLookup) {
-      const context = insertPostcodeField(targets);
-      if (context) {
+      const result = insertPostcodeField(targets);
+      if (result) {
+        const { context, button, input, selectContainer } = result;
         pl = PostcodeLookup.setup({
           ...legacyPostcodeConfig,
           ...config,
           ...localConfig,
           context,
+          input,
+          button,
+          selectContainer,
           ...config.postcodeLookupOverride,
         });
       }
