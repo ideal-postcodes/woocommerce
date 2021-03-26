@@ -24,8 +24,6 @@ Missing feature, something not right or need help? Contact [support](https://ide
 - [Changelog](https://github.com/ideal-postcodes/woocommerce/blob/master/CHANGELOG.md)
 - [Support](https://ideal-postcodes.co.uk/support)
 - [GitHub Repository](https://github.com/ideal-postcodes/woocommerce)
-- [Address Finder](https://github.com/ideal-postcodes/address-finder)
-- [Postcode Lookup](https://github.com/ideal-postcodes/postcode-lookup)
 
 ## Related Integrations
 
