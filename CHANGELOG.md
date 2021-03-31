@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/ideal-postcodes/woocommerce/compare/3.1.0...3.1.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **Postcode Lookup:** Upgrade to 1.7.2 ([6e034e0](https://github.com/ideal-postcodes/woocommerce/commit/6e034e054feac90b26c19e98522831d1570c260d))
+
 # [3.1.0](https://github.com/ideal-postcodes/woocommerce/compare/3.0.6...3.1.0) (2021-03-25)
 
 
