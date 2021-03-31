@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.1.1 =
+* Upgrade Postcode Lookup to 1.7.2
+
 = 3.1.0 =
 
 *Important.* If you are using Postcode Lookup consider checking the styling of our Postcode Lookup tools on your checkout and user address book. This is particularly important if you are using custom styling to adapt our Postcode Lookup to your theme.
