@@ -40,7 +40,7 @@
     "@cablanchard/tsconfig": "~2.0.0",
     "@google/semantic-release-replace-plugin": "~1.0.2",
     "@ideal-postcodes/api-fixtures": "~1.2.0",
-    "@ideal-postcodes/api-typings": "~2.0.1",
+    "@ideal-postcodes/api-typings": "~2.1.0",
     "@ideal-postcodes/core-browser": "~1.5.2",
     "@prettier/plugin-php": "~0.16.2",
     "@prettier/plugin-xml": "~0.13.1",
