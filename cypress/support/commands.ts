@@ -176,6 +176,7 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     // Setup template
     cy.wait(5000);
     cy.get("button").contains("Continue with my active theme").click();
+    cy.wait(2000);
     // Disable jetpack
     if(!businessSurvey) cy.contains("No thanks").click();
 
