@@ -41,6 +41,7 @@ declare namespace Cypress {
     installwc49(): void;
     installwc50(): void;
     installwc51(): void;
+    installwc52(): void;
   }
 }
 
@@ -121,6 +122,10 @@ const install42 = () => {
 };
 
 const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false) => {
+  let businessSurvey = false;
+  if (Cypress.env("WC_VERSION") && parseInt(Cypress.env("WC_VERSION"), 10) >= 52) {
+    businessSurvey = true;
+  }
   return () => {
     cy.login();
     cy.visit(url);
@@ -156,22 +161,29 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     cy.get("#woocommerce-select-control-2__control-input").click({
       force: true,
     });
-    cy.get("button").contains("No").click();
-    cy.get("input.components-form-toggle__input").click({ multiple: true });
-    cy.get("button").contains("Continue").click();
+    if(!businessSurvey) {
+      cy.get("button").contains("No").click();
+      cy.get("input.components-form-toggle__input").click({ multiple: true });
+      cy.get("button").contains("Continue").click();
+    }
+    if(businessSurvey) {
+      cy.get("#woocommerce-select-control__listbox-2 button#woocommerce-select-control__option-2-no").click({force:true});
+      cy.get("button").contains("Continue").click();
+      cy.get("#inspector-checkbox-control-15").uncheck();
+      cy.get("button").contains("Continue").click();
+    }
 
     // Setup template
     cy.wait(5000);
     cy.get("button").contains("Continue with my active theme").click();
-
     // Disable jetpack
-    cy.contains("No thanks").click();
+    if(!businessSurvey) cy.contains("No thanks").click();
 
     // Kill modal
     cy.get(closeModalSelector).click();
-
+    if(businessSurvey) cy.get("div").contains("Set up shipping costs").click();
     // Setup shipping
-    cy.contains("Set up shipping").click();
+    if(!businessSurvey) cy.contains("Set up shipping").click();
     cy.wait(1000);
     cy.contains("Proceed").click();
     cy.wait(1000);
@@ -256,6 +268,17 @@ Cypress.Commands.add(
 // Install for WooCommerce 5.1
 Cypress.Commands.add(
   "installwc51",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
+    true
+  )
+);
+
+// Install for WooCommerce 5.2
+Cypress.Commands.add(
+  "installwc52",
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
