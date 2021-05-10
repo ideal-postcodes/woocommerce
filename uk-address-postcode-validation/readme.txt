@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.1.2 =
+* Test on WooCommerce 5.2
+
 = 3.1.1 =
 * Upgrade Postcode Lookup to 1.7.2
 
