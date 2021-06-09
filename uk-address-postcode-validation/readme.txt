@@ -57,7 +57,7 @@ Contact us if you get stuck. Drop by our [chat page](https://ideal-postcodes.co.
 When the plugin has been retrieved manually or via the plugins page,
 
 1. Activate the plugin through the 'Plugins' screen in WordPress
-2. Configure the plugin. Click on the WooCommerce link in the sidebar and then the `Ideal Postcodes` configuration tab on the settings page.
+2. Configure the plugin. Click on the WooCommerce link in the sidebar, then the `Integrations` tab on the settings page and finally `UK Address Postcode Validation`.
 3. Add your API Key. You will need to add your API Key from your Ideal Postcodes dashboard. Your first key will have a free test balance. To go live, you will need to prepurchase a lookup balance on your key.
 
 == Frequently Asked Questions ==
@@ -82,6 +82,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 4. Admin console, second tab
 
 == Changelog ==
+
+= 3.1.3 =
+* Update Readme
 
 = 3.1.2 =
 * Test on WooCommerce 5.2
