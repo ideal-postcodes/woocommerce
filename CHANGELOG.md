@@ -1,3 +1,10 @@
+## [3.1.3](https://github.com/ideal-postcodes/woocommerce/compare/3.1.2...3.1.3) (2021-06-15)
+
+
+### Bug Fixes
+
+* **Readme:** Fix directions for settings ([c0ded25](https://github.com/ideal-postcodes/woocommerce/commit/c0ded25f7c04b01c060dbf5ccc27d6109890d46a))
+
 ## [3.1.2](https://github.com/ideal-postcodes/woocommerce/compare/3.1.1...3.1.2) (2021-05-10)
 
 
