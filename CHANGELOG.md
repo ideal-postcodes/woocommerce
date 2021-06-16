@@ -1,3 +1,10 @@
+## [3.1.4](https://github.com/ideal-postcodes/woocommerce/compare/3.1.3...3.1.4) (2021-06-16)
+
+
+### Bug Fixes
+
+* **Tests:** Add tests for WP 5.7 and WC 5.4 ([1b31c4c](https://github.com/ideal-postcodes/woocommerce/commit/1b31c4c21ec9465edebb5c4d48c47887354d7ed9))
+
 ## [3.1.3](https://github.com/ideal-postcodes/woocommerce/compare/3.1.2...3.1.3) (2021-06-15)
 
 
