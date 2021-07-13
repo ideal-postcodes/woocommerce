@@ -6,7 +6,7 @@ ENV WOOCOMMERCE_VERSION $WOOCOMMERCE_VERSION
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip wget \
-    && wget https://downloads.wordpress.org/plugin/woocommerce.$WOOCOMMERCE_VERSION.zip -O /tmp/temp.zip \
+    && wget https://github.com/woocommerce/woocommerce/releases/download/$WOOCOMMERCE_VERSION/woocommerce.zip -O /tmp/temp.zip \
     && cd /usr/src/wordpress/wp-content/plugins \
     && unzip /tmp/temp.zip \
     && rm /tmp/temp.zip \
