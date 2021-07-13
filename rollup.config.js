@@ -43,7 +43,6 @@ export default [
     plugins: [
       resolve({
         preferBuiltins: true,
-        dedupe: ["@ideal-postcodes/jsutil"],
         mainFields: ["browser", "module", "main"],
         browser: true,
       }),
@@ -59,4 +58,32 @@ export default [
       terser(terserConfig),
     ],
   },
+  {
+    //admin script
+    input: "lib/admin.ts",
+    output: {
+      file: "./uk-address-postcode-validation/js/admin-woocommerce.min.js",
+      banner,
+      format: "umd",
+      name: "IdealPostcodes",
+      exports: "named",
+    },
+    plugins: [
+      resolve({
+        preferBuiltins: true,
+        mainFields: ["browser", "module", "main"],
+        browser: true,
+      }),
+      commonjs(),
+      inject(polyfills),
+      ts({
+        transpiler: "babel",
+        browserslist: [targets],
+        babelConfig: {
+          presets: [["@babel/preset-env", { targets }]],
+        },
+      }),
+      terser(terserConfig),
+    ],
+  }
 ];

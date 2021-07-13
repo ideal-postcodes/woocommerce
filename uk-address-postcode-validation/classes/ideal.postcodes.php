@@ -61,6 +61,9 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         add_action("woocommerce_before_edit_account_address_form", function () {
           do_action("ideal_postcodes_address_search");
         });
+        if(is_admin()) {
+          add_action( 'admin_enqueue_scripts', [$this, 'add_admin_js'] );
+        }
       }
     }
 
@@ -103,6 +106,16 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
           "type" => "checkbox",
           "description" => __(
             "Enable/Disable Address autocomplete functionality",
+            IDEALPOSTCODES_SLUG
+          ),
+          "default" => "yes",
+        ],
+        "idealpostcodes_orders_autocomplete" => [
+          "id" => "idealpostcodes_orders_autocomplete",
+          "title" => __("Enable Backend Order Address Autocomplete", IDEALPOSTCODES_SLUG),
+          "type" => "checkbox",
+          "description" => __(
+            "Enable/Disable Backend Order Address autocomplete functionality",
             IDEALPOSTCODES_SLUG
           ),
           "default" => "yes",
@@ -248,35 +261,24 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
     public function add_js()
     {
       $this->add_autocomplete_styles();
-      $this->add_autocomplete_plugin();
-      $this->add_postcode_lookup_plugin();
       $this->add_idpc_bindings();
     }
-    /**
-     * Add jquery plugin code
-     */
-    private function add_postcode_lookup_plugin()
-    {
-      wp_enqueue_script(
-        "postcode-lookup",
-        IDEALPOSTCODES_URL . "js/postcodes.min.js",
-        ["jquery"]
-      );
-    }
 
-    /**
-     * Add autocomplete plugin
-     */
-    private function add_autocomplete_plugin()
+    public function add_admin_js()
     {
-      wp_enqueue_script(
-        "ideal-postcodes-autocomplete",
-        IDEALPOSTCODES_URL . "js/ideal-postcodes-autocomplete.min.js"
+      $enabled = $this->to_bool(
+        $this->get_option("idealpostcodes_orders_autocomplete")
       );
+
+      if(!$enabled) return;
+
+      $this->add_autocomplete_styles();
+      $this->add_admin_idpc_bindings();
     }
 
     /**
      * Add autocomplete stylesheet
+     * @todo remove if not need after testing
      */
     private function add_autocomplete_styles()
     {
@@ -318,7 +320,45 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
       wp_enqueue_script(
         "ideal-postcodes-bindings",
         IDEALPOSTCODES_URL . "js/woocommerce.min.js",
-        ["postcode-lookup", "ideal-postcodes-autocomplete"],
+        [],
+        "1.0",
+        true
+      );
+      wp_add_inline_script("ideal-postcodes-bindings", $script, "before");
+    }
+    /**
+     * Init js plugin on the checkout page
+     */
+    private function add_admin_idpc_bindings()
+    {
+      $options = $this->get_options();
+      $postcode_lookup_override =
+        strlen($options["postcodeLookupOverride"]) > 0
+          ? html_entity_decode($options["postcodeLookupOverride"])
+          : "{}";
+      $autocomplete_override =
+        strlen($options["autocompleteOverride"]) > 0
+          ? html_entity_decode($options["autocompleteOverride"])
+          : "{}";
+      $options["postcodeLookupOverride"] = "%postcodeLookupOverride%";
+      $options["autocompleteOverride"] = "%autocompleteOverride%";
+      $json = json_encode($options, JSON_FORCE_OBJECT);
+      $script = "window.idpcConfig = " . $json . ";";
+      //replace overrides
+      $script = str_replace(
+        "\"%postcodeLookupOverride%\"",
+        $postcode_lookup_override,
+        $script
+      );
+      $script = str_replace(
+        "\"%autocompleteOverride%\"",
+        $autocomplete_override,
+        $script
+      );
+      wp_enqueue_script(
+        "ideal-postcodes-bindings",
+        IDEALPOSTCODES_URL . "js/admin-woocommerce.min.js",
+        [],
         "1.0",
         true
       );
