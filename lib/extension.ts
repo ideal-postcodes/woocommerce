@@ -121,7 +121,10 @@ export const insertAddressFinder = (
   return { input, elem };
 };
 
-const toOutputFields = (config: Config, selectors: Selectors): OutputFields => {
+export const toOutputFields = (
+  config: Config,
+  selectors: Selectors
+): OutputFields => {
   const outputFields: OutputFields = { ...selectors };
   if (config.populateOrganisation === false)
     delete outputFields.organisation_name;
@@ -189,7 +192,9 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
     if (config.autocomplete) {
       f = config.separateFinder ? insertAddressFinder(targets) : null;
       af = AddressFinder.setup({
+        injectStyle: false, // To be dropped in breaking change release
         ...config,
+        autocomplete: AddressFinder.defaults.autocomplete, // Temporary fix for clash
         ...localConfig,
         inputField: f ? f.input : selectors.line_1,
         ...config.autocompleteOverride,
