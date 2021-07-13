@@ -2,8 +2,6 @@ import { Address } from "@ideal-postcodes/api-typings";
 import { watch } from "@ideal-postcodes/address-finder";
 import { toIso, change, hasValue, isSelect } from "@ideal-postcodes/jsutil";
 
-console.log("Admin here");
-
 const config = (window as any).idpcConfig;
 
 const orderBilling = {
@@ -46,18 +44,10 @@ orderSelectors.forEach((selectors) => {
         change({ e: select, value: code });
     }
   }, {
-    pageTest: (): boolean => {
-      console.log("pageTest", /\/wp-admin/i.test(window.location.href));
-      return /\/wp-admin/i.test(window.location.href)
-    },
-    getScope: () => {
-      console.log("getScope", document.querySelector(
-        "div#order_data"
-      ));
-      return document.querySelector(
-        "div#order_data"
-      );
-    }
+    pageTest: (): boolean => /\/wp-admin/i.test(window.location.href),
+    getScope: () => document.querySelector(
+      "div#order_data"
+    )
   });
 });
 
