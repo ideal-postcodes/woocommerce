@@ -1,5 +1,6 @@
 import { orderSelectors } from "../../lib/admin";
 import { address as addresses } from "@ideal-postcodes/api-fixtures";
+import {selectors as billingSelectors} from "../../lib/checkout_billing";
 
 const address = addresses.jersey;
 
@@ -24,7 +25,10 @@ const billingTest = () => {
       .focus()
       .type(address.line_1);
     //here wait because it not catching the xhr call to get list
-    cy.wait(3000);
+    cy.wait(5000);
+    cy.get(billingSelector.line_1).clear();
+    cy.get(billingSelector.line_1).type(address.line_1);
+    cy.wait(500);
     cy.get(".idpc_ul li").first().click({ force: true });
     cy.get(billingSelector.post_town).should(
       "have.value",
@@ -53,7 +57,10 @@ const shippingTest = () => {
       .focus()
       .type(address.line_1);
     //here wait because it not catching the xhr call to get list
-    cy.wait(1000);
+    cy.wait(5000);
+    cy.get(shippingSelector.line_1).clear();
+    cy.get(shippingSelector.line_1).type(address.line_1);
+    cy.wait(500);
     cy.get(".idpc_ul li").first().click({ force: true });
     cy.wait(3000);
     cy.get(shippingSelector.post_town).should(
