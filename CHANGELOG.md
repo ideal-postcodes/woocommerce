@@ -1,3 +1,16 @@
+# [3.2.0](https://github.com/ideal-postcodes/woocommerce/compare/3.1.4...3.2.0) (2021-07-13)
+
+
+### Bug Fixes
+
+* **County:** Default `county` population to true ([2d5a733](https://github.com/ideal-postcodes/woocommerce/commit/2d5a73353149efd2ca7c78f177f20b6a29e79acb))
+* **Dependencies:** Update Address Finder and Postcode Lookup ([18d034f](https://github.com/ideal-postcodes/woocommerce/commit/18d034f588a0c185bbc83890512f2fa56642e2a1))
+
+
+### Features
+
+* **Backend:** Add Address Valdiation WooCommerce backend ([afd9d8d](https://github.com/ideal-postcodes/woocommerce/commit/afd9d8d1d37babc6fac0f4838be7ac76d5e387b1))
+
 ## [3.1.4](https://github.com/ideal-postcodes/woocommerce/compare/3.1.3...3.1.4) (2021-06-16)
 
 
