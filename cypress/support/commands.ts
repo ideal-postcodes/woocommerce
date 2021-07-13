@@ -43,6 +43,7 @@ declare namespace Cypress {
     installwc51(): void;
     installwc52(): void;
     installwc54(): void;
+    installwc55(): void;
   }
 }
 
@@ -290,9 +291,20 @@ Cypress.Commands.add(
   )
 );
 
-// Install for WooCommerce 5.2
+// Install for WooCommerce 5.4
 Cypress.Commands.add(
   "installwc54",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
+    true
+  )
+);
+
+// Install for WooCommerce 5.5
+Cypress.Commands.add(
+  "installwc55",
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
