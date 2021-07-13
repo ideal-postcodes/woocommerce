@@ -83,6 +83,13 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.2.0 =
+* Adds Address Validation to WooCommerce Admin dashboard
+* Defaults county population to true
+* Test on WooCommerce 5.5
+* Upgrade Postcode Lookup to 1.8
+* Upgrade Address Finder to 2.2
+
 = 3.1.4 =
 * Test on WooCommerce 5.4
 * Test on Wordpress 5.7
