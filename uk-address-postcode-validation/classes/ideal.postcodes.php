@@ -82,7 +82,7 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
           "title" => __("Enabled", IDEALPOSTCODES_SLUG),
           "type" => "checkbox",
           "description" => __(
-            "Enable/Disable Idealpostcodes Postcode Lookup extension",
+            "Globally activate or deactivate this plugin",
             IDEALPOSTCODES_SLUG
           ),
           "default" => "yes",
@@ -105,17 +105,7 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
           "title" => __("Enable Address Autocomplete", IDEALPOSTCODES_SLUG),
           "type" => "checkbox",
           "description" => __(
-            "Enable/Disable Address autocomplete functionality",
-            IDEALPOSTCODES_SLUG
-          ),
-          "default" => "yes",
-        ],
-        "idealpostcodes_orders_autocomplete" => [
-          "id" => "idealpostcodes_orders_autocomplete",
-          "title" => __("Enable Backend Order Address Autocomplete", IDEALPOSTCODES_SLUG),
-          "type" => "checkbox",
-          "description" => __(
-            "Enable/Disable Backend Order Address autocomplete functionality",
+            "Toggles customer facing address autocomplete functionality in checkout and accounts pages",
             IDEALPOSTCODES_SLUG
           ),
           "default" => "yes",
@@ -125,7 +115,17 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
           "title" => __("Enable Address Postcode Lookup", IDEALPOSTCODES_SLUG),
           "type" => "checkbox",
           "description" => __(
-            "Enable/Disable Address Postcode Lookup functionality",
+            "Toggles customer facing postcode lookup functionality in checkout and accounts pages",
+            IDEALPOSTCODES_SLUG
+          ),
+          "default" => "yes",
+        ],
+        "idealpostcodes_admin_autocomplete" => [
+          "id" => "idealpostcodes_admin_autocomplete",
+          "title" => __("Enable Admin Address Autocomplete", IDEALPOSTCODES_SLUG),
+          "type" => "checkbox",
+          "description" => __(
+            "Toggles Address Autocomplete functionality on your WooCommerce administrative pages like order creation and editing",
             IDEALPOSTCODES_SLUG
           ),
           "default" => "yes",
@@ -291,7 +291,7 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
     public function add_admin_js()
     {
       $enabled = $this->to_bool(
-        $this->get_option("idealpostcodes_orders_autocomplete")
+        $this->get_option("idealpostcodes_admin_autocomplete")
       );
 
       if(!$enabled) return;
