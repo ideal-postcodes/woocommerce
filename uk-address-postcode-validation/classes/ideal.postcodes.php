@@ -261,7 +261,31 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
     public function add_js()
     {
       $this->add_autocomplete_styles();
+      $this->add_autocomplete_plugin();
+      $this->add_postcode_lookup_plugin();
       $this->add_idpc_bindings();
+    }
+    /**
+     * Add jquery plugin code
+     */
+    private function add_postcode_lookup_plugin()
+    {
+      wp_enqueue_script(
+        "postcode-lookup",
+        IDEALPOSTCODES_URL . "js/postcodes.min.js",
+        ["jquery"]
+      );
+    }
+
+    /**
+     * Add autocomplete plugin
+     */
+    private function add_autocomplete_plugin()
+    {
+      wp_enqueue_script(
+        "ideal-postcodes-autocomplete",
+        IDEALPOSTCODES_URL . "js/ideal-postcodes-autocomplete.min.js"
+      );
     }
 
     public function add_admin_js()
@@ -278,7 +302,6 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
 
     /**
      * Add autocomplete stylesheet
-     * @todo remove if not need after testing
      */
     private function add_autocomplete_styles()
     {
