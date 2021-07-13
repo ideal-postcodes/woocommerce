@@ -37,7 +37,7 @@ describe("IdealPostcodes Admin", () => {
           "checked"
         );
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").should(
-          "not.have.attr",
+          "have.attr",
           "checked"
         );
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_watch_country").should(
@@ -51,7 +51,7 @@ describe("IdealPostcodes Admin", () => {
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").uncheck();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").uncheck();
-        cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").check();
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").uncheck();
         cy.get("button.woocommerce-save-button").click({ force: true });
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").should(
           "not.have.attr",
@@ -65,15 +65,16 @@ describe("IdealPostcodes Admin", () => {
           "not.have.attr",
           "checked"
         );
+
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").should(
-          "have.attr",
+          "not.have.attr",
           "checked"
         );
         //save default values
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_postcodelookup").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").check();
-        cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").uncheck();
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").check();
 
         cy.get("button.woocommerce-save-button").click({ force: true });
         cy.wait(1000);
