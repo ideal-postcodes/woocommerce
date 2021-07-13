@@ -174,7 +174,7 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
             "This will populate the county field. County data is no longer used in the UK to identify a premise, however this can be enabled if you prefer.",
             IDEALPOSTCODES_SLUG
           ),
-          "default" => "no",
+          "default" => "yes",
         ],
         "idealpostcodes_advanced" => [
           "title" => __("Advanced Configuration", IDEALPOSTCODES_SLUG),
