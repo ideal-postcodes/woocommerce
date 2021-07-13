@@ -17,6 +17,13 @@ const banner = `/**
  * Copyright IDDQD Limited, all rights reserved
  */`;
 
+const bannerAdmin = `/**
+ * @license
+ * Ideal Postcodes <https://ideal-postcodes.co.uk>
+ * WooCommerce Admin Integration
+ * Copyright IDDQD Limited, all rights reserved
+ */`;
+
 // Configure terser to ignore build info banner
 const terserConfig = {
   output: {
@@ -43,7 +50,6 @@ export default [
     plugins: [
       resolve({
         preferBuiltins: true,
-        dedupe: ["@ideal-postcodes/jsutil"],
         mainFields: ["browser", "module", "main"],
         browser: true,
       }),
@@ -59,4 +65,32 @@ export default [
       terser(terserConfig),
     ],
   },
+  {
+    //admin script
+    input: "lib/admin/index.ts",
+    output: {
+      file: "./uk-address-postcode-validation/js/admin-woocommerce.min.js",
+      banner: bannerAdmin,
+      format: "umd",
+      name: "IdealPostcodes",
+      exports: "named",
+    },
+    plugins: [
+      resolve({
+        preferBuiltins: true,
+        mainFields: ["browser", "module", "main"],
+        browser: true,
+      }),
+      commonjs(),
+      inject(polyfills),
+      ts({
+        transpiler: "babel",
+        browserslist: [targets],
+        babelConfig: {
+          presets: [["@babel/preset-env", { targets }]],
+        },
+      }),
+      terser(terserConfig),
+    ],
+  }
 ];

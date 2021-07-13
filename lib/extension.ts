@@ -121,7 +121,7 @@ export const insertAddressFinder = (
   return { input, elem };
 };
 
-const toOutputFields = (config: Config, selectors: Selectors): OutputFields => {
+export const toOutputFields = (config: Config, selectors: Selectors): OutputFields => {
   const outputFields: OutputFields = { ...selectors };
   if (config.populateOrganisation === false)
     delete outputFields.organisation_name;

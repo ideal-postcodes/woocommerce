@@ -7,6 +7,7 @@ import * as accountShipping from "./account_shipping";
 import * as accountBilling from "./account_billing";
 
 setup({
+  // @ts-ignore
   bindings: [billing, shipping, accountShipping, accountBilling],
   window,
 });

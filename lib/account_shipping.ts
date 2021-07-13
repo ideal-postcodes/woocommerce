@@ -15,5 +15,5 @@ export const selectors = {
 };
 
 export const bind = newBind(selectors);
-
+// @ts-ignore
 export const binding: Binding = { pageTest, bind };

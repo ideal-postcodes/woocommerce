@@ -40,3 +40,15 @@ jobs:
         env:
           CYPRESS_WC_VERSION: "52"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_5_4:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 5.4
+        run: make bootstrap-54
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+      - uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_WC_VERSION: "54"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}

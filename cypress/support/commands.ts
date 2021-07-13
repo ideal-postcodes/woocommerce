@@ -183,7 +183,8 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
 
     // Kill modal
     cy.get(closeModalSelector).click();
-    if(businessSurvey) cy.get("div").contains("Set up shipping costs").click();
+    //TODO add some search text switch
+    if(businessSurvey) cy.get("div").contains("Set up shipping").click();
     // Setup shipping
     if(!businessSurvey) cy.contains("Set up shipping").click();
     cy.wait(1000);
