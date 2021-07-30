@@ -20,7 +20,7 @@ Missing feature, something not right or need help? Contact [support](https://ide
 ## Links
 
 - [WordPress Plugin](https://wordpress.org/plugins/uk-address-postcode-validation/)
-- [Guide](https://ideal-postcodes/guides/woocommerce)
+- [Guide](https://ideal-postcodes.co.uk/guides/woocommerce)
 - [Changelog](https://github.com/ideal-postcodes/woocommerce/blob/master/CHANGELOG.md)
 - [Support](https://ideal-postcodes.co.uk/support)
 - [GitHub Repository](https://github.com/ideal-postcodes/woocommerce)
