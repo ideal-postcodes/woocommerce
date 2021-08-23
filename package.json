@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@ideal-postcodes/address-finder": "~2.2.2",
-    "@ideal-postcodes/jsutil": "~4.3.8",
+    "@ideal-postcodes/jsutil": "~4.6.0",
     "@ideal-postcodes/postcode-lookup": "~1.8.1"
   }
 }
