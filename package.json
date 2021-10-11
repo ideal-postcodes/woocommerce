@@ -44,7 +44,7 @@
     "@ideal-postcodes/core-browser": "~1.5.2",
     "@prettier/plugin-php": "~0.17.4",
     "@prettier/plugin-xml": "~1.1.0",
-    "@rollup/plugin-commonjs": "~20.0.0",
+    "@rollup/plugin-commonjs": "~21.0.0",
     "@rollup/plugin-inject": "~4.0.2",
     "@rollup/plugin-node-resolve": "~13.0.5",
     "@typescript-eslint/eslint-plugin": "~4.32.0",
