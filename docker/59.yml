@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  web:
+    build:
+      args:
+        # for now there is beta image for wp 5.8
+        BASE_IMAGE: wordpress:5.8-php7.3
+        WOOCOMMERCE_VERSION: 5.9.0
