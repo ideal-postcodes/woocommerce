@@ -45,6 +45,7 @@ declare namespace Cypress {
     installwc54(): void;
     installwc55(): void;
     installwc56(): void;
+    installwc59(): void;
   }
 }
 
@@ -126,6 +127,7 @@ const install42 = () => {
 
 const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false) => {
   let businessSurvey = false;
+  const version =  parseInt(Cypress.env("WC_VERSION"), 10);
   if (Cypress.env("WC_VERSION") && parseInt(Cypress.env("WC_VERSION"), 10) >= 52) {
     businessSurvey = true;
   }
@@ -137,12 +139,12 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     !skipYesButton && cy.get("button").contains("Yes please").click();
 
     // Enter address and close popup
-    cy.wait(1000);
+    cy.wait(2000);
     cy.get("button.components-button").contains("Continue").click();
-    cy.wait(1000);
+    cy.wait(2000);
     if(survey) {
       cy.get("button.components-button").contains("No thanks").click();
-      cy.wait(1000);
+      cy.wait(2000);
     } else {
       cy.get(".components-modal__screen-overlay button")
         .contains("Continue")
@@ -172,7 +174,13 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     if(businessSurvey) {
       cy.get("#woocommerce-select-control__listbox-2 button#woocommerce-select-control__option-2-no").click({force:true});
       cy.get("button").contains("Continue").click();
-      cy.get("#inspector-checkbox-control-15").uncheck();
+      if(version >= 59) {
+        cy.wait(1000);
+        cy.get("#inspector-checkbox-control-16").click();
+        cy.wait(1000);
+      } else {
+        cy.get("#inspector-checkbox-control-15").uncheck();
+      }
       cy.get("button").contains("Continue").click();
     }
 
@@ -180,9 +188,12 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     cy.wait(5000);
     cy.get("button").contains("Continue with my active theme").click();
     cy.wait(2000);
-    // Disable jetpack
-    if(!businessSurvey) cy.contains("No thanks").click();
-
+    if(version >= 59) {
+      cy.visit("/wp-admin/admin.php?page=wc-admin");
+    } else {
+      // Disable jetpack
+      if(!businessSurvey) cy.contains("No thanks").click();
+    }
     // Kill modal
     cy.get(closeModalSelector).click();
     //TODO add some search text switch
@@ -317,6 +328,17 @@ Cypress.Commands.add(
 // Install for WooCommerce 5.6
 Cypress.Commands.add(
   "installwc56",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
+    true
+  )
+);
+
+// Install for WooCommerce 5.9
+Cypress.Commands.add(
+  "installwc59",
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
