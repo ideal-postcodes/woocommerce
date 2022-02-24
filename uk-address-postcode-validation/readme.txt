@@ -3,8 +3,8 @@ Contributors: idealpostcodes
 Donate link: https://ideal-postcodes.co.uk/
 Tags: address, validation, search, checkout, data, PAF, ideal postcodes
 Requires at least: 5.0
-Tested up to: 5.8
-Stable tag: 3.2.2
+Tested up to: 5.9
+Stable tag: 3.2.3
 Requires PHP: 7.1.0
 License: MIT
 License URI: https://github.com/ideal-postcodes/woocommerce/blob/master/LICENSE
@@ -82,6 +82,10 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 4. Admin console, second tab
 
 == Changelog ==
+
+= 3.2.3 =
+* Add Postcode Lookup entity targeting
+* Add Postcode Lookup contextClass to enable styling
 
 = 3.2.2 =
 * Add tests for WooCommerce 5.9
