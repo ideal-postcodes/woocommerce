@@ -44,15 +44,61 @@ const newSpan = (innerElem: HTMLElement): HTMLElement => {
   return span;
 };
 
+type SelectorAttr = string[];
+
+interface SelectorParsed {
+  tag: string | null,
+  classes: string[],
+  id: string | null,
+  attrs: SelectorAttr[]
+}
+
+/**
+ * Parse CSS selector
+ * @param subSelector
+ */
+const parseSelector = (subSelector: string): SelectorParsed => {
+  const obj: SelectorParsed = { tag: null, classes:[], id: null, attrs:[]};
+  subSelector.split(/(?=\.)|(?=#)|(?=\[)/).forEach((token: string) => {
+    switch (token[0]) {
+      case '#':
+
+        obj.id = token.slice(1);
+        break;
+      case '.':
+        obj.classes.push(token.slice(1));
+        break;
+      case '[':
+        obj.attrs.push(token.slice(1,-1).split('='));
+        break;
+      default :
+        obj.tag = token
+        break;
+    }
+  });
+  return obj;
+}
+
 /**
  * Creates container for Postcode Lookup
  */
-export const insertPostcodeField = (targets: Targets): Result | null => {
+// eslint-disable-next-line
+export const insertPostcodeField = (targets: Targets, entity: string = "p", contextClass: string | null = null): Result | null => {
   if (targets.line_1 === null) return null;
-  const target = getParent(targets.line_1, "p");
+  const selector = parseSelector(entity);
+  const tag = selector.tag !== null ? selector.tag : entity;
+  const wrapperClass = contextClass !== null ? contextClass : "form-row";
+  const target = getParent(targets.line_1, tag, (element) => {
+    let check = true;
+    if(selector.classes.length > 0) {
+      check = selector.classes.every(cls => element.classList.contains(cls));
+    }
+    if(selector.id && selector.id !== element.id) check = false;
+    return check;
+  });
   if (target === null) return null;
-  const wrapper = document.createElement("p");
-  wrapper.className = "form-row idpc_lookup field";
+  const wrapper = document.createElement(tag);
+  wrapper.className = `${wrapperClass} idpc_lookup field`;
 
   insertBefore({ target, elem: wrapper });
 
@@ -143,7 +189,12 @@ const tags = ["wc"];
 const updateCheckout = () =>
   (window.jQuery as any)(document.body).trigger("update_checkout");
 
-export const newBind = (selectors: Selectors) => (config: Config) => {
+interface WooConfig extends Config {
+  entity?: string;
+  contextClass?: string;
+}
+
+export const newBind = (selectors: Selectors) => (config: WooConfig) => {
   if (config.enabled !== true) return;
   const pageBindings = setupBind({ selectors });
   const outputFields = toOutputFields(config, selectors);
@@ -170,7 +221,11 @@ export const newBind = (selectors: Selectors) => (config: Config) => {
 
     let plContainer: HTMLElement;
     if (config.postcodeLookup) {
-      const result = insertPostcodeField(targets);
+      const insertConfig = {
+        ...config,
+        ...config.postcodeLookupOverride
+      }
+      const result = insertPostcodeField(targets, insertConfig.entity, insertConfig.contextClass || null);
       if (result) {
         const { context, button, input, selectContainer, wrapper } = result;
         plContainer = wrapper;
