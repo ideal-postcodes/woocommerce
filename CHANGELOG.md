@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/ideal-postcodes/woocommerce/compare/3.2.2...3.3.0) (2022-02-28)
+
+
+### Features
+
+* **Postcode Lookup:** Custom postcode lookup bindings ([1750f18](https://github.com/ideal-postcodes/woocommerce/commit/1750f18050f70d4946e8602155f8705bdc46d54d))
+
 ## [3.2.2](https://github.com/ideal-postcodes/woocommerce/compare/3.2.1...3.2.2) (2022-02-08)
 
 
