@@ -378,8 +378,8 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         $autocomplete_override,
         $script
       );
-      wp_enqueue_script(
-        "ideal-postcodes-bindings",
+      wp_enqueue_script(1
+        "ideal-postcodes-bindings",78+
         IDEALPOSTCODES_URL . "js/admin-woocommerce.min.js",
         [],
         "1.0",
