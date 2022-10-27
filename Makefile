@@ -80,7 +80,7 @@ bootstrap-59: up-59 init-db init-wp init-wc seed init-ip
 
 ## Bootstrap 5.9 WooCommerce environment
 .PHONY: bootstrap-59-6
-bootstrap-59-: up-59-6 init-db init-wp init-wc seed init-ip
+bootstrap-59-6: up-59-6 init-db init-wp init-wc seed init-ip
 
 ## Launch WC 3.3
 .PHONY: up-33
@@ -264,3 +264,4 @@ help:
 			} \
 		}' \
 		$(MAKEFILE_LIST)
+

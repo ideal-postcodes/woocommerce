@@ -46,6 +46,7 @@ declare namespace Cypress {
     installwc55(): void;
     installwc56(): void;
     installwc59(): void;
+    installwc59_6(): void;
   }
 }
 
@@ -125,7 +126,7 @@ const install42 = () => {
   cy.contains("No thanks").click();
 };
 
-const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false) => {
+const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false, wp6 = false) => {
   let businessSurvey = false;
   const version =  parseInt(Cypress.env("WC_VERSION"), 10);
   if (Cypress.env("WC_VERSION") && parseInt(Cypress.env("WC_VERSION"), 10) >= 52) {
@@ -200,6 +201,7 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     if(businessSurvey) cy.get("div").contains("Set up shipping").click();
     // Setup shipping
     if(!businessSurvey) cy.contains("Set up shipping").click();
+    if(wp6) cy.contains("Rest of the world").click();
     cy.wait(1000);
     cy.contains("Proceed").click();
     cy.wait(1000);
@@ -342,6 +344,18 @@ Cypress.Commands.add(
   install43(
     '.components-modal__screen-overlay button[aria-label="Close dialog"]',
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
+    true
+  )
+);
+
+// Install for WooCommerce 5.9 WP 6
+Cypress.Commands.add(
+  "installwc59_6",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
     true,
     true
   )
