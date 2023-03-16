@@ -31,7 +31,6 @@
 declare namespace Cypress {
   interface Chainable {
     login(): void;
-    installwc33(): void;
     installwc42(): void;
     installwc43(): void;
     installwc45(): void;
@@ -46,6 +45,8 @@ declare namespace Cypress {
     installwc55(): void;
     installwc56(): void;
     installwc59(): void;
+    installwc60(): void;
+    installwc70(): void;
   }
 }
 
@@ -60,22 +61,6 @@ Cypress.Commands.add("login", () => {
   cy.get("#wp-submit").click();
   cy.wait(1000);
 });
-
-const install33 = () => {
-  cy.login();
-  cy.visit("/wp-admin");
-  cy.get("a").contains("Run the Setup Wizard").click();
-  cy.get(".button-primary").click();
-  cy.get("button").contains("Continue").click();
-  cy.get("button").contains("Continue").click();
-  cy.get(".flat_rate > input").each((input) => {
-    cy.wait(50);
-    cy.wrap(input).focus().type("0");
-  });
-  cy.get("button[name='save_step']").contains("Continue").click();
-  cy.get("button[name='save_step']").contains("Continue").click();
-  cy.get("a").contains("Skip this step").click();
-};
 
 const install42 = () => {
   cy.login();
@@ -125,7 +110,7 @@ const install42 = () => {
   cy.contains("No thanks").click();
 };
 
-const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false) => {
+const install43 = (closeModalSelector: string, url: string, skipYesButton = false, survey = false, country = false, skipModal = false, shippingSet = "Set up shipping") => {
   let businessSurvey = false;
   const version =  parseInt(Cypress.env("WC_VERSION"), 10);
   if (Cypress.env("WC_VERSION") && parseInt(Cypress.env("WC_VERSION"), 10) >= 52) {
@@ -139,6 +124,13 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
     !skipYesButton && cy.get("button").contains("Yes please").click();
 
     // Enter address and close popup
+    if(country) {
+      cy.wait(2000);
+      cy.get("input#woocommerce-select-control-0__control-input").type("United Kingdom");
+      cy.wait(500);
+      cy.get("button#woocommerce-select-control__option-0-GB").click();
+      cy.wait(500);
+    }
     cy.wait(2000);
     cy.get("button.components-button").contains("Continue").click();
     cy.wait(2000);
@@ -195,21 +187,19 @@ const install43 = (closeModalSelector: string, url: string, skipYesButton = fals
       if(!businessSurvey) cy.contains("No thanks").click();
     }
     // Kill modal
-    cy.get(closeModalSelector).click();
+    if(!skipModal) cy.get(closeModalSelector).click();
     //TODO add some search text switch
-    if(businessSurvey) cy.get("div").contains("Set up shipping").click();
+    if(businessSurvey) cy.get("div").contains(shippingSet).click();
     // Setup shipping
     if(!businessSurvey) cy.contains("Set up shipping").click();
     cy.wait(1000);
-    cy.contains("Proceed").click();
+    cy.contains(/^(Proceed)|(Save\sshipping\soptions)$/).click();
     cy.wait(1000);
     cy.contains("No thanks").click();
     cy.wait(1000);
   };
 };
 
-// Install for WooCommerce 3
-Cypress.Commands.add("installwc33", install33);
 // Install for WooCommerce 4.2
 Cypress.Commands.add("installwc42", install42);
 // Install for WooCommerce 4.3
@@ -344,5 +334,30 @@ Cypress.Commands.add(
     "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
     true,
     true
+  )
+);
+
+// Install for WooCommerce 6.0
+Cypress.Commands.add(
+  "installwc60",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
+    true
+  )
+);
+
+// Install for WooCommerce 7.0
+Cypress.Commands.add(
+  "installwc70",
+  install43(
+    '.components-modal__screen-overlay button[aria-label="Close dialog"]',
+    "/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard",
+    true,
+    true,
+    true,
+    true,
+    "Add shipping costs"
   )
 );
