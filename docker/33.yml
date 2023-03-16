@@ -1,7 +1,0 @@
-version: "3.3"
-services:
-  web:
-    build:
-      args:
-        BASE_IMAGE: wordpress:5.0-php7.1
-        WOOCOMMERCE_VERSION: 3.3.0
