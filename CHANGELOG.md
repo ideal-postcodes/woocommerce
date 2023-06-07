@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/ideal-postcodes/woocommerce/compare/3.3.0...3.3.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* **test:** add check for woocommerce 6 and 7 ([ca6fe4a](https://github.com/ideal-postcodes/woocommerce/commit/ca6fe4aa86811f107049ab2c68e83521520e4a15))
+
 # [3.3.0](https://github.com/ideal-postcodes/woocommerce/compare/3.2.2...3.3.0) (2022-02-28)
 
 
