@@ -31,6 +31,13 @@ define("IDEALPOSTCODES_URL", plugins_url() . "/" . IDEALPOSTCODES_SLUG . "/");
 require_once ABSPATH . "wp-admin/includes/plugin.php";
 
 if (!class_exists("WC_IdealPostcodes")) {
+
+  add_action( 'before_woocommerce_init', function() {
+    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+      \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+    }
+  });
+
   class WC_IdealPostcodes
   {
     /**
