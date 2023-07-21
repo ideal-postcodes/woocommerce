@@ -1,3 +1,10 @@
+## [3.3.2](https://github.com/ideal-postcodes/woocommerce/compare/3.3.1...3.3.2) (2023-07-21)
+
+
+### Bug Fixes
+
+* **compat:** Fix issue with HPOS feature of WC ([251d8b2](https://github.com/ideal-postcodes/woocommerce/commit/251d8b251fc6bc25d51e1ba142a0b004181af865))
+
 ## [3.3.1](https://github.com/ideal-postcodes/woocommerce/compare/3.3.0...3.3.1) (2023-06-07)
 
 
