@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/ideal-postcodes/woocommerce/compare/3.3.2...3.4.0) (2023-08-22)
+
+
+### Features
+
+* **integration:** Add integration to show search on create customer user in wordpress flow ([16cd5a1](https://github.com/ideal-postcodes/woocommerce/commit/16cd5a1279d49bcbf6b8a831eb1db13af3a05e8b))
+
 ## [3.3.2](https://github.com/ideal-postcodes/woocommerce/compare/3.3.1...3.3.2) (2023-07-21)
 
 
