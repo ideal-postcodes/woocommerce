@@ -24,9 +24,63 @@ const orderShipping = {
   country: "#_shipping_country",
 };
 
+
+const userBilling = {
+  line_1: "#billing_address_1",
+  line_2: "#billing_address_2",
+  post_town: "#billing_city",
+  county: "#billing_state",
+  postcode: "#billing_postcode",
+  organisation_name: "#billing_company",
+  country: "#billing_country",
+};
+
+const userShipping = {
+  line_1: "#shipping_address_1",
+  line_2: "#shipping_address_2",
+  post_town: "#shipping_city",
+  county: "#shipping_state",
+  postcode: "#shipping_postcode",
+  organisation_name: "#shipping_company",
+  country: "#shipping_country",
+};
+
+
+
 export const orderSelectors = [orderBilling, orderShipping];
+export const userSelectors = [userBilling, userShipping];
+
 
 orderSelectors.forEach((selectors) => {
+  watch(
+    {
+      ...config,
+      outputFields: selectors,
+      listStyle: {
+        minWidth: "25em"
+      },
+      onAddressRetrieved: function (address: Address) {
+        const select = document.querySelector(
+          selectors.country
+        ) as HTMLSelectElement;
+        const code = toIso(address);
+        if (
+          select !== null &&
+          code !== null &&
+          isSelect(select) &&
+          hasValue(select, code)
+        )
+          change({ e: select, value: code });
+      },
+    },
+    {
+      pageTest: (): boolean => /\/wp-admin/i.test(window.location.href),
+      getScope: () => document.querySelector("div#order_data")
+    }
+  );
+});
+
+userSelectors.forEach((selectors) => {
   watch(
     {
       ...config,
@@ -47,7 +101,7 @@ orderSelectors.forEach((selectors) => {
     },
     {
       pageTest: (): boolean => /\/wp-admin/i.test(window.location.href),
-      getScope: () => document.querySelector("div#order_data"),
+      getScope: () => document.querySelector("form#your-profile")
     }
   );
 });
