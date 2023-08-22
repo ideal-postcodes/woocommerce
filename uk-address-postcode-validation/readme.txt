@@ -4,7 +4,7 @@ Donate link: https://ideal-postcodes.co.uk/
 Tags: address, validation, search, checkout, data, PAF, ideal postcodes
 Requires at least: 5.0
 Tested up to: 7.4
-Stable tag: 3.4.0
+Stable tag: 3.3.2
 Requires PHP: 7.4.0
 License: MIT
 License URI: https://github.com/ideal-postcodes/woocommerce/blob/master/LICENSE
