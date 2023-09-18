@@ -79,11 +79,18 @@ const parseSelector = (subSelector: string): SelectorParsed => {
   return obj;
 }
 
+interface PostcodeFieldConfig {
+  entity?: string;
+  contextClass?: string | null;
+  inputClass?: string;
+  buttonClass?: string;
+}
+
 /**
  * Creates container for Postcode Lookup
  */
 // eslint-disable-next-line
-export const insertPostcodeField = (targets: Targets, config: any): Result | null => {
+export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfig): Result | null => {
   if (targets.line_1 === null) return null;
   const entity: string = config.entity || "p";
   const contextClass: string | null = config.contextClass || null;
