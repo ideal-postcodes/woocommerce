@@ -83,8 +83,10 @@ const parseSelector = (subSelector: string): SelectorParsed => {
  * Creates container for Postcode Lookup
  */
 // eslint-disable-next-line
-export const insertPostcodeField = (targets: Targets, entity: string = "p", contextClass: string | null = null): Result | null => {
+export const insertPostcodeField = (targets: Targets, config: any): Result | null => {
   if (targets.line_1 === null) return null;
+  const entity: string = config.entity || "p";
+  const contextClass: string | null = config.contextClass || null;
   const selector = parseSelector(entity);
   const tag = selector.tag !== null ? selector.tag : entity;
   const wrapperClass = contextClass !== null ? contextClass : "form-row";
@@ -107,7 +109,7 @@ export const insertPostcodeField = (targets: Targets, entity: string = "p", cont
   wrapper.appendChild(label);
 
   const input = document.createElement("input");
-  input.className = "idpc-input";
+  input.className = config.inputClass || "idpc-input";
   input.type = "text";
   input.placeholder = "Enter your postcode";
   input.setAttribute(
@@ -119,7 +121,7 @@ export const insertPostcodeField = (targets: Targets, entity: string = "p", cont
 
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "idpc-button btn";
+  button.className = config.buttonClass || "idpc-button btn";
   button.innerText = "Find my Address";
   button.id = "idpc_button";
   wrapper.appendChild(newSpan(button));
@@ -225,7 +227,7 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
         ...config,
         ...config.postcodeLookupOverride
       }
-      const result = insertPostcodeField(targets, insertConfig.entity, insertConfig.contextClass || null);
+      const result = insertPostcodeField(targets, insertConfig);
       if (result) {
         const { context, button, input, selectContainer, wrapper } = result;
         plContainer = wrapper;
