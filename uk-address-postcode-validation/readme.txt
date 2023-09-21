@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.4.1 =
+* Allow Postcode Lookup styles override
+
 = 3.4.0 =
 * Add search for wordpress customer user creation
 
