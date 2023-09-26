@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/ideal-postcodes/woocommerce/compare/3.4.0...3.4.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* **postcode-lookup:** Fix classes setting based on override config ([1713af7](https://github.com/ideal-postcodes/woocommerce/commit/1713af7d2af0308126f606e35ba2afccff3c8738))
+
 # [3.4.0](https://github.com/ideal-postcodes/woocommerce/compare/3.3.2...3.4.0) (2023-08-22)
 
 
