@@ -3,8 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "target": "ESNext",
-    "declaration": false,
-    "lib": ["es6", "dom"]
+    "declaration": true,
+    "lib": ["es6", "dom"],
+    "moduleResolution": "node"
   },
   "include": ["lib/*"]
 }

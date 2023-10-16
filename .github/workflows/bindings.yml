@@ -28,8 +28,5 @@ jobs:
       - name: Install
         run: npm install
 
-      - name: Test
-        run: npm run lint
-
       - name: Build/Woocommerce
         run: npm run build

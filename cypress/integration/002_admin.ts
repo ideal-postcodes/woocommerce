@@ -76,6 +76,12 @@ describe("IdealPostcodes Admin", () => {
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_organisation").check();
         cy.get("#woocommerce_idealpostcodes_idealpostcodes_populate_county").check();
 
+        //override for set default country and disable country check
+        cy.get("#woocommerce_idealpostcodes_idealpostcodes_autocomplete_override").clear().type("{\n" +
+          "\"defaultCountry\": \"GBR\",\n" +
+          "\"detectCountry\": false\n" +
+          "}");
+
         cy.get("button.woocommerce-save-button").click({ force: true });
         cy.wait(1000);
       });

@@ -83,6 +83,11 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 4.0.0 =
+* Update Address Finder and Postcode Lookup to newest versions
+* Fix issue with admin Address Finder config override option
+* Add testing against php 8+
+
 = 3.4.1 =
 * Allow Postcode Lookup styles override
 

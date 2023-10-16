@@ -86,6 +86,10 @@ bootstrap-60: up-60 init-db init-wp init-wc seed init-ip
 .PHONY: bootstrap-70
 bootstrap-70: up-70 init-db init-wp init-wc seed init-ip
 
+## Bootstrap 7.0 WooCommerce environment
+.PHONY: bootstrap-80
+bootstrap-80: up-80 init-db init-wp init-wc seed init-ip
+
 ## Launch WC 4.2
 .PHONY: up-42
 up-42:
@@ -170,6 +174,11 @@ up-60:
 .PHONY: up-70
 up-70:
 	docker-compose -f docker-compose.yml -f docker/70.yml up -d
+
+## Launch WC 6.0 with WP 6
+.PHONY: up-80
+up-80:
+	docker-compose -f docker-compose.yml -f docker/80.yml up -d
 
 
 ## -- Development Methods --
