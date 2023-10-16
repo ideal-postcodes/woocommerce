@@ -1,7 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
-import ts from "@wessberg/rollup-plugin-ts";
+import ts from "rollup-plugin-ts";
 import inject from "@rollup/plugin-inject";
 
 const polyfills = {
@@ -26,8 +26,6 @@ const terserConfig = {
   },
 };
 
-const context = "window";
-
 const targets = "ie 11";
 
 export default [
@@ -44,7 +42,7 @@ export default [
       resolve({
         preferBuiltins: true,
         mainFields: ["browser", "module", "main"],
-        browser: true,
+        browser: true
       }),
       commonjs(),
       inject(polyfills),
@@ -66,13 +64,13 @@ export default [
       banner,
       format: "umd",
       name: "IdealPostcodes",
-      exports: "named",
+      exports: "named"
     },
     plugins: [
       resolve({
         preferBuiltins: true,
         mainFields: ["browser", "module", "main"],
-        browser: true,
+        browser: true
       }),
       commonjs(),
       inject(polyfills),

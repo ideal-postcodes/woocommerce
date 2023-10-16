@@ -1,8 +1,9 @@
-import { Address } from "@ideal-postcodes/api-typings";
-import { watch } from "@ideal-postcodes/address-finder";
-import { toIso, change, hasValue, isSelect } from "@ideal-postcodes/jsutil";
+import { AddressFinder } from "@ideal-postcodes/address-finder";
+import { toIso, change, hasValue, isSelect, AnyAddress } from "@ideal-postcodes/jsutil";
 
-const config = (window as any).idpcConfig;
+const { watch } = AddressFinder;
+
+const config = (window as any).idpcConfig || {};
 
 const orderBilling = {
   line_1: "#_billing_address_1",
@@ -55,11 +56,12 @@ orderSelectors.forEach((selectors) => {
   watch(
     {
       ...config,
+      ...(config.autocompleteOverride || {}),
       outputFields: selectors,
       listStyle: {
         minWidth: "25em"
       },
-      onAddressRetrieved: function (address: Address) {
+      onAddressRetrieved: function (address: AnyAddress) {
         const select = document.querySelector(
           selectors.country
         ) as HTMLSelectElement;
@@ -84,8 +86,9 @@ userSelectors.forEach((selectors) => {
   watch(
     {
       ...config,
+      ...(config.autocompleteOverride || {}),
       outputFields: selectors,
-      onAddressRetrieved: function (address: Address) {
+      onAddressRetrieved: function (address: AnyAddress) {
         const select = document.querySelector(
           selectors.country
         ) as HTMLSelectElement;
@@ -101,7 +104,7 @@ userSelectors.forEach((selectors) => {
     },
     {
       pageTest: (): boolean => /\/wp-admin/i.test(window.location.href),
-      getScope: () => document.querySelector("form#your-profile")
+      getScope: () => document.querySelector("form#your-profile"),
     }
   );
 });

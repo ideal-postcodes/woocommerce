@@ -1,3 +1,5 @@
+import { AddressFinder }from "@ideal-postcodes/address-finder";
+import { PostcodeLookup } from "@ideal-postcodes/postcode-lookup";
 import {
   Selectors,
   Config,
@@ -14,13 +16,8 @@ import {
   insertBefore,
   Targets,
   getParent,
+  AnyAddress
 } from "@ideal-postcodes/jsutil";
-import {
-  AddressFinder,
-  Controller as AfController,
-} from "@ideal-postcodes/address-finder";
-import { PostcodeLookup } from "@ideal-postcodes/postcode-lookup";
-import { Address } from "@ideal-postcodes/api-typings";
 
 if (!window.IdealPostcodes) window.IdealPostcodes = {};
 window.IdealPostcodes.AddressFinder = AddressFinder;
@@ -216,7 +213,7 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
       apiKey: config.apiKey,
       tags,
       outputFields,
-      onAddressPopulated: (address: Address) => {
+      onAddressPopulated: (address: AnyAddress) => {
         if (isString(outputFields.country)) {
           const countryField = toHtmlElem(parent, outputFields.country);
           if (isInput(countryField)) {
@@ -251,37 +248,36 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
       }
     }
 
-    let af: AfController;
     let f: FinderContainer | null;
     if (config.autocomplete) {
       f = config.separateFinder ? insertAddressFinder(targets) : null;
-      af = AddressFinder.setup({
-        injectStyle: false, // To be dropped in breaking change release
+      const af = AddressFinder.setup({
+        //injectStyle: false, // To be dropped in breaking change release
         ...config,
         autocomplete: AddressFinder.defaults.autocomplete, // Temporary fix for clash
         ...localConfig,
         inputField: f ? f.input : selectors.line_1,
         ...config.autocompleteOverride,
       });
-    }
 
-    const country = (targets.country as HTMLSelectElement) || null;
+      const country = (targets.country as HTMLSelectElement) || null;
 
-    const checkCountry = () => {
-      if (isSupported(country.value)) {
-        if (plContainer) show(plContainer);
-        if (f) show(f.elem);
-        if (af) af.view.attach();
-      } else {
-        if (plContainer) hide(plContainer);
-        if (f) hide(f.elem);
-        if (af) af.view.detach();
+      const checkCountry = () => {
+        if (isSupported(country.value)) {
+          if (plContainer) show(plContainer);
+          if (f) show(f.elem);
+          if (af) af.attach();
+        } else {
+          if (plContainer) hide(plContainer);
+          if (f) hide(f.elem);
+          if (af) af.detach();
+        }
+      };
+
+      if (config.watchCountry && country) {
+        (window.jQuery as any)(country).change(checkCountry);
+        checkCountry();
       }
-    };
-
-    if (config.watchCountry && country) {
-      (window.jQuery as any)(country).change(checkCountry);
-      checkCountry();
     }
   });
 };
