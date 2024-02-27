@@ -1,3 +1,10 @@
+## [3.4.2](https://github.com/ideal-postcodes/woocommerce/compare/3.4.1...3.4.2) (2024-02-27)
+
+
+### Bug Fixes
+
+* **semantic-release:** fix issue with module resolution ([753d8b4](https://github.com/ideal-postcodes/woocommerce/commit/753d8b45197c641b1b16d7c60baa9ec77d46ece2))
+
 ## [3.4.1](https://github.com/ideal-postcodes/woocommerce/compare/3.4.0...3.4.1) (2023-09-26)
 
 
