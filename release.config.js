@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   plugins: [
     // @semantic-release/commit-analyzer
     // analyzeCommits: Determine the type of release by analyzing commits with conventional-changelog

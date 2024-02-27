@@ -52,3 +52,15 @@ jobs:
         env:
           CYPRESS_WC_VERSION: "70"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
+  woocommerce_8_0:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Launch WooCommerce 8.2
+        run: make bootstrap-80
+        env:
+          COMPOSE_INTERACTIVE_NO_CLI: 1
+      - uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_WC_VERSION: "80"
+          CYPRESS_API_KEY: ${{ secrets.API_KEY }}
