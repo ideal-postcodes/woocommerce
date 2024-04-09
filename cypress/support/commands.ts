@@ -47,20 +47,22 @@ declare namespace Cypress {
     installwc59(): void;
     installwc60(): void;
     installwc70(): void;
+    installwc80(): void
   }
 }
 
 Cypress.Commands.add("login", () => {
   cy.visit("/wp-login.php");
-  cy.wait(100);
-  cy.get("#user_login").clear();
-  cy.wait(10);
-  cy.get("#user_login").focus().type("admin");
-  cy.get("#user_pass").clear();
-  cy.wait(100);
-  cy.get("#user_pass").focus().type("password");
-  cy.get("#wp-submit").click();
-  cy.wait(1000);
+  cy.wait(500);
+  cy.get("#user_login").clear().then(() => {
+    cy.wait(10);
+    cy.get("#user_login").focus().type("admin");
+    cy.get("#user_pass").clear();
+    cy.wait(100);
+    cy.get("#user_pass").focus().type("password");
+    cy.get("#wp-submit").click();
+    cy.wait(1000);
+  });
 });
 
 const install42 = () => {
@@ -381,6 +383,7 @@ Cypress.Commands.add("installwc80", () => {
   cy.wait(1000);
   cy.get(".components-button.woocommerce-profiler-navigation-skip-link.is-link").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
+  cy.wait(20000);
   cy.contains("Add shipping costs").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=shipping');
   cy.get("#woocommerce-shipping-rate__toggle-0").click();

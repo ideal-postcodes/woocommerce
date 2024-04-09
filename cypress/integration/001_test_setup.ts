@@ -5,6 +5,7 @@ Cypress.on("uncaught:exception", (err, runnable) => {
 
 describe("IdealPostcodes Admin Setup", () => {
   before(() => {
+    console.log(Cypress.env("WC_VERSION"));
     if (Cypress.env("WC_VERSION")) {
       // @ts-ignore
       return cy[`installwc${Cypress.env("WC_VERSION")}`]();

@@ -4,19 +4,19 @@ import {
   Selectors,
   Config,
   idGen,
-  isString,
+  //isString,
   OutputFields,
-  toIso,
+  //toIso,
   hide,
   show,
-  toHtmlElem,
-  isInput,
-  update,
+  //toHtmlElem,
+  //isInput,
+  //update,
   setupBind,
   insertBefore,
   Targets,
   getParent,
-  AnyAddress
+  //AnyAddress
 } from "@ideal-postcodes/jsutil";
 
 if (!window.IdealPostcodes) window.IdealPostcodes = {};
@@ -178,8 +178,6 @@ export const toOutputFields = (
   selectors: Selectors
 ): OutputFields => {
   const outputFields: OutputFields = { ...selectors };
-  if (config.populateOrganisation === false)
-    delete outputFields.organisation_name;
   if (config.populateCounty === false) delete outputFields.county;
   return outputFields;
 };
@@ -213,14 +211,7 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
       apiKey: config.apiKey,
       tags,
       outputFields,
-      onAddressPopulated: (address: AnyAddress) => {
-        if (isString(outputFields.country)) {
-          const countryField = toHtmlElem(parent, outputFields.country);
-          if (isInput(countryField)) {
-            const iso = toIso(address);
-            if (iso) update(countryField, iso);
-          }
-        }
+      onAddressPopulated: () => {
         updateCheckout();
       },
     };
