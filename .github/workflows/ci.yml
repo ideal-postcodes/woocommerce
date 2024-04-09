@@ -5,62 +5,62 @@ on:
 
 jobs:
   woocommerce_4_9:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Launch WooCommerce 4.9
         run: make bootstrap-49
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         env:
           CYPRESS_WC_VERSION: "49"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
   woocommerce_5_9:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Launch WooCommerce 5.9
         run: make bootstrap-59
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         env:
           CYPRESS_WC_VERSION: "59"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
   woocommerce_6_0:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Launch WooCommerce 6.0
         run: make bootstrap-60
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         env:
           CYPRESS_WC_VERSION: "60"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
   woocommerce_7_0:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Launch WooCommerce 7.0
         run: make bootstrap-70
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         env:
           CYPRESS_WC_VERSION: "70"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
   woocommerce_8_0:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Launch WooCommerce 8.2
         run: make bootstrap-80
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         env:
           CYPRESS_WC_VERSION: "80"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
