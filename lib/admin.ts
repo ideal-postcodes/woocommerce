@@ -1,5 +1,4 @@
 import { AddressFinder } from "@ideal-postcodes/address-finder";
-import { toIso, change, hasValue, isSelect, AnyAddress } from "@ideal-postcodes/jsutil";
 
 const { watch } = AddressFinder;
 
@@ -60,20 +59,7 @@ orderSelectors.forEach((selectors) => {
       outputFields: selectors,
       listStyle: {
         minWidth: "25em"
-      },
-      onAddressRetrieved: function (address: AnyAddress) {
-        const select = document.querySelector(
-          selectors.country
-        ) as HTMLSelectElement;
-        const code = toIso(address);
-        if (
-          select !== null &&
-          code !== null &&
-          isSelect(select) &&
-          hasValue(select, code)
-        )
-          change({ e: select, value: code });
-      },
+      }
     },
     {
       pageTest: (): boolean => /\/wp-admin/i.test(window.location.href),
@@ -88,19 +74,6 @@ userSelectors.forEach((selectors) => {
       ...config,
       ...(config.autocompleteOverride || {}),
       outputFields: selectors,
-      onAddressRetrieved: function (address: AnyAddress) {
-        const select = document.querySelector(
-          selectors.country
-        ) as HTMLSelectElement;
-        const code = toIso(address);
-        if (
-          select !== null &&
-          code !== null &&
-          isSelect(select) &&
-          hasValue(select, code)
-        )
-          change({ e: select, value: code });
-      },
     },
     {
       pageTest: (): boolean => /\/wp-admin/i.test(window.location.href),
