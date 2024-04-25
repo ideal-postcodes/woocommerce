@@ -1,3 +1,10 @@
+## [3.4.4](https://github.com/ideal-postcodes/woocommerce/compare/3.4.3...3.4.4) (2024-04-25)
+
+
+### Bug Fixes
+
+* **address-finder:** Update to version 4.5.3 ([8ca79bf](https://github.com/ideal-postcodes/woocommerce/commit/8ca79bf09a0c393f8ea25f8f9707f6cdd30a685d))
+
 ## [3.4.3](https://github.com/ideal-postcodes/woocommerce/compare/3.4.2...3.4.3) (2024-02-28)
 
 
