@@ -13,7 +13,7 @@
  *
  * Woo: 12345:342928dfsfhsf8429842374wdf4234sfd
  * WC requires at least: 5.0.0
- * WC tested up to: 7.4.0
+ * WC tested up to: 8.8.3
  *
  * License: Copyright IDDQD Limited
  * License URI: https://github.com/ideal-postcodes/woocommerce/blob/master/LICENSE

@@ -1,6 +1,9 @@
 /// <reference types="cypress" />;
 import { address as addresses } from "@ideal-postcodes/api-fixtures";
-import { selectors } from "../../lib/checkout_billing";
+import { selectors as billingSelectors } from "../../lib/checkout_billing";
+import {
+  selectors as billingBlocksSelectors
+} from "../../lib/checkout_blocks_billing";
 
 const address = addresses.jersey;
 
@@ -9,7 +12,14 @@ Cypress.on("uncaught:exception", (err, runnable) => {
   return false;
 });
 
-describe("Separate finder", () => {
+const isBlocks = parseInt(Cypress.env("WC_VERSION"), 10) >= 82;
+
+isBlocks && describe("Separate finder", function () {
+  it.skip("when enabled renders address finder in new field")
+})
+
+!isBlocks && describe("Separate finder", function () {
+  const selectors = isBlocks ? billingBlocksSelectors : billingSelectors;
   beforeEach(function () {
     cy.login();
     cy.visit(
@@ -38,11 +48,15 @@ describe("Separate finder", () => {
       cy.visit("/?product=test");
       cy.get("button[name='add-to-cart']").click({ force: true });
       cy.get("a").contains("View cart").click({ force: true });
-      cy.get("a").contains("Proceed to checkout").click({ force: true });
-      cy.get(".woocommerce-billing-fields").within(() => {
+      cy.get("a").contains("Proceed to checkout", { matchCase: false }).click({ force: true });
+      if(isBlocks) {
+        cy.get("#checkbox-control-0").uncheck();
+        cy.wait(200);
+      }
+      cy.get(isBlocks ? "#billing" : ".woocommerce-billing-fields").within(() => {
         cy.wait(1000);
         if (!Cypress.env("LEGACY")) {
-          cy.get(selectors.country).select("GB", { force: true });
+          isBlocks ? cy.get(selectors.country).type("United Kingdom").type("{enter}") : cy.get(selectors.country).select("GB", { force: true });
           cy.wait(1000);
         }
         cy.get(selectors.line_1)
