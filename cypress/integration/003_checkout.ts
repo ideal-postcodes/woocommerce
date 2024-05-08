@@ -20,10 +20,10 @@ describe("Checkout", () => {
     cy.visit("/?product=test");
     cy.get("button[name='add-to-cart']").click({ force: true });
     cy.get("a").contains("View cart").click({ force: true });
-    cy.get("a").contains("Proceed to checkout", { matchCase: false }).click({ force: true });
     cy.intercept(
       "https://api.ideal-postcodes.co.uk/v1/keys/**"
     ).as("call");
+    cy.get("a").contains("Proceed to checkout", { matchCase: false }).click({ force: true });
     cy.wait("@call").wait(500);
   });
 
@@ -83,12 +83,13 @@ describe("Checkout", () => {
           isBlocks ? cy.get(selectors.country).type("United Kingdom").type("{enter}") : cy.get(selectors.country).select("GB", { force: true });
           cy.wait(1000);
         }
+        cy.intercept("https://api.ideal-postcodes.co.uk/v1/postcodes/**").as("postcode")
         cy.get("#idpc_input")
           .clear({ force: true })
           .type(address.postcode, { force: true });
         cy.get("#idpc_button").click({ force: true });
-        cy.wait(1000);
-        cy.get("#idpc_dropdown").select("0");
+        cy.wait("@postcode").wait(1000);
+        cy.get("#idpc_dropdown").select("0", { force: true });
         cy.get(selectors.post_town).should(
           "have.value",
           "Jersey"
