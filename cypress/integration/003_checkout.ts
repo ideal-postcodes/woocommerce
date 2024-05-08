@@ -106,7 +106,8 @@ describe("Checkout", () => {
 
   describe("Shipping", function () {
     const selectors = isBlocks ? shippingBlockSelectors : shippingSelectors;
-    before(function () {
+    beforeEach(function () {
+      console.log(isBlocks);
       if(!isBlocks) cy.get("#ship-to-different-address-checkbox").check();
     });
 
