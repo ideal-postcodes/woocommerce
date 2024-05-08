@@ -1,6 +1,7 @@
 <?php
 
 if (!class_exists("WC_IdealPostcodes_Integration")):
+  #[\AllowDynamicProperties]
   class WC_IdealPostcodes_Integration extends WC_Integration
   {
     public function __construct()
@@ -49,12 +50,15 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         $this,
         "process_admin_options",
       ]);
-
       if ($this->config->idealpostcodes_enabled === "yes") {
         //IdealPostcodes custom action
         add_action("ideal_postcodes_address_search", [$this, "add_js"]);
         //Bind to checkout
         add_action("woocommerce_before_checkout_form", function () {
+          do_action("ideal_postcodes_address_search");
+        });
+        //for woocommerce checkout blocks
+        add_action("woocommerce_blocks_enqueue_checkout_block_scripts_before", function () {
           do_action("ideal_postcodes_address_search");
         });
         // Bind to accounts

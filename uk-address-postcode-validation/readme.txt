@@ -3,7 +3,7 @@ Contributors: idealpostcodes
 Donate link: https://ideal-postcodes.co.uk/
 Tags: address, validation, search, checkout, data, PAF, ideal postcodes
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.5.2
 Stable tag: 3.4.4
 Requires PHP: 7.4.0
 License: MIT
@@ -83,7 +83,12 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
-= 4.0.0 =
+= 3.4.5 =
+* Add support for blocks checkout
+* Add support for php 8.2+
+
+
+= 3.4.4 =
 * Update Address Finder and Postcode Lookup to newest versions
 * Fix issue with admin Address Finder config override option
 * Add testing against php 8+

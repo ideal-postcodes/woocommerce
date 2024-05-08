@@ -47,7 +47,8 @@ declare namespace Cypress {
     installwc59(): void;
     installwc60(): void;
     installwc70(): void;
-    installwc80(): void
+    installwc80(): void;
+    installwc82(): void;
   }
 }
 
@@ -391,6 +392,37 @@ Cypress.Commands.add("installwc80", () => {
   cy.get(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
   cy.contains("Add tax rates").click();
+  cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=tax');
+  cy.contains("I don't charge sales tax").click();
+  cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
+  cy.wait(1000);
+})
+
+Cypress.Commands.add("installwc82", () => {
+  cy.login();
+  cy.visit("/wp-admin/admin.php?page=wc-admin&path=%2Fsetup-wizard");
+  cy.get(".components-button.woocommerce-profiler-setup-store__button.is-primary").click();
+  cy.wait(1000);
+  cy.get(".components-button.woocommerce-profiler-button.is-primary").click();
+  cy.wait(1000);
+  cy.get("#woocommerce-select-control-0__control-input").click();
+  cy.wait(200);
+  cy.get("#woocommerce-select-control__option-0-electronics_and_computers").click({ force: true });
+  cy.get("#woocommerce-select-control-1__control-input").click();
+  cy.wait(200);
+  cy.get("#woocommerce-select-control__option-1-GB").click({ force: true });
+  cy.wait(200);
+  cy.get(".components-button.woocommerce-profiler-button.is-primary").click();
+  cy.wait(1000);
+  cy.get(".components-button.woocommerce-profiler-navigation-skip-link.is-link").click();
+  cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
+  cy.contains("Get your products shipped").click();
+  cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=shipping');
+  cy.get("#woocommerce-shipping-rate__toggle-0").click();
+  cy.contains("Save shipping options").click();
+  cy.get(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").click();
+  cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
+  cy.contains("Collect sales tax").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=tax');
   cy.contains("I don't charge sales tax").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');

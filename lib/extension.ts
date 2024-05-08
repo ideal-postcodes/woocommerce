@@ -4,19 +4,18 @@ import {
   Selectors,
   Config,
   idGen,
-  //isString,
+  isString,
   OutputFields,
-  //toIso,
   hide,
   show,
-  //toHtmlElem,
-  //isInput,
-  //update,
+  toHtmlElem,
+  isInput,
+  update,
   setupBind,
   insertBefore,
   Targets,
   getParent,
-  //AnyAddress
+  AnyAddress
 } from "@ideal-postcodes/jsutil";
 
 if (!window.IdealPostcodes) window.IdealPostcodes = {};
@@ -34,9 +33,9 @@ interface Result {
   wrapper: HTMLElement;
 }
 
-const newSpan = (innerElem: HTMLElement): HTMLElement => {
-  const span = document.createElement("span");
-  span.className = "woocommerce-input-wrapper";
+const newSpan = (innerElem: HTMLElement, blocks: boolean = false): HTMLElement => {
+  const span = document.createElement(blocks ? "div" : "span");
+  span.className = blocks ? "wc-block-components-text-input" : "woocommerce-input-wrapper";
   span.appendChild(innerElem);
   return span;
 };
@@ -87,9 +86,9 @@ interface PostcodeFieldConfig {
  * Creates container for Postcode Lookup
  */
 // eslint-disable-next-line
-export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfig): Result | null => {
+export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfig, blocks: boolean = false): Result | null => {
   if (targets.line_1 === null) return null;
-  const entity: string = config.entity || "p";
+  const entity: string = config.entity || (blocks ? "div" : "p");
   const contextClass: string | null = config.contextClass || null;
   const selector = parseSelector(entity);
   const tag = selector.tag !== null ? selector.tag : entity;
@@ -104,35 +103,69 @@ export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfi
   });
   if (target === null) return null;
   const wrapper = document.createElement(tag);
-  wrapper.className = `${wrapperClass} idpc_lookup field`;
+  wrapper.className = blocks ? `wc-block-components-text-input ${contextClass}` :`${wrapperClass} idpc_lookup field`;
+  if(blocks) {
+    wrapper.setAttribute("style", "display: flex; flex-wrap: wrap;");
+  }
 
   insertBefore({ target, elem: wrapper });
-
   const label = document.createElement("label");
   label.innerText = "Postcode Lookup";
-  wrapper.appendChild(label);
+
+  if(!blocks) {
+    wrapper.appendChild(label);
+  }
 
   const input = document.createElement("input");
-  input.className = config.inputClass || "idpc-input";
+  if(!blocks) input.className = config.inputClass || "idpc-input";
   input.type = "text";
-  input.placeholder = "Enter your postcode";
+  if(!blocks) input.placeholder = "Enter your postcode";
   input.setAttribute(
     "aria-label",
     "Search a postcode to retrieve your address"
   );
   input.id = "idpc_input";
-  wrapper.appendChild(newSpan(input));
+  if(blocks) {
+    input.addEventListener("focus", () => wrapper.classList.add("is-active"));
+    input.addEventListener("blur", () => {
+      if(input.value === "") wrapper.classList.remove("is-active");
+    });
+  }
+  if(blocks) {
+    const span = newSpan(input, blocks);
+    span.appendChild(label);
+    span.setAttribute("style", "flex: 0 1 70%;");
+    label.setAttribute("for", input.id)
+    wrapper.appendChild(span);
+  } else {
+    wrapper.appendChild(newSpan(input));
+  }
 
   const button = document.createElement("button");
+  const span = newSpan(button, blocks);
+  wrapper.appendChild(span);
   button.type = "button";
-  button.className = config.buttonClass || "idpc-button btn";
+  button.className = config.buttonClass || blocks ? "components-button wc-block-components-button" : "idpc-button btn";
   button.innerText = "Find my Address";
   button.id = "idpc_button";
-  wrapper.appendChild(newSpan(button));
+  button.setAttribute("style", "width: 100%; height: 100%");
+  if(blocks) span.setAttribute("style", "flex: 0 1 30%;")
 
-  const selectContainer = document.createElement("span");
-  selectContainer.className = "selection";
-  wrapper.appendChild(newSpan(selectContainer));
+  let selectContainer = document.createElement(blocks ? "div" : "span");
+  if(!blocks) {
+    selectContainer.className = "selection";
+    wrapper.appendChild(newSpan(selectContainer));
+  } else {
+    const label = document.createElement("label");
+    label.setAttribute("for", "idpc_dropdown");
+    label.innerText = "Select your address";
+    selectContainer.classList.add("wc-block-components-text-input");
+    selectContainer.classList.add("selection");
+    selectContainer.classList.add("is-active");
+    selectContainer.setAttribute("style", "display:none;");
+    selectContainer.appendChild(label);
+    wrapper.appendChild(selectContainer);
+  }
 
   const context = document.createElement("div");
   wrapper.appendChild(context);
@@ -198,7 +231,7 @@ interface WooConfig extends Config {
   contextClass?: string;
 }
 
-export const newBind = (selectors: Selectors) => (config: WooConfig) => {
+export const newBind = (selectors: Selectors, blocks: boolean = false) => (config: WooConfig) => {
   if (config.enabled !== true) return;
   const pageBindings = setupBind({ selectors });
   const outputFields = toOutputFields(config, selectors);
@@ -211,7 +244,24 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
       apiKey: config.apiKey,
       tags,
       outputFields,
-      onAddressPopulated: () => {
+      onAddressPopulated: function(address: AnyAddress) {
+        if (isString(outputFields.country)) {
+          const countryField = toHtmlElem(parent, outputFields.country);
+          //@ts-expect-error
+          const county = toHtmlElem(parent, outputFields.county);
+          if(blocks) {
+            //@ts-expect-error
+            countryField?.parentElement?.parentElement?.nextSibling?.firstChild.click();
+            if(county) {
+              if (isInput(county)) {
+                update(county, address.county);
+              } else {
+                //@ts-expect-error
+                update(county, address.county_code);
+              }
+            }
+          }
+        }
         updateCheckout();
       },
     };
@@ -222,7 +272,7 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
         ...config,
         ...config.postcodeLookupOverride
       }
-      const result = insertPostcodeField(targets, insertConfig);
+      const result = insertPostcodeField(targets, insertConfig, blocks);
       if (result) {
         const { context, button, input, selectContainer, wrapper } = result;
         plContainer = wrapper;
@@ -235,6 +285,20 @@ export const newBind = (selectors: Selectors) => (config: WooConfig) => {
           button,
           selectContainer,
           ...config.postcodeLookupOverride,
+          onSelectCreated:function (select) {
+            if(blocks) {
+              //get input styles and apply to select
+              const copyNodeStyle = function (sourceNode: HTMLElement, targetNode: HTMLElement) {
+                const computedStyle = window.getComputedStyle(sourceNode);
+                Array.from(computedStyle).forEach(key => targetNode.style.setProperty(key, computedStyle.getPropertyValue(key), computedStyle.getPropertyPriority(key)))
+              }
+              const input = document.querySelector('.wc-block-components-text-input input[type="text"]') as HTMLElement;
+              copyNodeStyle(input, select);
+            }
+            if(config.postcodeLookupOverride.onSelectCreated !== undefined) {
+              config.postcodeLookupOverride.onSelectCreated.call(this, select);
+            }
+          }
         });
       }
     }
