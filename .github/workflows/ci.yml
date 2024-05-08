@@ -72,7 +72,7 @@ jobs:
         run: make bootstrap-82
         env:
           COMPOSE_INTERACTIVE_NO_CLI: 1
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         env:
           CYPRESS_WC_VERSION: "82"
           CYPRESS_API_KEY: ${{ secrets.API_KEY }}
