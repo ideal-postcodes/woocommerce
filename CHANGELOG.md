@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/ideal-postcodes/woocommerce/compare/3.4.4...3.5.0) (2024-05-09)
+
+
+### Features
+
+* **blocks:** Add support of blocks ([b2fc40a](https://github.com/ideal-postcodes/woocommerce/commit/b2fc40ac160d5a8e75793ae247e778a003b9b2a3))
+
 ## [3.4.4](https://github.com/ideal-postcodes/woocommerce/compare/3.4.3...3.4.4) (2024-04-25)
 
 
