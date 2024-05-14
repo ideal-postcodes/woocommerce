@@ -249,6 +249,11 @@ export const newBind = (selectors: Selectors, blocks: boolean = false) => (confi
           const countryField = toHtmlElem(parent, outputFields.country);
           //@ts-expect-error
           const county = toHtmlElem(parent, outputFields.county);
+          //in case input is readonly when enforced country by owner
+          if(countryField && isInput(countryField)) {
+            update(countryField, address.country_iso_2);
+          }
+
           if(blocks) {
             //@ts-expect-error
             countryField?.parentElement?.parentElement?.nextSibling?.firstChild.click();
