@@ -1,3 +1,10 @@
+## [3.5.2](https://github.com/ideal-postcodes/woocommerce/compare/3.5.1...3.5.2) (2024-05-15)
+
+
+### Bug Fixes
+
+* **libs:** Add new libs ([8bbc8e7](https://github.com/ideal-postcodes/woocommerce/commit/8bbc8e7002257b12be6d3d43c41934c8b279cc0f))
+
 ## [3.5.1](https://github.com/ideal-postcodes/woocommerce/compare/3.5.0...3.5.1) (2024-05-15)
 
 
