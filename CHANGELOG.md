@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/ideal-postcodes/woocommerce/compare/3.5.0...3.5.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* **readonly:** issue with shipping methods update ([b99eb39](https://github.com/ideal-postcodes/woocommerce/commit/b99eb39757c9eb2c887057aa7ab9f773f1094cb2))
+
 # [3.5.0](https://github.com/ideal-postcodes/woocommerce/compare/3.4.4...3.5.0) (2024-05-09)
 
 
