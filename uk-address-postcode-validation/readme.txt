@@ -84,15 +84,14 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 == Changelog ==
 
 = 3.5.2 =
-* Add new js libs
+* Recompile JavaScript packages
 
 = 3.5.1 =
-* Fix issue with update shipping methods when country select is disabled
+* Fix issue with country selection for certain country input fields
 
 = 3.5.0 =
 * Add support for blocks checkout
 * Add support for php 8.2+
-
 
 = 3.4.4 =
 * Update Address Finder and Postcode Lookup to newest versions
