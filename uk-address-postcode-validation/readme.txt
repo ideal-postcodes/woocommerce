@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.5.2 =
+* Add new js libs
+
 = 3.5.1 =
 * Fix issue with update shipping methods when country select is disabled
 
