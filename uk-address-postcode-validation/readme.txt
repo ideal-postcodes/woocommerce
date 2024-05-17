@@ -84,10 +84,10 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 == Changelog ==
 
 = 3.5.3 =
-* Recompile JavaScript packages
+* Better handling of new WooCommerce Blocks county and county combobox
 
 = 3.5.2 =
-* Fix issue country and county selector combobox search
+* Recompile JavaScript packages
 
 = 3.5.1 =
 * Fix issue with country selection for certain country input fields
