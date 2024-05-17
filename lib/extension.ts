@@ -25,6 +25,13 @@ window.IdealPostcodes.PostcodeLookup = PostcodeLookup;
 const isSupported = (c: string | null): boolean =>
   ["GB", "IM", "JE", "GG"].indexOf(c || "") !== -1;
 
+const isDiv = (e: HTMLElement | null): e is HTMLDivElement => {
+  if (e === null) return false;
+  return (
+    e instanceof HTMLDivElement || e.constructor.name === "HTMLDivElement"
+  );
+};
+
 interface Result {
   selectContainer: HTMLElement;
   context: HTMLElement;
@@ -248,9 +255,12 @@ export const newBind = (selectors: Selectors, blocks: boolean = false) => (confi
         if (isString(outputFields.country)) {
           const countryField = toHtmlElem(parent, outputFields.country);
           //@ts-expect-error
-          const county = toHtmlElem(parent, outputFields.county);
+          let county = toHtmlElem(parent, outputFields.county);
+          if(isDiv(county)) {
+            county = county.querySelector("input");
+          }
           //in case input is readonly when enforced country by owner
-          if(countryField && isInput(countryField)) {
+          if(countryField && isInput(countryField) && countryField.getAttribute("readonly") !== null) {
             update(countryField, address.country_iso_2);
           }
 
@@ -260,6 +270,8 @@ export const newBind = (selectors: Selectors, blocks: boolean = false) => (confi
             if(county) {
               if (isInput(county)) {
                 update(county, address.county);
+                //@ts-expect-error
+                county?.parentElement?.parentElement?.nextSibling?.firstChild.click();
               } else {
                 //@ts-expect-error
                 update(county, address.county_code);
