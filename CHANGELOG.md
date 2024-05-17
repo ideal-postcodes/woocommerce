@@ -1,3 +1,10 @@
+## [3.5.3](https://github.com/ideal-postcodes/woocommerce/compare/3.5.2...3.5.3) (2024-05-17)
+
+
+### Bug Fixes
+
+* **country/county:** Fix update country/county combobox selector ([74adff0](https://github.com/ideal-postcodes/woocommerce/commit/74adff0834ae7cc043315c340622963e2e5f5738))
+
 ## [3.5.2](https://github.com/ideal-postcodes/woocommerce/compare/3.5.1...3.5.2) (2024-05-15)
 
 
