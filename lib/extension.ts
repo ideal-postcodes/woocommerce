@@ -112,7 +112,7 @@ export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfi
   const wrapper = document.createElement(tag);
   wrapper.className = blocks ? `wc-block-components-text-input ${contextClass}` :`${wrapperClass} idpc_lookup field`;
   if(blocks) {
-    wrapper.setAttribute("style", "display: flex; flex-wrap: wrap;");
+    wrapper.setAttribute("style", "display: flex; justify-content: space-between; column-gap:16px; flex-flow: wrap;");
   }
 
   insertBefore({ target, elem: wrapper });
@@ -141,7 +141,7 @@ export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfi
   if(blocks) {
     const span = newSpan(input, blocks);
     span.appendChild(label);
-    span.setAttribute("style", "flex: 0 1 70%;");
+    span.setAttribute("style", "flex: 2 1 0;");
     label.setAttribute("for", input.id)
     wrapper.appendChild(span);
   } else {
@@ -156,7 +156,7 @@ export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfi
   button.innerText = "Find my Address";
   button.id = "idpc_button";
   button.setAttribute("style", "width: 100%; height: 100%");
-  if(blocks) span.setAttribute("style", "flex: 0 1 30%;")
+  if(blocks) span.setAttribute("style", "flex: 1 1 0;")
 
   let selectContainer = document.createElement(blocks ? "div" : "span");
   if(!blocks) {
@@ -164,13 +164,17 @@ export const insertPostcodeField = (targets: Targets, config: PostcodeFieldConfi
     wrapper.appendChild(newSpan(selectContainer));
   } else {
     const label = document.createElement("label");
+    const breaker = document.createElement("div");
+    breaker.style.height = "0";
+    breaker.style.flexBasis = "100%";
     label.setAttribute("for", "idpc_dropdown");
     label.innerText = "Select your address";
     selectContainer.classList.add("wc-block-components-text-input");
     selectContainer.classList.add("selection");
     selectContainer.classList.add("is-active");
-    selectContainer.setAttribute("style", "display:none;");
+    selectContainer.setAttribute("style", "display:none; flex-basis:100%");
     selectContainer.appendChild(label);
+    wrapper.appendChild(breaker);
     wrapper.appendChild(selectContainer);
   }
 
@@ -311,6 +315,8 @@ export const newBind = (selectors: Selectors, blocks: boolean = false) => (confi
               }
               const input = document.querySelector('.wc-block-components-text-input input[type="text"]') as HTMLElement;
               copyNodeStyle(input, select);
+              select.style.width = "100%";
+              select.style.padding = "1.5em .5em .5em";
             }
             if(config.postcodeLookupOverride.onSelectCreated !== undefined) {
               config.postcodeLookupOverride.onSelectCreated.call(this, select);
