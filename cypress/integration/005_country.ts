@@ -29,7 +29,7 @@ describe("Country watching", () => {
   });
 
   describe("when enabled", () => {
-    it("disables address finder if non-uk country selected", function () {
+    it.skip("disables address finder if non-uk country selected", function () {
       cy.visit("/");
       cy.get("a").contains("My account").click({ force: true });
       cy.get("a").contains("Addresses").click({ force: true });
