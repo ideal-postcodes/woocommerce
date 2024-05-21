@@ -7,23 +7,29 @@ import {
   isString,
   OutputFields,
   hide,
-  show,
   toHtmlElem,
   isInput,
   update,
-  setupBind,
   insertBefore,
   Targets,
   getParent,
-  AnyAddress
+  AnyAddress,
+  loaded,
+  markLoaded,
+  toArray,
 } from "@ideal-postcodes/jsutil";
 
 if (!window.IdealPostcodes) window.IdealPostcodes = {};
 window.IdealPostcodes.AddressFinder = AddressFinder;
 window.IdealPostcodes.PostcodeLookup = PostcodeLookup;
 
-const isSupported = (c: string | null): boolean =>
-  ["GB", "IM", "JE", "GG"].indexOf(c || "") !== -1;
+const isSupported = (c: string | null): boolean => {
+  if(c === null) return false;
+  if(c.length > 2) {
+    return [ "United Kingdom (UK)", "Isle of Man", "Jersey", "Guernsey" ].indexOf(c || "") !== -1;
+  }
+  return [ "GB", "IM", "JE", "GG" ].indexOf(c || "") !== -1;
+}
 
 const isDiv = (e: HTMLElement | null): e is HTMLDivElement => {
   if (e === null) return false;
@@ -242,9 +248,73 @@ interface WooConfig extends Config {
   contextClass?: string;
 }
 
+const getAnchors = (selector: string): HTMLElement[] => {
+  const matches = window.document.querySelectorAll(selector);
+  const anchors = toArray(matches).filter((e) => !loaded(e));
+  if (anchors.length === 0) return [];
+  anchors.forEach((anchor) => markLoaded(anchor));
+  return anchors;
+};
+
+interface PageBindings {
+  anchor: HTMLElement;
+  targets: Targets;
+  parent: HTMLElement;
+}
+
+interface SetupOptions {
+  selectors: Selectors
+}
+
+interface Setup {
+  (options: SetupOptions): PageBindings[];
+}
+
+const getTargets = (
+  parent: HTMLElement,
+  selectors: Selectors
+): Targets | null => {
+  const line_1: HTMLElement | null = toHtmlElem(parent, selectors.line_1);
+  const post_town: HTMLElement | null = toHtmlElem(parent, selectors.post_town);
+  const postcode: HTMLElement | null = toHtmlElem(parent, selectors.postcode);
+  const line_2: HTMLElement | null = toHtmlElem(parent, selectors.line_2);
+  const line_3: HTMLElement | null = toHtmlElem(parent, selectors.line_3);
+  const country: HTMLElement | null = toHtmlElem(parent, selectors.country);
+  const county: HTMLElement | null = toHtmlElem(parent, selectors.county);
+  const organisation: HTMLElement | null = toHtmlElem(
+    parent,
+    selectors.organisation
+  );
+
+  return {
+    line_1,
+    line_2,
+    line_3,
+    post_town,
+    county,
+    postcode,
+    organisation,
+    country,
+  };
+};
+
+const setup: Setup = ({ selectors }) => {
+  const anchors = getAnchors(selectors.line_1);
+  return anchors.reduce<PageBindings[]>((prev, anchor) => {
+    const parent = getParent(anchor, "form");
+    if (!parent) return prev;
+
+    const targets = getTargets(parent, selectors);
+    if (targets === null) return prev;
+
+    prev.push({ targets, parent, anchor });
+    return prev;
+  }, []);
+}
+
 export const newBind = (selectors: Selectors, blocks: boolean = false) => (config: WooConfig) => {
   if (config.enabled !== true) return;
-  const pageBindings = setupBind({ selectors });
+  const pageBindings = setup({ selectors });
   const outputFields = toOutputFields(config, selectors);
 
   pageBindings.forEach((binding) => {
@@ -281,6 +351,9 @@ export const newBind = (selectors: Selectors, blocks: boolean = false) => (confi
                 update(county, address.county_code);
               }
             }
+            //ensure blur on population for better reopen search after click
+            //@ts-expect-error
+            setTimeout(() => this.input.blur(), 200);
           }
         }
         updateCheckout();
@@ -324,38 +397,90 @@ export const newBind = (selectors: Selectors, blocks: boolean = false) => (confi
           }
         });
       }
+
+      let country = (targets.country as HTMLSelectElement) || null;
+      if(isDiv(country)) {
+        //@ts-expect-error
+        country = country.querySelector("input");
+      }
+
+      const checkCountry = () => {
+        if (isSupported(country.value)) {
+          if (plContainer) plContainer.style.display = blocks ? "flex" : "block";
+        } else {
+          if (plContainer) hide(plContainer);
+        }
+      };
+
+      country?.addEventListener("change", checkCountry);
+
+      const handleValueChange = () => {
+        country.dispatchEvent(new Event("change", { bubbles: true }))
+      }
+
+      let oldValue = country.value;
+      // Create a MutationObserver to detect changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'value') {
+            const newValue = country.value;
+            if (newValue !== oldValue) {
+              oldValue = newValue;
+              handleValueChange();
+            }
+          }
+        });
+      });
+
+      // Configure the observer
+      observer.observe(country, {
+        attributes: true
+      });
+      //observer for sudo select etc in accounts
+      const shadowSelectSpan = document.querySelector(`#select2-${selectors.country.replace(/#|\./g, "")}-container`);
+      if(shadowSelectSpan !== null) {
+        let oldValue = shadowSelectSpan.getAttribute("title");
+        // Create a MutationObserver to detect changes
+        const observerShadow = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'title') {
+              const newValue = shadowSelectSpan.getAttribute("title");
+              if (newValue !== oldValue) {
+                oldValue = newValue;
+                handleValueChange();
+              }
+            }
+          });
+        });
+        observerShadow.observe(shadowSelectSpan, {
+          attributes: true
+        });
+      }
+
+      checkCountry();
     }
 
     let f: FinderContainer | null;
     if (config.autocomplete) {
       f = config.separateFinder ? insertAddressFinder(targets) : null;
-      const af = AddressFinder.setup({
-        //injectStyle: false, // To be dropped in breaking change release
+      AddressFinder.setup({
         ...config,
         autocomplete: AddressFinder.defaults.autocomplete, // Temporary fix for clash
         ...localConfig,
         inputField: f ? f.input : selectors.line_1,
         ...config.autocompleteOverride,
-      });
-
-      const country = (targets.country as HTMLSelectElement) || null;
-
-      const checkCountry = () => {
-        if (isSupported(country.value)) {
-          if (plContainer) show(plContainer);
-          if (f) show(f.elem);
-          if (af) af.attach();
-        } else {
-          if (plContainer) hide(plContainer);
-          if (f) hide(f.elem);
-          if (af) af.detach();
+        onMounted: function() {
+          if(config.autocompleteOverride.onMounted !== undefined
+            && typeof config.autocompleteOverride.onMounted === "function") {
+            config.autocompleteOverride.onMounted.call(this);
+          }
+          this.list.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+          });
         }
-      };
-
-      if (config.watchCountry && country) {
-        (window.jQuery as any)(country).change(checkCountry);
-        checkCountry();
-      }
+      });
     }
   });
 };

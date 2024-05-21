@@ -10,7 +10,7 @@ const orderBilling = {
   post_town: "#_billing_city",
   county: "#_billing_state",
   postcode: "#_billing_postcode",
-  organisation_name: "#_billing_company",
+  organisation: "#_billing_company",
   country: "#_billing_country",
 };
 
@@ -20,7 +20,7 @@ const orderShipping = {
   post_town: "#_shipping_city",
   county: "#_shipping_state",
   postcode: "#_shipping_postcode",
-  organisation_name: "#_shipping_company",
+  organisation: "#_shipping_company",
   country: "#_shipping_country",
 };
 
@@ -31,7 +31,7 @@ const userBilling = {
   post_town: "#billing_city",
   county: "#billing_state",
   postcode: "#billing_postcode",
-  organisation_name: "#billing_company",
+  organisation: "#billing_company",
   country: "#billing_country",
 };
 
@@ -41,7 +41,7 @@ const userShipping = {
   post_town: "#shipping_city",
   county: "#shipping_state",
   postcode: "#shipping_postcode",
-  organisation_name: "#shipping_company",
+  organisation: "#shipping_company",
   country: "#shipping_country",
 };
 

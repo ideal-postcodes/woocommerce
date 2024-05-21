@@ -83,6 +83,10 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.5.5 =
+* Fix malfunctioning event propagations
+* Improve visibility of Address Finder for multinational forms
+
 = 3.5.4 =
 * Improve Postcode Lookup layout on WooCommerce blocks checkout
 

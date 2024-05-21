@@ -11,7 +11,7 @@ export const selectors = {
   post_town: "#billing-city",
   county: "#billing-state",
   postcode: "#billing-postcode",
-  organisation_name: "#billing-company",
+  organisation: "#billing-company",
   country: "#billing-country input",
 };
 
