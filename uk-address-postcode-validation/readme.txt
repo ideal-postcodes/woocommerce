@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.5.4 =
+* Improve Postcode Lookup css styles
+
 = 3.5.3 =
 * Better handling of new WooCommerce Blocks county and county combobox
 
