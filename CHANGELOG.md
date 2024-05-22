@@ -1,3 +1,10 @@
+## [3.5.4](https://github.com/ideal-postcodes/woocommerce/compare/3.5.3...3.5.4) (2024-05-22)
+
+
+### Bug Fixes
+
+* **PL-styles:** Fix styling for blocks PL display ([6c1bde6](https://github.com/ideal-postcodes/woocommerce/commit/6c1bde60534869ebd2db08ef9f3c49b752e84260))
+
 ## [3.5.3](https://github.com/ideal-postcodes/woocommerce/compare/3.5.2...3.5.3) (2024-05-17)
 
 
