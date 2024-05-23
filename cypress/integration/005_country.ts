@@ -29,36 +29,6 @@ describe("Country watching", () => {
   });
 
   describe("when enabled", () => {
-    it.skip("disables address finder if non-uk country selected", function () {
-      cy.visit("/");
-      cy.get("a").contains("My account").click({ force: true });
-      cy.get("a").contains("Addresses").click({ force: true });
-      cy.get(".u-column2 > .woocommerce-Address-title > .edit").click({
-        force: true,
-      });
-
-      // Ensure UK selected
-      if (Cypress.env("LEGACY")) {
-        cy.get("#select2-shipping_country-container")
-          .click({ force: true })
-          .type("United Kingdom{enter}");
-      } else {
-        cy.get(shippingSelectors.country).select("GB", { force: true });
-      }
-
-      cy.get("div.idpc_autocomplete").should("be.visible");
-
-      // Switch to Germany
-      if (Cypress.env("LEGACY")) {
-        cy.get("#select2-shipping_country-container")
-          .click({ force: true })
-          .type("Germany{enter}");
-      } else {
-        cy.get(shippingSelectors.country).select("DE", { force: true });
-      }
-      cy.get("div.idpc_autocomplete").should("not.exist");
-    });
-
     it("disables postcode lookup", function () {
       cy.visit("/");
       cy.get("a").contains("My account").click({ force: true });
