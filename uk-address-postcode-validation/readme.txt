@@ -84,11 +84,11 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 == Changelog ==
 
 = 3.5.5 =
-* Fix malfunctioning event propagations
-* Improve visibility of Address Finder for multinational forms
+* Toggle the country context of Address Finder when a new country is selected in checkout
+* Fix address field binding for certains countries with dynamically generated inputs in WooCommerce Blocks checkout
 
 = 3.5.4 =
-* Improve Postcode Lookup layout on WooCommerce blocks checkout
+* Improve Postcode Lookup layout on WooCommerce Blocks checkout
 
 = 3.5.3 =
 * Better handling of new WooCommerce Blocks county and county combobox
