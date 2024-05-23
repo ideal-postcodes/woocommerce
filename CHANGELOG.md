@@ -1,3 +1,10 @@
+## [3.5.5](https://github.com/ideal-postcodes/woocommerce/compare/3.5.4...3.5.5) (2024-05-23)
+
+
+### Bug Fixes
+
+* **behaviour:** Fix issues with functional behaviours ([d1f4101](https://github.com/ideal-postcodes/woocommerce/commit/d1f4101691ce5f2e077c6dc3b8d9929373124a61))
+
 ## [3.5.4](https://github.com/ideal-postcodes/woocommerce/compare/3.5.3...3.5.4) (2024-05-22)
 
 
