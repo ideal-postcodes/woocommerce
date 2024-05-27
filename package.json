@@ -47,7 +47,7 @@
     "@ideal-postcodes/core-browser": "~1.5.2",
     "@prettier/plugin-php": "~0.22.2",
     "@prettier/plugin-xml": "~3.3.1",
-    "@rollup/plugin-commonjs": "~21.0.0",
+    "@rollup/plugin-commonjs": "~25.0.8",
     "@rollup/plugin-inject": "~5.0.4",
     "@rollup/plugin-node-resolve": "~13.0.0",
     "rollup-plugin-ts": "~3.4.5",
