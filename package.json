@@ -70,6 +70,6 @@
   "dependencies": {
     "@ideal-postcodes/address-finder": "~4.5.3",
     "@ideal-postcodes/jsutil": "~7.1.0",
-    "@ideal-postcodes/postcode-lookup": "~1.11.1"
+    "@ideal-postcodes/postcode-lookup": "~2.0.0"
   }
 }

@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.5.6 =
+* Update Postcode Lookup to version 2.0.0
+
 = 3.5.5 =
 * Toggle the country context of Address Finder when a new country is selected in checkout
 * Fix address field binding for certains countries with dynamically generated inputs in WooCommerce Blocks checkout
