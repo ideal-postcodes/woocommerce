@@ -404,7 +404,7 @@ Cypress.Commands.add("installwc82", () => {
   cy.get(".components-button.woocommerce-profiler-setup-store__button.is-primary").click();
   cy.wait(1000);
   cy.get(".components-button.woocommerce-profiler-button.is-primary").click();
-  cy.wait(1000);
+  cy.wait(2000);
   cy.get("#woocommerce-select-control-0__control-input").click();
   cy.wait(200);
   cy.get("#woocommerce-select-control__option-0-electronics_and_computers").click({ force: true });
