@@ -1,3 +1,10 @@
+## [3.5.6](https://github.com/ideal-postcodes/woocommerce/compare/3.5.5...3.5.6) (2024-06-10)
+
+
+### Bug Fixes
+
+* **PL:** Update PL to newest version ([de506de](https://github.com/ideal-postcodes/woocommerce/commit/de506dedb550c3788d0ee81d38e288e8e005a92e))
+
 ## [3.5.5](https://github.com/ideal-postcodes/woocommerce/compare/3.5.4...3.5.5) (2024-05-23)
 
 
