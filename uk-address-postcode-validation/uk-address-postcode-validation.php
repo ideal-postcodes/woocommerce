@@ -33,8 +33,9 @@ require_once ABSPATH . "wp-admin/includes/plugin.php";
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'add_action_links' );
 
 function add_action_links ( $actions ) {
+  $link = admin_url("admin.php?page=wc-settings&tab=integration&section=idealpostcodes");
   $mylinks = array(
-    '<a href="/wp-admin/admin.php?page=wc-settings&tab=integration&section=idealpostcodes">Settings</a>',
+    '<a href="'.$link.'">Settings</a>',
   );
   $actions = array_merge( $actions, $mylinks );
   return $actions;

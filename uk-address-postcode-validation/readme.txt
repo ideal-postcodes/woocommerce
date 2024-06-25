@@ -83,6 +83,9 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 
 == Changelog ==
 
+= 3.5.7 =
+* Fix broken settings link on Plugins list page
+
 = 3.5.6 =
 * Update Postcode Lookup to version 2.0.0
 
