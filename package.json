@@ -51,7 +51,7 @@
     "@rollup/plugin-inject": "~5.0.4",
     "@rollup/plugin-node-resolve": "~13.0.0",
     "rollup-plugin-ts": "~3.4.5",
-    "core-js": "~3.24.1",
+    "core-js": "~3.38.0",
     "core-js-pure": "~3.18.2",
     "cypress": "~13.7.2",
     "eslint": "~7.25.0",
