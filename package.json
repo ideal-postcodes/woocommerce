@@ -53,7 +53,7 @@
     "rollup-plugin-ts": "~3.4.5",
     "core-js": "~3.24.1",
     "core-js-pure": "~3.18.2",
-    "cypress": "~13.7.2",
+    "cypress": "~13.13.2",
     "eslint": "~7.25.0",
     "prettier": "~3.2.5",
     "promise-polyfill": "~8.2.1",
