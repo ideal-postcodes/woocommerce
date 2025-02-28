@@ -12,7 +12,7 @@ export const selectors = {
   county: "#billing-state",
   postcode: "#billing-postcode",
   organisation_name: "#billing-company",
-  country: "#billing-country input",
+  country: "#billing-country input,#billing-country select",
 };
 
 export const bind = newBind(selectors, true);

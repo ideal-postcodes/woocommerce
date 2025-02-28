@@ -11,7 +11,7 @@ export const selectors = {
   county: "#shipping-state",
   postcode: "#shipping-postcode",
   organisation_name: "#shipping-company",
-  country: "#shipping-country input",
+  country: "#shipping-country input,#shipping-country select",
 };
 
 export const bind = newBind(selectors, true);

@@ -31,6 +31,7 @@
 declare namespace Cypress {
   interface Chainable {
     login(): void;
+    exists(ele: string): Cypress.Chainable<boolean>;
     installwc42(): void;
     installwc43(): void;
     installwc45(): void;
@@ -63,6 +64,12 @@ Cypress.Commands.add("login", () => {
     cy.get("#user_pass").focus().type("password");
     cy.get("#wp-submit").click();
     cy.wait(1000);
+  });
+});
+
+Cypress.Commands.add("exists", (ele: string): Cypress.Chainable<boolean> => {
+  return cy.get('body').then((body) => {
+    return body.find(ele).length > 0;
   });
 });
 
@@ -389,7 +396,9 @@ Cypress.Commands.add("installwc80", () => {
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=shipping');
   cy.get("#woocommerce-shipping-rate__toggle-0").click();
   cy.contains("Save shipping options").click();
-  cy.get(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").click();
+  cy.exists(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").then(()=>{
+    cy.get(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").click();
+  });
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
   cy.contains("Add tax rates").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=tax');
