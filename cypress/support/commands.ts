@@ -429,7 +429,9 @@ Cypress.Commands.add("installwc82", () => {
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=shipping');
   cy.get("#woocommerce-shipping-rate__toggle-0").click();
   cy.contains("Save shipping options").click();
-  cy.get(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").click();
+  cy.exists(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").then(()=>{
+    cy.get(".components-button.woocommerce-task-shipping-recommendations_skip-button.dual.is-tertiary").click();
+  });
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin');
   cy.contains("Collect sales tax").click();
   cy.url({ timeout: 300000 }).should('contain', '/wp-admin/admin.php?page=wc-admin&task=tax');
