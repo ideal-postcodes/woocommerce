@@ -162,10 +162,10 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         ],
         "idealpostcodes_populate_organisation" => [
           "id" => "idealpostcodes_populate_organisation",
-          "title" => __("Enable Populate Organisation", IDEALPOSTCODES_SLUG),
+          "title" => __("Remove Organisation Name", IDEALPOSTCODES_SLUG),
           "type" => "checkbox",
           "description" => __(
-            "Fill the Company field based on selected address.",
+            "Removes the Company name from the address lines to avoid duplicate with from Company Name field",
             IDEALPOSTCODES_SLUG
           ),
           "default" => "yes",
@@ -238,7 +238,7 @@ if (!class_exists("WC_IdealPostcodes_Integration")):
         "separateFinder" => $this->to_bool(
           $this->get_option("idealpostcodes_separate_finder")
         ),
-        "populateOrganisation" => $this->to_bool(
+        "removeOrganisation" => $this->to_bool(
           $this->get_option("idealpostcodes_populate_organisation")
         ),
         "populateCounty" => $this->to_bool(

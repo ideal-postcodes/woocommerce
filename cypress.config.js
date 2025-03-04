@@ -11,6 +11,5 @@ export default defineConfig({
   viewportHeight: 1024,
   env: {
     "WC_VERSION": "80",
-    "API_KEY": "ak_marcin"
   }
 });
