@@ -1,3 +1,12 @@
+## [3.5.8](https://github.com/ideal-postcodes/woocommerce/compare/3.5.7...3.5.8) (2025-03-04)
+
+
+### Bug Fixes
+
+* **country-selector:** Fix issue that modified set ([a60cf39](https://github.com/ideal-postcodes/woocommerce/commit/a60cf39edd8a1c18e4415a5f97cb04b3dca7d535))
+* **org-populate:** Fix issue with Populate organization and first line ([db5aecb](https://github.com/ideal-postcodes/woocommerce/commit/db5aecbfa23cb331f52a395b1ce66d15c49276fc))
+* **release:** Fix credentials for release ([bf55a36](https://github.com/ideal-postcodes/woocommerce/commit/bf55a36278c72cb7ff9f8f2b4b2b86ae0a979258))
+
 ## [3.5.7](https://github.com/ideal-postcodes/woocommerce/compare/3.5.6...3.5.7) (2024-06-25)
 
 
