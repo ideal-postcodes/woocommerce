@@ -84,7 +84,7 @@ Prices range between 2 and 2.5p per lookup, with alternate pricing options avail
 == Changelog ==
 
 = 3.5.9 =
-* Fix populate organisation name from selected address
+* Fix organisation name removal if enabled
 
 = 3.5.8 =
 * Fix country selector on checkout billing and shipping pages
